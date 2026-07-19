@@ -38,6 +38,9 @@ your own tutor personas.
 - **Your keys, your browser** — settings, cards, chats, and personas live in
   `localStorage`; LLM calls go straight from the browser to the provider. Export/import
   JSON backups in Settings.
+- **Optional cloud sync** — magic-code email sign-in (InstantDB) syncs deck, chats,
+  and settings across devices; last-write-wins per account. The LLM API key is never
+  synced. Off by default: nothing is fetched until you sign in.
 
 ## Run it
 
@@ -63,6 +66,27 @@ practice over rereading; production-direction cards because practice transfers
 skill-specifically; prompt-style (eliciting) correction over recasts; high-frequency
 vocabulary first because per-exposure incidental yields are small. FSRS-7 details:
 <https://github.com/open-spaced-repetition/srs-benchmark/pull/290>.
+
+## Cloud sync (optional)
+
+Sync uses [InstantDB](https://www.instantdb.com) with a public app id embedded in the
+app. Access control is a dashboard permission rule (already configured on the default
+app):
+
+```json
+{ "states": { "allow": {
+  "view": "auth.id == data.owner", "create": "auth.id == data.owner",
+  "update": "auth.id == data.owner", "delete": "false" } } }
+```
+
+To sync your own devices: Settings → Cloud sync → enter your email → enter the
+6-digit code. First sign-in uploads your local state; on a fresh device it downloads
+it. Edits push automatically (3s debounce); a newer state from another device prompts
+before replacing local data. The admin token is **not** part of the app and must never
+be committed — it was used once to set the rule above.
+
+To run your own backend instead: create an InstantDB app, set the same rule, and point
+Settings → `syncAppId` at it. InstantDB is open source and self-hostable.
 
 ## Files
 

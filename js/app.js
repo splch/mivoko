@@ -34,7 +34,9 @@ const DEFAULT_SETTINGS = {
   maxIntervalDays: 365,
   newPerDay: 10,
   autoExamples: false,
-  weights: ''                    // optional: 35 comma-separated custom FSRS-7 weights
+  weights: '',                   // optional: 35 comma-separated custom FSRS-7 weights
+  syncAppId: '837f3a02-dab8-40e1-a8e6-31f03b49ca61', // public InstantDB app id for optional cloud sync
+  syncEmail: ''
 };
 
 /* ---------------- formatting helpers ---------------- */
@@ -164,6 +166,7 @@ document.addEventListener('alpine:init', () => {
       this.placementMeta = store.load('placement', null);
       this.ensureMeta();
       this.savePersonas();
+      if (this.settings.syncAppId && this.settings.syncEmail) this.initSync();
     },
 
     /* ----- FSRS ----- */
@@ -650,6 +653,8 @@ document.addEventListener('alpine:init', () => {
       if (!confirm('Delete ALL mivoko data in this browser (settings incl. API key, words, chats, personas)?')) return;
       ['settings', 'personas', 'activePersona', 'cards', 'chats', 'meta', 'placement', 'personaSeed'].forEach(k => store.drop(k));
       location.reload();
-    }
+    },
+
+    ...syncMethods()
   }));
 });
