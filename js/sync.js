@@ -12,6 +12,7 @@ function syncMethods() {
     syncEmail: '',
     syncCode: '',
     syncStatus: '',
+    syncState: 'idle',   // idle | syncing | synced | error
     syncBusy: false,
     _db: null,
     _unsub: null,
@@ -48,6 +49,7 @@ function syncMethods() {
           if (auth.user) {
             this.settings.syncEmail = auth.user.email;
             store.save('settings', this.settings);
+            if (this.meta.syncAt && this.syncState === 'idle') this.syncState = 'synced';
             this._patchStore();
             this._subscribeRemote();
           }
@@ -81,6 +83,7 @@ function syncMethods() {
       try { if (this._db) await this._db.auth.signOut(); } catch (e) { /* best effort */ }
       if (this._unsub) { this._unsub(); this._unsub = null; }
       this.syncUser = null;
+      this.syncState = 'idle';
       this.settings.syncEmail = '';
       store.save('settings', this.settings);
       this.syncStatus = 'Signed out — local data kept on this device.';
@@ -113,16 +116,22 @@ function syncMethods() {
       });
     },
 
-    async pushState() {
+    async pushState(manual) {
       if (!this.syncUser) { this.toast('Sign in to sync first'); return; }
       try {
+        this.syncState = 'syncing';
         this._lastPushed = Date.now();
         await this._db.transact(this._db.tx.states[this.syncUser.id].update({
           owner: this.syncUser.id, blob: this.stateBlob(), updatedAt: this._lastPushed
         }));
         this.meta.syncAt = this._lastPushed;
+        this.syncState = 'synced';
         this.syncStatus = 'Synced ' + new Date(this._lastPushed).toLocaleTimeString();
-      } catch (e) { this.syncStatus = 'Sync push failed: ' + this._err(e); }
+        if (manual) this.toast('Synced ✓');
+      } catch (e) {
+        this.syncState = 'error';
+        this.syncStatus = 'Sync push failed: ' + this._err(e);
+      }
     },
 
     /* ----- pull: cloud → local (live subscription; LWW at the blob) ----- */

@@ -38,6 +38,12 @@
         <p class="text-xs text-slate-400">frequency-first · FSRS-7 · your keys, your browser</p>
       </div>
       <span x-show="!online" class="ml-2 px-2 py-0.5 rounded-md bg-amber-900/60 text-amber-300 text-xs">offline</span>
+      <button x-show="syncUser" @click="view = 'settings'" class="ml-2 px-2 py-0.5 rounded-md text-xs transition"
+        :class="{'bg-emerald-900/60 text-emerald-300': syncState === 'synced',
+                 'bg-sky-900/60 text-sky-300': syncState === 'syncing',
+                 'bg-rose-900/60 text-rose-300': syncState === 'error',
+                 'bg-slate-800 text-slate-400': syncState === 'idle'}"
+        x-text="syncState === 'syncing' ? '☁ syncing…' : syncState === 'error' ? '☁ sync failed' : '☁ synced'"></button>
     </div>
     <nav class="flex flex-wrap gap-1">
       <template x-for="t in tabs" :key="t.id">
@@ -446,9 +452,10 @@
             <button @click="verifySyncCode()" :disabled="syncBusy" class="btn bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50">Verify</button>
           </div>
         </div>
+        <p x-show="syncUser && meta.syncAt" class="text-xs text-slate-500 mb-2">Last synced: <span x-text="new Date(meta.syncAt).toLocaleString()"></span></p>
         <div x-show="syncUser" class="flex items-center gap-3">
           <span class="text-sm text-slate-300">Signed in as <span class="text-slate-100" x-text="syncUser && syncUser.email"></span></span>
-          <button @click="pushState()" class="btn bg-slate-800 hover:bg-slate-700">Sync now</button>
+          <button @click="pushState(true)" class="btn bg-slate-800 hover:bg-slate-700">Sync now</button>
           <button @click="signOutSync()" class="text-sm text-rose-400 hover:text-rose-300 ml-auto">Sign out</button>
         </div>
         <p x-show="syncStatus" class="text-xs text-slate-500 mt-2" x-text="syncStatus"></p>
