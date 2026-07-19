@@ -6,7 +6,7 @@
 
 // Bump the cache name on EVERY deploy that changes any precached asset —
 // installed clients keep their old precache until this string changes.
-const CACHE = 'mivoko-v3';
+const CACHE = 'mivoko-v4';
 const ASSETS = [
   './',
   'index.html',

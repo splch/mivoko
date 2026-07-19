@@ -195,8 +195,16 @@ function syncMethods() {
       );
     },
 
-    _offerRemote(row) {
-      if (confirm('Newer synced state found (' + new Date(row.updatedAt).toLocaleString() +
+    async _offerRemote(row) {
+      let what = '';
+      try {
+        const s = await this._unpack(row);
+        const nChats = Object.values(s.chats || {}).reduce((a, c) => a + c.length, 0);
+        what = (s.cards || []).length + ' words, ' + nChats + ' chat messages, ' +
+               (s.personas || []).length + ' personas';
+      } catch (e) { /* fall back to a bare prompt */ }
+      if (confirm('Newer synced state found (' + what + ', from ' +
+                  new Date(row.updatedAt).toLocaleString() +
                   '). Load it and replace this device’s data?')) {
         this.applyRemote(row);
       } else {
