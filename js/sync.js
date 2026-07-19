@@ -18,6 +18,7 @@ function syncMethods() {
     _unsub: null,
     _pushTimer: null,
     _storePatched: false,
+    _authSubscribed: false,
     _origSave: null,
     _lastPushed: 0,
     _lastApplied: 0,
@@ -40,10 +41,13 @@ function syncMethods() {
       return this._db;
     },
 
-    // Resume a previous session on page load (called from init()).
+    // Resume a previous session on page load (called from init()),
+    // and invoked after a fresh sign-in (from verifySyncCode).
     async initSync() {
       try {
         await this._ensureDb();
+        if (this._authSubscribed) return;
+        this._authSubscribed = true;
         this._db.subscribeAuth(auth => {
           this.syncUser = auth.user || null;
           if (auth.user) {
@@ -75,6 +79,7 @@ function syncMethods() {
           email: this.syncEmail.trim(), code: this.syncCode.trim()
         });
         this.syncCode = '';
+        this.initSync(); // start the sync pipeline (no-op if already running)
       } catch (e) { this.syncStatus = 'Sign-in failed: ' + this._err(e); }
       finally { this.syncBusy = false; }
     },
