@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>mivoko — frequency-first language tutor</title>
   <meta name="description" content="Learn any language with frequency lists, AI personas, and the FSRS-7 spaced repetition scheduler. No backend — your keys, your browser.">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="vendor/tailwind.js"></script>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#4f46e5">
   <style type="text/tailwindcss">
     [x-cloak] { display: none !important; }
     .stat       { @apply p-4 rounded-2xl bg-slate-900 border border-slate-800; }
@@ -35,6 +37,7 @@
         <h1 class="text-lg font-bold tracking-tight leading-none">mivoko</h1>
         <p class="text-xs text-slate-400">frequency-first · FSRS-7 · your keys, your browser</p>
       </div>
+      <span x-show="!online" class="ml-2 px-2 py-0.5 rounded-md bg-amber-900/60 text-amber-300 text-xs">offline</span>
     </div>
     <nav class="flex flex-wrap gap-1">
       <template x-for="t in tabs" :key="t.id">
@@ -475,6 +478,7 @@
 <script src="js/data.js"></script>
 <script src="js/sync.js"></script>
 <script src="js/app.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+<script defer src="vendor/alpine.min.js"></script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});</script>
 </body>
 </html>

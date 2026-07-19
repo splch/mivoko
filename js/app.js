@@ -138,6 +138,7 @@ document.addEventListener('alpine:init', () => {
     placementMeta: null,   // {frontier, date} — persisted result
     placement: { active: false, done: false, lo: 0, hi: 0, round: 0, maxRounds: 8, minRange: 400, probes: [] },
     toastMsg: '',
+    online: navigator.onLine,
 
     _fsrs: null,
 
@@ -166,6 +167,8 @@ document.addEventListener('alpine:init', () => {
       this.placementMeta = store.load('placement', null);
       this.ensureMeta();
       this.savePersonas();
+      window.addEventListener('online', () => { this.online = true; });
+      window.addEventListener('offline', () => { this.online = false; });
       if (this.settings.syncAppId && this.settings.syncEmail) this.initSync();
     },
 

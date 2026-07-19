@@ -38,6 +38,9 @@ your own tutor personas.
 - **Your keys, your browser** — settings, cards, chats, and personas live in
   `localStorage`; LLM calls go straight from the browser to the provider. Export/import
   JSON backups in Settings.
+- **Works offline (PWA)** — Alpine/Tailwind are vendored and a service worker precaches
+  the whole app shell + word lists, so after one online visit it opens with zero
+  connectivity (plane mode approved; chat, examples, and sync need a network).
 - **Optional cloud sync** — magic-code email sign-in (InstantDB) syncs deck, chats,
   and settings across devices; last-write-wins per account. The LLM API key is never
   synced. Off by default: nothing is fetched until you sign in.
