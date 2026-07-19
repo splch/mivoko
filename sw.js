@@ -4,7 +4,7 @@
  * already handles with status messages. */
 'use strict';
 
-const CACHE = 'mivoko-v1';
+const CACHE = 'mivoko-v2';
 const ASSETS = [
   './',
   'index.html',
