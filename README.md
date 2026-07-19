@@ -4,6 +4,8 @@ A frequency-first language tutor that runs entirely in your browser. No backend,
 database, no build step — bring your own LLM API key, your own frequency list, and
 your own tutor personas.
 
+**Live: [splch.github.io/mivoko](https://splch.github.io/mivoko/)**
+
 ## What it does
 
 - **Frequency lists** — six built-in top-10k lists (English, Mandarin, Hindi,
