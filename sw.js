@@ -6,7 +6,7 @@
 
 // Bump the cache name on EVERY deploy that changes any precached asset —
 // installed clients keep their old precache until this string changes.
-const CACHE = 'mivoko-v4';
+const CACHE = 'mivoko-v5';
 const ASSETS = [
   './',
   'index.html',
@@ -17,7 +17,13 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  // allSettled: one missing asset must not abort the whole install
+  // (a single 404 during precache previously left devices with no cache at all)
+  e.waitUntil(
+    caches.open(CACHE)
+      .then(c => Promise.allSettled(ASSETS.map(a => c.add(a))))
+      .then(() => self.skipWaiting())
+  );
 });
 
 self.addEventListener('activate', e => {
