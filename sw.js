@@ -4,7 +4,9 @@
  * already handles with status messages. */
 'use strict';
 
-const CACHE = 'mivoko-v2';
+// Bump the cache name on EVERY deploy that changes any precached asset —
+// installed clients keep their old precache until this string changes.
+const CACHE = 'mivoko-v3';
 const ASSETS = [
   './',
   'index.html',
