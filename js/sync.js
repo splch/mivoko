@@ -109,31 +109,63 @@ function syncMethods() {
     _schedulePush() {
       if (!this.syncUser) return;
       clearTimeout(this._pushTimer);
-      this._pushTimer = setTimeout(() => this.pushState(), 3000);
+      this._pushTimer = setTimeout(() => this.pushState(), 8000);
+    },
+
+    // Pack state as gzipped+base64 JSON (JSON state compresses ~5-10x, which is
+    // what keeps pushes from timing out on slow links). Falls back to plain JSON.
+    async _pack(obj) {
+      const json = JSON.stringify(obj);
+      if (!('CompressionStream' in window)) return { zip: false, data: json };
+      const buf = await new Response(
+        new Blob([json]).stream().pipeThrough(new CompressionStream('gzip'))
+      ).arrayBuffer();
+      const bytes = new Uint8Array(buf);
+      let bin = '';
+      for (let i = 0; i < bytes.length; i += 0x8000) {
+        bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+      }
+      return { zip: true, data: btoa(bin) };
+    },
+
+    async _unpack(row) {
+      if (!row.zip) return JSON.parse(row.blob);
+      const bin = atob(row.blob);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const buf = await new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+      return JSON.parse(await new Response(buf).text());
     },
 
     stateBlob() {
       const s = Object.assign({}, this.settings);
       delete s.apiKey; // LLM key stays per-device
-      return JSON.stringify({
+      return {
         settings: s, cards: this.cards, chats: this.chats, personas: this.personas,
         meta: this.meta, placementMeta: this.placementMeta, updatedAt: Date.now()
-      });
+      };
     },
 
-    async pushState(manual) {
+    async pushState(manual, retried) {
       if (!this.syncUser) { this.toast('Sign in to sync first'); return; }
       try {
         this.syncState = 'syncing';
         this._lastPushed = Date.now();
+        const packed = await this._pack(this.stateBlob());
         await this._db.transact(this._db.tx.states[this.syncUser.id].update({
-          owner: this.syncUser.id, blob: this.stateBlob(), updatedAt: this._lastPushed
+          owner: this.syncUser.id, blob: packed.data, zip: packed.zip, updatedAt: this._lastPushed
         }));
         this.meta.syncAt = this._lastPushed;
         this.syncState = 'synced';
-        this.syncStatus = 'Synced ' + new Date(this._lastPushed).toLocaleTimeString();
+        this.syncStatus = 'Synced ' + new Date(this._lastPushed).toLocaleTimeString() +
+          ' (' + Math.round(packed.data.length / 1024) + ' KB)';
         if (manual) this.toast('Synced ✓');
       } catch (e) {
+        if (!retried) { // one silent retry before flagging failure
+          this.syncStatus = 'Push failed (' + this._err(e) + ') — retrying…';
+          setTimeout(() => this.pushState(manual, true), 4000);
+          return;
+        }
         this.syncState = 'error';
         this.syncStatus = 'Sync push failed: ' + this._err(e);
       }
@@ -172,9 +204,9 @@ function syncMethods() {
       }
     },
 
-    applyRemote(row) {
+    async applyRemote(row) {
       try {
-        const state = JSON.parse(row.blob);
+        const state = await this._unpack(row);
         const apiKey = this.settings.apiKey;
         this.settings = Object.assign({}, DEFAULT_SETTINGS, state.settings || {}, { apiKey: apiKey });
         this.cards = state.cards || [];
