@@ -69,7 +69,7 @@ function syncMethods() {
       if (!this.syncCode.trim()) { this.toast('Enter the code from your email'); return; }
       this.syncBusy = true;
       try {
-        await (await this._ensureDb()).auth.verifyMagicCode({
+        await (await this._ensureDb()).auth.signInWithMagicCode({
           email: this.syncEmail.trim(), code: this.syncCode.trim()
         });
         this.syncCode = '';
