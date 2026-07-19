@@ -173,13 +173,13 @@
         <div class="mt-4">
           <button x-show="!review.revealed" @click="reveal()"
             class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 font-semibold">Show answer</button>
-          <div x-show="review.revealed" class="grid grid-cols-4 gap-2">
-            <button @click="rate(1)" class="rate bg-rose-600/80 hover:bg-rose-500">Again<span x-text="fmtIv(1)"></span></button>
-            <button @click="rate(2)" class="rate bg-amber-600/80 hover:bg-amber-500">Hard<span x-text="fmtIv(2)"></span></button>
-            <button @click="rate(3)" class="rate bg-emerald-600/80 hover:bg-emerald-500">Good<span x-text="fmtIv(3)"></span></button>
-            <button @click="rate(4)" class="rate bg-sky-600/80 hover:bg-sky-500">Easy<span x-text="fmtIv(4)"></span></button>
+          <div x-show="review.revealed" class="grid grid-cols-2 gap-2">
+            <button @click="rateForgot()" class="rate bg-rose-600/80 hover:bg-rose-500">Forgot<span x-text="fmtIv(1)"></span></button>
+            <button @click="rateRemembered()" class="rate bg-emerald-600/80 hover:bg-emerald-500">
+              <span x-text="'Remembered · ' + gradeLabel(review.autoGrade)"></span><span x-text="fmtIv(review.autoGrade || 3)"></span>
+            </button>
           </div>
-          <p x-show="review.revealed" class="text-center text-xs text-slate-500 mt-2">grade honestly — the scheduler trusts you</p>
+          <p x-show="review.revealed" class="text-center text-xs text-slate-500 mt-2">grade is auto-set by your recall speed — fast flips count as Easy</p>
         </div>
       </div>
       </template>

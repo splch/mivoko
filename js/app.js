@@ -420,15 +420,44 @@ document.addEventListener('alpine:init', () => {
       this.review.revealed = false;
       const c = this.currentCard;
       this.review.previews = c ? this.fsrs.previewIntervals(c, Date.now()) : null;
+      this.review.shownAt = Date.now();
+      this.review.autoGrade = null;
     },
 
     reveal() {
       this.review.revealed = true;
+      this.review.flipMs = Date.now() - this.review.shownAt;
+      this.review.autoGrade = this.autoGradeFor(this.review.flipMs);
       const c = this.currentCard;
       if (c && !c.example && this.settings.autoExamples && this.settings.apiKey) {
         this.genExample(c); // background; appears when ready
       }
     },
+
+    // Map flip (recall-latency) time to a grade via the user's own speed
+    // distribution: fastest quartile = Easy, slowest = Hard. Absolute-time
+    // fallback until 30 remembered flips are on record.
+    autoGradeFor(ms) {
+      const h = this.meta.flips || [];
+      if (h.length >= 30) {
+        const pct = h.filter(x => x <= ms).length / h.length; // share of history at-or-faster
+        return pct <= 0.25 ? 4 : pct <= 0.75 ? 3 : 2;
+      }
+      return ms < 2500 ? 4 : ms < 10000 ? 3 : 2;
+    },
+
+    gradeLabel(g) { return { 1: 'Again', 2: 'Hard', 3: 'Good', 4: 'Easy' }[g] || 'Good'; },
+
+    rateRemembered() {
+      const g = this.review.autoGrade || 3;
+      const flips = this.meta.flips = this.meta.flips || [];
+      flips.push(Math.min(this.review.flipMs || 0, 60000)); // cap outliers at 60s
+      if (flips.length > 120) flips.shift();
+      this.saveMeta();
+      this.rate(g);
+    },
+
+    rateForgot() { this.rate(1); },
 
     rate(r) {
       const c = this.currentCard;
