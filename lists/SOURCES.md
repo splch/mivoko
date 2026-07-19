@@ -12,6 +12,11 @@ One entry per line: `word`, or `word<TAB>translation` (zh only).
 | `es.txt` | [hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords) `content/2018/es/es_50k.txt` | OpenSubtitles 2018 (OPUS) | **CC BY-SA 4.0** (content) |
 | `ar.txt` | [CAMeL Lab Arabic Frequency Lists](https://github.com/CAMeL-Lab/Camel_Arabic_Frequency_Lists) `MSA_freq_lists.tsv.zip` (top 10k of 11.4M types) | 12.6B-token MSA corpus (Gigaword, OSCAR, OSIAN, Wikipedia, Abu El-Khair); diacritics/tatweel pre-stripped | **CC BY-SA 4.0** — cite Inoue et al. (2021), *CAMeLBERT* (WANLP) |
 | `fr.txt` | [hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords) `content/2018/fr/fr_50k.txt` | OpenSubtitles 2018 (OPUS) | **CC BY-SA 4.0** (content) |
+| `ja.txt` | [hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords) `content/2018/ja/ja_full.txt` (kana-fragment filtered) | OpenSubtitles 2018 (OPUS) | **CC BY-SA 4.0** (content) |
+| `ko.txt` | [hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords) `content/2018/ko/ko_50k.txt` | OpenSubtitles 2018 (OPUS) | **CC BY-SA 4.0** (content) |
+| `de.txt` | [hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords) `content/2018/de/de_50k.txt` | OpenSubtitles 2018 (OPUS) | **CC BY-SA 4.0** (content) |
+| `it.txt` | [hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords) `content/2018/it/it_50k.txt` | OpenSubtitles 2018 (OPUS) | **CC BY-SA 4.0** (content) |
+| `pt.txt` | [hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords) `content/2018/pt/pt_50k.txt` | OpenSubtitles 2018 (OPUS) | **CC BY-SA 4.0** (content) |
 
 ## Notes
 

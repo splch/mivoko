@@ -123,3 +123,19 @@ for line in data.splitlines()[1:]:
     if len(zh_rows) >= TOP_N:
         break
 write("zh", zh_rows)
+
+# --- Round 2: ja/ko/de/it/pt (added with the five new personas) ---
+RX2 = {
+  "de": re.compile(r"[a-zäöüß]+(?:-[a-zäöüß]+)*"),
+  "it": re.compile(r"[a-zàèéìíîòóùú]+(?:-[a-zàèéìíîòóùú]+)*"),
+  "pt": re.compile(r"[a-zàâáãçéêíóôõúü]+(?:-[a-zàâáãçéêíóôõúü]+)*"),
+  "ko": re.compile(r"[가-힣ㄱ-ㅎㅏ-ㅣ]+"),
+  "ja": re.compile(r"[぀-ヿ一-鿿]+"),  # kana+kanji only (drops 、。 punctuation)
+}
+def ja_ok(w):
+    # drop single-kana fragments (あ, イ); keep single kanji (何, 私 are words)
+    return not (len(w) == 1 and not ('一' <= w <= '鿿'))
+
+for code in ("de", "it", "pt", "ko"):
+    write(code, top_filtered(f"{code}_raw.txt", RX2[code], TOP_N))
+write("ja", top_filtered("ja_raw.txt", RX2["ja"], TOP_N, extra=ja_ok))  # source: ja_full.txt (no ja_50k)

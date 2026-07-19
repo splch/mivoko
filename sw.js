@@ -6,13 +6,14 @@
 
 // Bump the cache name on EVERY deploy that changes any precached asset —
 // installed clients keep their old precache until this string changes.
-const CACHE = 'mivoko-v5';
+const CACHE = 'mivoko-v6';
 const ASSETS = [
   './',
   'index.html',
   'js/app.js', 'js/data.js', 'js/fsrs7.js', 'js/sync.js',
   'vendor/alpine.min.js', 'vendor/tailwind.js',
   'lists/en.txt', 'lists/zh.txt', 'lists/hi.txt', 'lists/es.txt', 'lists/ar.txt', 'lists/fr.txt',
+  'lists/ja.txt', 'lists/ko.txt', 'lists/de.txt', 'lists/it.txt', 'lists/pt.txt',
   'icon.svg', 'manifest.webmanifest'
 ];
 

@@ -8,8 +8,9 @@ your own tutor personas.
 
 ## What it does
 
-- **Frequency lists** — six built-in top-10k lists (English, Mandarin, Hindi,
-  Spanish, Arabic, French) load in one click; sources and licenses in
+- **Frequency lists** — eleven built-in top-10k lists (English, Mandarin, Hindi,
+  Spanish, Arabic, French, Japanese, Korean, German, Italian, Portuguese) load in
+  one click; sources and licenses in
   [`lists/SOURCES.md`](lists/SOURCES.md) (Mandarin ships with tone-mark pinyin +
   English glosses from SUBTLEX-CH). You can also import any word list (paste,
   CSV/TSV, or plain text; most frequent first, optional translation after a
