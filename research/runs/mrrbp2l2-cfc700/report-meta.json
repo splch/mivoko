@@ -1,0 +1,17 @@
+{
+  "runId": "mrrbp2l2-cfc700",
+  "title": "For adult and older learners as of 2026, which language-learning methods, instructional principles, practice schedules, and tools (including AI-based ones) have the strongest empirical support; how should they be combined into an optimal learning program; what timelines and proficiency outcomes are realistic; and which popular claims are unsupported by research?",
+  "question": "What is the modern, research-backed, pedagogically-optimal way to learn languages?",
+  "generatedAt": "2026-07-19T05:13:44.411Z",
+  "model": "moonshotai/kimi-k3",
+  "wordCount": 3679,
+  "sourceCount": 18,
+  "claimCount": 12,
+  "verifiedCount": 11,
+  "refutedCount": 0,
+  "citationsChecked": 18,
+  "citationsFailed": 0,
+  "costUSD": 0.2426,
+  "elapsedMs": 1058949,
+  "outputPath": "/home/spencer/Repositories/mivoko/research/mrrbp2l2-cfc700-what-is-the-modern-research-backed-pedagogically-optimal-way.md"
+}

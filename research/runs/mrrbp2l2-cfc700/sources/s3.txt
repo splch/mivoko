@@ -1,0 +1,47 @@
+Whatever the subject or topic, much of the process of learning relates to accurately recalling and reusing learned information. For anyone trying to learn a new language, there’s always lots to remember – grammar structures, word orders, vocabulary, pronunciation etc. The list goes on and on. Unsurprisingly, much attention has therefore been given to understanding how students can best retain and recall information. In language learning, the process of spaced repetition has been proven to be highly effective.
+
+Rather than repeatedly saying / studying a word 100 times in the same day, spacing repetition advocates argue that students learn more effectively if they repeat it 10 times a day for 10 days. This blog post will examine this pedagogical approach in further detail, exploring its advantages and considering how it can be successfully deployed in language classrooms.
+
+What is spaced repetition?
+Spaced repetition is a memory technique that involves repeatedly reviewing and recalling information at regular intervals until the information is learned at the required level. This approach helps students’ brains to remember more information as it keeps the material fresh in their minds for longer.
+Of course, in simple terms, this approach makes complete sense. We’ve all stayed up late to cram for an exam the following day, but how much of the information can we still recall a week, a month or a year later. Very little (!) as everything has been committed to our short term memory.
+Unfortunately that approach isn’t very useful if you’re trying to learn a language. It is essential to remember as many phrases, words and patterns of words as possible so that you have the right words to hand in a conversation.
+
+What is spaced repetition based on?
+The method of spaced repetition for learning builds upon the spacing effect in psychology. This was first suggested in the late nineteenth and early twentieth century by Hermann Ebbinghaus, a German psychologist who noted clear patterns when studying how quickly people were able to memorise information.
+What he found was that new information is forgotten over time, but that this process does not happen in a linear way: we forget things faster immediately after coming into contact with them than after a while. Ebbinghaus represented this idea graphically with what he called the learning curve, the forgetting curve or the spacing effect. These patterns are foundational to the concept of spaced repetition.
+
+Subsequent research has reinforced these findings including a 1965 paper in The Journal of General Psychology called “The Effect of Spaced Repetition on Meaningful Retention.” The broad takeaway of the paper being that subjects who were able to study a text twice were more likely to retain information about it than those who’d studied it only once.
+More recently, a 2019 paper which looked at the use of flashcards for language learning found that students who used flashcards regularly had better long-term retention than those who didn’t.
+
+How does spaced repetition work?
+The most effective spaced repetition practice usually involves four key steps. It’s important to note that each learning session should focus on the same subject.
+They are:
+
+Initial mastery – Students are introduced to the material and achieve a baseline understanding of the topic.
+Spacing – An amount of time passes after the material is first learned.
+Retrieval – Students must retrieve the previously learned information from memory during a new learning session.
+Repetition – The process is repeated and material is re-learned over several sessions.
+
+Understandably there is some debate about the length of time that should pass between sessions. Some experts suggest that after initially learning facts, the optimal gap before having a review session is about 10 to 30 percent of the retention interval. Therefore if, for example, the retention interval is fourteen days, then students would be best served by having the review session about two days after the initial learning.
+Of course, it’s impossible to categorically state that this will apply in all settings. The period will vary depending on the tasks being undertaken, the ability of the learner, the learning environment etc.
+The other notable variable is the number of sessions that might be required to “learn” a particular point / topic. Again that’s incredibly difficult to offer any overarching conclusions but a review of the evidence suggest that it depends on a number of factors, including:
+
+How much content are you trying to teach?
+How soon is the test or end of the learning period?
+What’s your overall learning objective?
+
+Carefully answering these questions will help you come up with a reasonable plan that compliments what students need to learn. One subject might naturally demand more learning sessions than another, so it’s important to carefully consider the questions above.
+Spaced repetition will likely look different across subjects. School leaders must show teachers and students how to space practice for various subjects. And teachers must provide opportunities for both group spaced learning (in the classroom) and individual spaced learning (studying).
+
+Building on the best practice outlined above, some general hints and tips for using repetitive spacing follow below. As always, it’s important to test and trial any new pedagogical approach and to incorporate learnings and improvements over time.
+
+It’s self-evident to say but it’s vital to ensure that students have set opportunities to benefit from this approach. If the time for sessions isn’t scheduled in the timetable, then lessons will just blur into each other and the specific benefit will be lost. This is also important when encouraging students to reinforce learning in their own time. Encourage them to schedule specific slots (e.g. after breakfast) and / or specific amounts of time (e.g. 30 mins a day) for their language learning.
+Linked to the above, educators and students do need to be well organised. Take the time to note in planners, online calendars etc, what needs to be reviewed and relearned when. If you haven’t made a note to revise weather vocabulary on dates X, Y and Z then it won’t happen!
+For the process to work most effectively, it’s important for teachers and students to keep a track of what has been learned over time. This can be noted on paper, on a spreadsheet or in a learning management system.
+Constantly revisit material that students know or think that they know. Given the pressures of any curriculum, the urge to constantly learn new vocab or grammar concepts is entirely understandable. But spaced repetition clearly requires repetition to be fully effective. If students don’t revisit what they have already learned, then it’s possible that they might start to forget it. Keep reviewing previous learning regularly!
+Finally, be patient! Although spaced repetition is a simple concept in theory, learners do tend to be impatient when attempting to memorise or learn something new or unfamiliar. It takes time to establish the key techniques that underpin the process, but it rewards those prepared to invest the time to succeed.
+
+Whatever language you teach and whatever abilities your students have, Sanako’s teacher-led language instruction tools include a wealth of unique features that help language educators teach languages more efficiently and more successfully. It’s why the world’s leading educational institutions choose Sanako as their preferred supplier to support online and in-person lesson delivery.
+
+Click here or the banner below if you are interested in learning more about how Sanako products support language teachers and students to use language learning techniques like spaced repetition and digital flashcards!

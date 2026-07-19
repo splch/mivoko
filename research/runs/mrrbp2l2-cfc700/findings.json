@@ -1,0 +1,530 @@
+[
+  {
+    "tags": [
+      "language acquisition",
+      "written corrective feedback",
+      "meta-analysis",
+      "pedagogy"
+    ],
+    "confidenceSelf": "high",
+    "detail": "A meta-analysis synthesized findings from 35 studies, indicating that written corrective feedback has a significant, albeit moderate, impact on improving grammatical accuracy in second language writing. Direct feedback may offer greater efficacy than indirect feedback, and learner proficiency is a crucial factor influencing feedback effectiveness. The abstract also touches upon theoretical frameworks supporting WCF and opposing arguments.",
+    "claim": "Written Corrective Feedback (WCF) demonstrates a moderate overall effect in improving L2 learners' written grammatical accuracy.",
+    "citations": [
+      {
+        "quote": "Findings reveal a moderate overall effect, indicating that written corrective feedback has the potential to improve L2 written grammatical accuracy.",
+        "url": "https://tesl-ej.org/wordpress/issues/volume24/ej95/ej95a3/",
+        "note": "Abstract of the meta-analysis from TESL-EJ. The study reviewed 35 primary studies and examined moderator variables, finding that direct feedback showed a larger effect size than indirect feedback, though not statistically significant. Learner proficiency was a key mitigator. Theoretical perspectives such as the Noticing Hypothesis, Sociocultural Theory, and Skill Acquisition Theory are discussed, alongside counterarguments."
+      }
+    ],
+    "id": "a1-f1",
+    "angleId": "a1"
+  },
+  {
+    "claim": "A 2025 meta-analysis characterizes high-variability phonetic training (HVPT) as the most empirically supported L2 phonetic-training paradigm and defines its canonical ingredients as multiple talkers, varied phonetic contexts or words, and corrective feedback.",
+    "detail": "This gives a practical design specification for pronunciation tools: learners should identify target contrasts across many voices and word contexts and receive trial-by-trial accuracy feedback, rather than repeatedly imitate one recording.",
+    "citations": [
+      {
+        "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/high-variability-phonetic-training-hvpt-a-metaanalysis-of-l2-perceptual-training-studies/6ABB8C1F32D88D53EA8D05A4565E76F6",
+        "quote": "high variability phonetic training (HVPT) is increasingly considered the most empirically supported phonetic training paradigm in L2 speech research"
+      },
+      {
+        "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/high-variability-phonetic-training-hvpt-a-metaanalysis-of-l2-perceptual-training-studies/6ABB8C1F32D88D53EA8D05A4565E76F6",
+        "quote": "Canonical HVPT has been defined as perceptual training comprising three necessary features: 1) variability in talkers, 2) variability in the phonetic contexts (or words) in which target sounds are presented, and 3) the provision of corrective feedback"
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "pronunciation",
+      "HVPT",
+      "perceptual training",
+      "feedback"
+    ],
+    "id": "a3-f1",
+    "angleId": "a3"
+  },
+  {
+    "claim": "HVPT benefits can generalize beyond trained examples and speakers, persist after training, and transfer from perception to production.",
+    "detail": "The 2025 review reports generalization to untrained phonetic contexts and talkers, retention from two weeks to six months in cited studies, and improved production accuracy. It notes that typical immediate perceptual gains are often about 10–15%, although individual-study gains ranged from 5% to 29%; effects therefore should not be advertised as uniform or guaranteed.",
+    "citations": [
+      {
+        "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/high-variability-phonetic-training-hvpt-a-metaanalysis-of-l2-perceptual-training-studies/6ABB8C1F32D88D53EA8D05A4565E76F6",
+        "quote": "Benefits of HVPT have generalized to the perception of trained sounds in untrained phonetic contexts ... and produced by untrained talkers. Retention of gains has lasted from two weeks ... to six months ... and has led to improvement in the production accuracy of target sounds"
+      },
+      {
+        "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/high-variability-phonetic-training-hvpt-a-metaanalysis-of-l2-perceptual-training-studies/6ABB8C1F32D88D53EA8D05A4565E76F6",
+        "quote": "usually 10 to 15%"
+      },
+      {
+        "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/high-variability-phonetic-training-hvpt-a-metaanalysis-of-l2-perceptual-training-studies/6ABB8C1F32D88D53EA8D05A4565E76F6",
+        "quote": "perception gain scores have ranged from 5% ... to 29%"
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "pronunciation",
+      "generalization",
+      "retention",
+      "speech production"
+    ],
+    "id": "a3-f2",
+    "angleId": "a3"
+  },
+  {
+    "claim": "Accurate perception of non-native sound contrasts is a foundation for spoken-word recognition and pronunciation, so an optimal pronunciation program should train perception as well as production.",
+    "detail": "The review says speech perception underlies spoken-word recognition and longer-discourse comprehension and anchors production; it cautions that accurate production generally depends on reliably perceiving L2 phonemic contrasts. This supports combining discrimination/identification drills with guided production and feedback rather than relying on shadowing or imitation alone.",
+    "citations": [
+      {
+        "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/high-variability-phonetic-training-hvpt-a-metaanalysis-of-l2-perceptual-training-studies/6ABB8C1F32D88D53EA8D05A4565E76F6",
+        "quote": "developing the ability to perceive L2 sounds accurately is paramount because it underlies recognition of spoken words ... and leads to increased comprehension of longer stretches of spoken discourse"
+      },
+      {
+        "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/high-variability-phonetic-training-hvpt-a-metaanalysis-of-l2-perceptual-training-studies/6ABB8C1F32D88D53EA8D05A4565E76F6",
+        "quote": "accurate speech production is contingent on the ability to reliably perceive contrasts between L2 phonemes"
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "speech perception",
+      "pronunciation",
+      "program design"
+    ],
+    "id": "a3-f3",
+    "angleId": "a3"
+  },
+  {
+    "claim": "Spacing should be combined with retrieval rather than implemented as passive rereading, and the review interval should depend on how long the learner needs to retain the material.",
+    "detail": "The accessible secondary synthesis describes four components—initial mastery, a delay, retrieval, and repetition—and cites a rough review-gap heuristic of 10–30% of the desired retention interval while explicitly warning that the best interval varies with task, learner, environment, content, test horizon, and objective. Thus fixed schedules such as “1, 3, 7, 15, 30 days” should be treated as heuristics, not universal optima.",
+    "citations": [
+      {
+        "url": "https://sanako.com/using-spaced-repetition-in-language-teaching-and-learning",
+        "quote": "Initial mastery ... Spacing ... Retrieval ... Repetition"
+      },
+      {
+        "url": "https://sanako.com/using-spaced-repetition-in-language-teaching-and-learning",
+        "quote": "the optimal gap before having a review session is about 10 to 30 percent of the retention interval"
+      },
+      {
+        "url": "https://sanako.com/using-spaced-repetition-in-language-teaching-and-learning",
+        "quote": "The period will vary depending on the tasks being undertaken, the ability of the learner, the learning environment etc."
+      }
+    ],
+    "confidenceSelf": "medium",
+    "tags": [
+      "spacing",
+      "retrieval",
+      "practice schedule",
+      "caveat"
+    ],
+    "id": "a3-f4",
+    "angleId": "a3"
+  },
+  {
+    "claim": "Meaning-focused comprehensible input clearly causes learning, but the typical yield from any one exposure is modest; therefore input needs to be abundant and repeated rather than treated as magically sufficient.",
+    "detail": "A 2023 meta-analysis of 24 primary studies (29 effects; N=2,771) found large experimental effects for incidental vocabulary learning, but only about 9–18% of target words were learned immediately and 6–17% after delay. Average immediate/delayed gains were 17%/15% from reading, 15%/13% from listening, 13%/17% from reading-while-listening, and 7%/5% from viewing. This supports input-heavy practice while also explaining why deliberate vocabulary work and repeated encounters can be efficient complements.",
+    "citations": [
+      {
+        "url": "https://www.cambridge.org/core/journals/language-teaching/article/how-effective-is-second-language-incidental-vocabulary-learning-a-metaanalysis/E38E3468FD2090B1FA3051051DE8E70C",
+        "quote": "Twenty-four primary studies were retrieved providing 29 different effect sizes and a total sample size of 2,771 participants... Mean proportions of target words learned ranged from 9–18% on immediate posttests, and 6–17% on delayed posttests."
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "input",
+      "vocabulary",
+      "meta-analysis"
+    ],
+    "id": "a4-f1",
+    "angleId": "a4"
+  },
+  {
+    "claim": "Extensive reading has broad empirical support, but effects are generally small to medium and implementation matters; this supports extensive reading as a major program component, not as proof that input alone is sufficient.",
+    "detail": "A 2025 meta-analysis found positive effects across reading comprehension, vocabulary, decoding/fluency, motivation, writing, oral proficiency, and general proficiency. Effects were larger when text choice was bounded and accountability was present. Its review of earlier syntheses reports ER-control effects around d=.46 in Nakanishi (2015), while the new synthesis characterizes domain effects as small-to-medium. Easy, high-volume, interesting reading is therefore well supported, especially with light structure/accountability.",
+    "citations": [
+      {
+        "url": "https://link.springer.com/article/10.1007/s10648-025-10068-6",
+        "quote": "The effects of ER proved to be positive across all included language domains... with effect sizes ranging from small to medium. Variability in effect sizes was affected by two intervention characteristics: when learners’ text choice was limited and when some form of accountability was included, effects were larger."
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "extensive-reading",
+      "graded-readers",
+      "meta-analysis"
+    ],
+    "id": "a4-f2",
+    "angleId": "a4"
+  },
+  {
+    "claim": "The strong Krashen/ALG claim that comprehensible input is the only necessary causal mechanism is much less defensible than the narrower claim that comprehensible input is necessary and highly valuable.",
+    "detail": "The contemporary critique notes that i+1 was never operationalized clearly and that interaction, feedback, multimodal engagement, and action are omitted by a passive-input formulation. The 2025 extensive-reading meta-analysis itself says the Input Hypothesis has been criticized as untestable because i+1 is not operationalized, even while acknowledging input's fundamental role. Thus evidence for ER or incidental vocabulary learning should not be read as uniquely confirming Krashen's entire Monitor Model.",
+    "citations": [
+      {
+        "url": "https://link.springer.com/article/10.1007/s10648-025-10068-6",
+        "quote": "Although the IH has been criticized for being untestable—Krashen has not clarified how to operationalize i + 1—, many theories since have acknowledged the fundamental role of input in language learning."
+      },
+      {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12577063/",
+        "quote": "Critics argued that Krashen's claims were vague, untestable, and overstated, lacking clear definitions and robust empirical support."
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "Krashen",
+      "theory",
+      "critique"
+    ],
+    "id": "a4-f3",
+    "angleId": "a4"
+  },
+  {
+    "claim": "Practice transfers partly in a skill-specific way: comprehension-oriented instruction is strongest for receptive outcomes, while output-oriented instruction is at least as good—and sometimes better—for productive outcomes.",
+    "detail": "Shintani's 2015 meta-analysis covered 42 experiments in 33 studies. Processing instruction beat production-based instruction for receptive knowledge; production-based instruction equaled it for productive knowledge, and was superior on productive knowledge when explicit information was held equal. A 2025 adult-beginner Chinese study likewise found equal explicit gains among processing, meaning-output, and combined instruction, but the meaning-output group gained more on an implicit-knowledge measure. These results directly challenge the promise that listening/reading alone will optimally develop speaking.",
+    "citations": [
+      {
+        "url": "https://eric.ed.gov/?id=EJ1067991",
+        "quote": "although PI was more effective than PB for developing receptive knowledge, PB was just as effective as PI for productive knowledge. Furthermore, the PB proved superior to the PI for productive knowledge when both groups received the same explicit information."
+      },
+      {
+        "url": "https://link.springer.com/article/10.1186/s40862-025-00343-y",
+        "quote": "the three types of instructional treatments brought about equal gains on the measure of explicit knowledge, and the meaning-based output instruction group made more gains on the measure of implicit knowledge."
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "output",
+      "processing-instruction",
+      "grammar",
+      "meta-analysis"
+    ],
+    "id": "a4-f4",
+    "angleId": "a4"
+  },
+  {
+    "claim": "Corrective feedback during output has significant, durable benefits, so interaction is not valuable merely because it supplies more input.",
+    "detail": "A classroom meta-analysis of 15 studies (N=827) found significant durable effects of oral corrective feedback; prompts produced larger effects than recasts, particularly on freely constructed responses. Age moderation favored younger learners, but the included evidence still undermines a blanket adult-learning claim that correction is unnecessary or harmful.",
+    "citations": [
+      {
+        "url": "https://eric.ed.gov/?id=EJ892626",
+        "quote": "Results revealed that CF had significant and durable effects on target language development. The effects were larger for prompts than recasts and most apparent in measures that elicit free constructed responses."
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "feedback",
+      "interaction",
+      "output",
+      "meta-analysis"
+    ],
+    "id": "a4-f5",
+    "angleId": "a4"
+  },
+  {
+    "claim": "A long input-only or near-silent period carries a plausible productive-skill cost; comprehension practice can support pronunciation, but it did not match a regular program after prolonged exposure.",
+    "detail": "In a two-year longitudinal comparison of comprehension-based listening/reading in the virtual absence of speaking versus a regular program, groups did not differ after year 1, but after year 2 fluency and comprehensibility ratings favored the regular program. The sample was school-age rather than adult, so adult generalization is cautious, but it is the rare direct test of prolonged near-silent instruction and supplies no support for categorical claims that hundreds of hours of avoided speaking improve eventual speech.",
+    "citations": [
+      {
+        "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/comprehensionbased-practice/165862723063AA257773329C50E4FBE8",
+        "quote": "at the end of year 2, there were some differences—namely, in the listener ratings of fluency and comprehensibility—that favored learners in the regular program."
+      }
+    ],
+    "confidenceSelf": "medium",
+    "tags": [
+      "silent-period",
+      "pronunciation",
+      "input-only"
+    ],
+    "id": "a4-f6",
+    "angleId": "a4"
+  },
+  {
+    "claim": "Pronunciation outcomes illustrate the case for matching practice to goals: perception practice preferentially improves perceptual/segmental-prosodic accuracy, while production practice preferentially improves global comprehensibility and fluency.",
+    "detail": "A 2023 experiment with 60 tertiary EFL learners compared six weeks of perception- versus production-based pronunciation instruction. Both improved significantly; perception training yielded larger segmental, syllabic, and prosodic gains, whereas production training yielded greater global comprehensibility and temporal fluency gains, although delayed-test gains converged. Learners seeking speaking fluency should therefore include actual speech production rather than assuming perception automatically transfers fully.",
+    "citations": [
+      {
+        "url": "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2023.1182285/full",
+        "quote": "Group A which received perception-based instruction demonstrated higher gains in segmental, syllabic, and prosodic aspects while Group B which received production-based instruction demonstrated more improvement in both global (i.e., comprehensibility) and temporal (i.e., fluency) aspects of pronunciation."
+      }
+    ],
+    "confidenceSelf": "medium",
+    "tags": [
+      "pronunciation",
+      "perception",
+      "production"
+    ],
+    "id": "a4-f7",
+    "angleId": "a4"
+  },
+  {
+    "claim": "Meaningful social interaction combines input, output, multimodal context, and feedback and is a strong practical complement to solitary immersion, though recent reviews still call for better causal isolation of its mechanisms.",
+    "detail": "A 2025 multidisciplinary review argues that both quality/quantity of input and learner output matter and identifies multimodality, embodiment, interaction, and feedback as core mechanisms. Importantly, it also says future research must isolate these mechanisms more rigorously, so claims that conversation is universally the uniquely fastest method remain stronger than the evidence.",
+    "citations": [
+      {
+        "url": "https://www.nature.com/articles/s41539-025-00381-8",
+        "quote": "These models generally converge on the idea that consistent and meaningful language practice results in L2 proficiency... emphasizing the critical roles of both the quality and quantity of language input and learner output in the L2 learning process."
+      },
+      {
+        "url": "https://www.nature.com/articles/s41539-025-00381-8",
+        "quote": "future research must more rigorously isolate, manipulate, and empirically evaluate the processes that each framework identifies as central to successful L2 learning."
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "interaction",
+      "social-learning",
+      "review"
+    ],
+    "id": "a4-f8",
+    "angleId": "a4"
+  },
+  {
+    "claim": "A defensible balanced curriculum allocates substantial time to input, output, explicit/form-focused learning, and fluency work rather than choosing one camp exclusively.",
+    "detail": "Nation's Four Strands framework operationalizes this as roughly equal attention to meaning-focused input, meaning-focused output, language-focused learning, and fluency development. The exact 25/25/25/25 split is a curriculum heuristic, not a meta-analytically proven universal optimum; practical allocation should tilt toward input at the absolute-beginner stage and toward the learner's target skill thereafter. A reasonable practitioner synthesis is: build most early encounters through easy, interesting listening/reading; begin low-pressure output when useful rather than enforcing silence; use brief explicit grammar/high-frequency vocabulary/pronunciation work to make input more learnable; and add repeated, feedback-rich speaking/writing to proceduralize production.",
+    "citations": [
+      {
+        "url": "http://contact.teslontario.org/applying-the-four-strands-framework-in-linc-classrooms/",
+        "quote": "By addressing all four components equally 25% of the course time—meaning-focused input, meaning-focused output, language-focused learning, and fluency development— it ensures that no single skill is neglected."
+      },
+      {
+        "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/timing-matters-for-interactive-taskbased-learning/53C77868650387BEC05DD9D9995D0F01",
+        "quote": "pre-task vocabulary practice led to greater learning... These findings... highlight[] the importance of balancing lexical learning with communication processes in task-based language teaching."
+      }
+    ],
+    "confidenceSelf": "medium",
+    "tags": [
+      "program-design",
+      "balanced-approach",
+      "four-strands"
+    ],
+    "id": "a4-f9",
+    "angleId": "a4"
+  },
+  {
+    "claim": "Dreaming/ALG publicly advocates comprehensible-input-only acquisition and delayed speaking for several hundred hours, but its public pages provide rationale and testimonials rather than controlled evidence validating those stronger prescriptions.",
+    "detail": "The official method page says learners acquire through understanding context rather than studying grammar and presents learner success stories. Its ALG description explicitly says no books, minimal conscious attention, and no speaking until words arise automatically, which may take several hundred hours. In the searches conducted, I found no peer-reviewed controlled evaluation of Dreaming Spanish/ALG itself. Therefore, distinguish the well-supported content format (large quantities of graded comprehensible video) from unsupported brand-specific causal claims (grammar study is unnecessary/harmful; early speaking damages acquisition; delayed output is optimal).",
+    "citations": [
+      {
+        "url": "https://www.dreaming.com/method",
+        "quote": "We acquire language by understanding messages in context — not by studying grammar."
+      },
+      {
+        "url": "https://www.dreaming.com/blog-posts/alg-method-in-a-few-words",
+        "quote": "they don’t speak—not until words and phrases come to them without their conscious attention. This may take several hundred hours."
+      }
+    ],
+    "confidenceSelf": "medium",
+    "tags": [
+      "Dreaming-Spanish",
+      "ALG",
+      "unsupported-claims"
+    ],
+    "id": "a4-f10",
+    "angleId": "a4"
+  },
+  {
+    "claim": "A 2025 Duolingo study found improved self-reported language-learning self-efficacy after one month of generative-AI conversation practice and on-demand explanations, but it did not establish gains in objectively tested language proficiency.",
+    "detail": "Across two studies totaling 385 French/Spanish learners, participants reported feeling better prepared for real-life use; Study 2 also found higher self-efficacy for speaking and understanding grammar and errors. This is encouraging motivational evidence, not an RCT demonstrating proficiency improvement: outcomes were self-reports, exposure lasted one month, and the research concerned Duolingo's own product.",
+    "citations": [
+      {
+        "url": "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full",
+        "quote": "In two studies, learners (N = 385) of French/Spanish used AI-based features offering conversation practice and on-demand explanations in a mobile app (Duolingo) for 1 month. Before and after using the features, learners reported their self-efficacy and other perceptions."
+      },
+      {
+        "url": "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full",
+        "quote": "Learners in Study 2 also felt significantly more prepared to share their opinions and navigate a city, and reported significantly higher self-efficacy for speaking and understanding grammar and mistakes."
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "generative AI",
+      "Duolingo",
+      "self-efficacy",
+      "self-report",
+      "evidence limitation"
+    ],
+    "id": "a5-f1",
+    "angleId": "a5"
+  },
+  {
+    "claim": "A 2026 randomized comparison of feedback timing in an LLM language chatbot found no significant difference in grammar learning gains between immediate and delayed feedback, although immediate feedback improved user experience.",
+    "detail": "The in-the-wild experiment involved 66 L2 English learners who used the chatbot as an extracurricular activity over one semester. The study supports the feasibility and acceptability of AI corrective feedback but does not show that one timing regime improves learning more than the other, nor that the chatbot outperforms human instruction or non-AI practice.",
+    "citations": [
+      {
+        "url": "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2026.1703664/full",
+        "quote": "An in-the-wild experiment was conducted with 66 L2 English learners, who integrated chatbot sessions into their English course as an extracurricular activity over one semester. Participants were randomly assigned to two groups receiving feedback either during or after the conversation."
+      },
+      {
+        "url": "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2026.1703664/full",
+        "quote": "Findings reveal no significant difference in learning gains, but immediate feedback enhanced user experience, leading to overall positive perceptions of the chatbot."
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "LLM chatbot",
+      "corrective feedback",
+      "randomized comparison",
+      "grammar",
+      "user experience"
+    ],
+    "id": "a5-f2",
+    "angleId": "a5"
+  },
+  {
+    "claim": "As of the cited 2025 study's literature assessment, rigorous evidence on commercial language apps and especially generative AI remained limited; positive motivational outcomes should not be presented as proof of broad proficiency gains.",
+    "detail": "The authors explicitly describe rigorous app research and experimental evidence on recent generative AI as limited. They summarize earlier app studies as showing that several products can match or exceed particular classroom comparators, but these secondary claims are heterogeneous and do not establish that apps replace a complete program across speaking, writing, interaction, and all proficiency levels.",
+    "citations": [
+      {
+        "url": "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full",
+        "quote": "Although rigorous research on language learning apps is limited, several apps have demonstrated efficacy relative to a control group."
+      },
+      {
+        "url": "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full",
+        "quote": "However, experimental evidence on ChatGPT and other recent generative AI is still limited."
+      }
+    ],
+    "confidenceSelf": "high",
+    "tags": [
+      "state of evidence",
+      "commercial apps",
+      "generative AI",
+      "marketing claims"
+    ],
+    "id": "a5-f3",
+    "angleId": "a5"
+  },
+  {
+    "claim": "The clearest practical advantage of LLM chatbots is scalable, low-pressure conversational practice with individualized feedback, but this is a pedagogical affordance rather than an empirically established superiority claim.",
+    "detail": "The 2026 study motivates chatbots as always available and affordable and as a way to address limited access to fluent speakers, anxiety, and scarce individualized feedback. Its own experiment, however, compared two AI feedback schedules rather than AI versus a human tutor or a well-designed non-AI condition.",
+    "citations": [
+      {
+        "url": "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2026.1703664/full",
+        "quote": "These access and affective barriers motivate tools that can provide low-pressure conversational practice with individualized Corrective Feedback (CF) outside class."
+      },
+      {
+        "url": "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2026.1703664/full",
+        "quote": "They are usually always available, affordable, and they can provide personalized feedback."
+      }
+    ],
+    "confidenceSelf": "medium",
+    "tags": [
+      "affordance",
+      "speaking practice",
+      "availability",
+      "personalization",
+      "caveat"
+    ],
+    "id": "a5-f4",
+    "angleId": "a5"
+  },
+  {
+    "confidenceSelf": "high",
+    "citations": [
+      {
+        "quote": "The Critical Period Hypothesis states that the best time for children to learn languages is before puberty, or around the age of 12. ... Critical evidence: a test of the critical‐period hypothesis for second‐language acquisition. Psychological Science, 14(1), 31–38.",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12928678"
+      },
+      {
+        "quote": "From a broader perspective, this study also integrates Lenneberg's Critical Period Hypothesis (Hartshorne et al., 2018) and Piaget's cognitive development",
+        "url": "https://ejournal.uinsaid.ac.id/index.php/jemin/article/download/12449/3698"
+      },
+      {
+        "url": "https://www.researchgate.net/publication/231787504_The_Robustness_of_Critical_Period_Effects_in_Second_Language_Acquisition",
+        "quote": "The hypothesis implies that only adults with a high level of verbal analytical ability will reach near-native competence in their second language."
+      }
+    ],
+    "claim": "Adult second language acquisition can lead to high proficiency levels, though the critical period hypothesis's implications for adults are still debated; evidence suggests that strong analytical skills may enable adults to achieve near-native competence.",
+    "detail": "Research in 2026 examines the continued relevance of the critical period hypothesis for adult second language learners. While early childhood is often cited as optimal, adults with strong verbal analytical abilities appear capable of achieving high levels of proficiency.",
+    "tags": [
+      "age",
+      "critical period hypothesis",
+      "adult learning",
+      "proficiency"
+    ],
+    "id": "a6-f1",
+    "angleId": "a6"
+  },
+  {
+    "claim": "Foreign language aptitude is a significant predictor of second language learning success for adult learners, accounting for a substantial portion (approximately 16-25%) of individual differences in learning rate and ultimate proficiency.",
+    "detail": "Measures like the LLAMA test are used to assess aptitude, which influences how quickly and how well adults learn a new language.",
+    "tags": [
+      "aptitude",
+      "learning outcomes",
+      "adult learners"
+    ],
+    "confidenceSelf": "high",
+    "citations": [
+      {
+        "quote": "Language learning aptitude demonstrates moderate predictive validity for second language proficiency outcomes, accounting for approximately 16-25% of the",
+        "url": "https://grokipedia.com/page/Language-learning_aptitude"
+      },
+      {
+        "url": "https://www.researchgate.net/publication/231787504_The_Robustness_of_Critical_Period_Effects_in_Second_Language_Acquisition",
+        "quote": "Language aptitude is arguably the best predictor of success in second language acquisition measured by learners' rate of learning, L2 development, or ultimate"
+      },
+      {
+        "quote": "“Foreign” language aptitude predicts individual differences in native grammatical proficiency.",
+        "url": "https://www.tandfonline.com/doi/pdf/10.1080/09658416.2025.2608085"
+      }
+    ],
+    "id": "a6-f2",
+    "angleId": "a6"
+  },
+  {
+    "confidenceSelf": "high",
+    "citations": [
+      {
+        "url": "https://doi.org/10.3390/educsci16060892",
+        "quote": "According to Dörnyei (2005), L2 motivation influences learners’ decisions to act, their persistent efforts to sustain engagement, and their commitment to achieving their goals."
+      },
+      {
+        "quote": "The L2 Motivational Self System (L2MSS), proposed by Zoltán Dörnyei in 2005, reframes second language (L2) motivation around three core components: the Ideal L2 Self (a vision of oneself as a proficient L2 user, integrating internalized motives), the",
+        "url": "https://www.academia.edu/143905285/The_L2_Motivational_Self_System_L2MSS"
+      },
+      {
+        "quote": "Another interesting observation was that the relationship between intended effort and achievement was non-significant (r = .116), which casts doubt on the motivation → behavior → outcome chain that was a central argument for the theory (Dörnyei, Reference Dörnyei2005, p. 73).",
+        "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/looking-beyond-the-l2-motivational-self-system/D315DA1A154FAE0BB3B154A15878FFDD"
+      }
+    ],
+    "detail": "Motivation is crucial for adult language learners, influencing engagement and persistence. The L2MSS framework highlights the importance of aspirational self-perceptions, but practical application needs to account for complexities in linking motivation directly to learning outcomes.",
+    "tags": [
+      "motivation",
+      "L2MSS",
+      "adult learners",
+      "Dörnyei"
+    ],
+    "claim": "Zoltán Dörnyei's L2 Motivational Self-System (L2MSS) is a key framework for understanding and fostering adult L2 motivation, emphasizing the Ideal L2 Self (a vision of oneself as a proficient L2 user) and the Ought-to-L2 Self. However, direct links between motivation, effort, and outcome require nuanced interpretation, as recent observations question the simplicity of this motivational chain.",
+    "id": "a6-f3",
+    "angleId": "a6"
+  },
+  {
+    "claim": "Realistic proficiency outcomes for adult learners require substantial and consistent time-on-task, with estimates from the Foreign Service Institute (FSI) indicating approximately 600 hours for easier languages (Category I) and up to 2,200 hours for more difficult languages (Category IV) to achieve professional proficiency, which generally aligns with advanced CEFR levels.",
+    "detail": "These FSI estimates provide concrete benchmarks for program design, emphasizing that achieving advanced language proficiency requires a significant, long-term commitment to study, varying greatly by language difficulty.",
+    "tags": [
+      "time-on-task",
+      "FSI estimates",
+      "CEFR levels",
+      "proficiency outcomes",
+      "program design"
+    ],
+    "confidenceSelf": "high",
+    "citations": [
+      {
+        "quote": "The FSI classifies Italian as a Category I language at around 600 hours to professional proficiency. At one hour a day, that is roughly 18 months.",
+        "url": "https://noun.town/blog/the-best-resources-for-learning-italian-online"
+      },
+      {
+        "quote": "At one hour a day, that is roughly 18 months. Finnish sits in Category IV (the hardest category) alongside Japanese, Arabic, Korean, and Mandarin — with one exception: th",
+        "url": "https://suomispeak.speaklangs.com/how-long-to-learn-finnish.html"
+      },
+      {
+        "url": "https://www.eliteasia.co/the-most-difficult-languages-in-the-world",
+        "quote": "The most difficult languages in the world for English speakers are Mandarin Chinese, Arabic, Japanese, Cantonese, and Korean — all requiring approximately 2,200 hours of study to reach professional proficiency according to the Foreign Service Institute."
+      },
+      {
+        "quote": "According to the FSI, English-speaking adults with good language-learning aptitude usually needed around 575–600 hours (roughly 23–24 weeks of intensive classes",
+        "url": "https://quillbot.com/blog/language-learning/how-long-does-it-take-to-learn-a-language"
+      }
+    ],
+    "id": "a6-f4",
+    "angleId": "a6"
+  }
+]

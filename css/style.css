@@ -1,0 +1,56 @@
+/* mivoko — plain-CSS component layer (Tailwind Play CDN handles utilities in the
+ * markup; @apply is build-time only, so these are written out by hand). */
+
+[x-cloak] { display: none !important; }
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* dashboard stat card */
+.stat {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgb(15 23 42);          /* slate-900 */
+  border: 1px solid rgb(30 41 59);    /* slate-800 */
+}
+.stat-num { font-size: 1.5rem; line-height: 2rem; font-weight: 700; letter-spacing: -0.025em; }
+.stat-label { font-size: 0.75rem; color: rgb(148 163 184); margin-top: 0.125rem; }
+
+/* big action button on the Today view */
+.cta {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem;
+  padding: 1.25rem; border-radius: 1rem; text-align: left; transition: background-color .15s;
+}
+
+/* generic small button (colors come from Tailwind classes in the markup) */
+.btn {
+  padding: 0.5rem 1rem; border-radius: 0.75rem;
+  font-size: 0.875rem; font-weight: 500; transition: background-color .15s;
+}
+
+/* inline text link/button */
+.link { color: rgb(129 140 248); text-underline-offset: 2px; }
+.link:hover { color: rgb(165 180 252); text-decoration: underline; }
+
+/* review rating buttons (colors from Tailwind classes in the markup) */
+.rate {
+  display: flex; flex-direction: column; align-items: center; gap: 0.125rem;
+  padding: 0.75rem; border-radius: 0.75rem; font-weight: 600; font-size: 0.875rem;
+  color: #fff; transition: background-color .15s;
+}
+.rate span { font-size: 0.75rem; font-weight: 400; opacity: 0.8; }
+
+/* form fields */
+.field { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.875rem; color: rgb(203 213 225); }
+.input {
+  background: rgb(2 6 23);            /* slate-950 */
+  border: 1px solid rgb(51 65 85);    /* slate-700 */
+  border-radius: 0.75rem; padding: 0.5rem 0.75rem;
+  font-size: 0.875rem; color: rgb(241 245 249); outline: none;
+}
+.input:focus { border-color: rgb(99 102 241); }  /* indigo-500 */
+
+/* thin scrollbar for the chat pane */
+#chat-scroll::-webkit-scrollbar { width: 6px; }
+#chat-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }

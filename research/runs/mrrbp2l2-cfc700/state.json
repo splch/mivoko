@@ -1,0 +1,665 @@
+{
+  "version": 1,
+  "runId": "mrrbp2l2-cfc700",
+  "question": "What is the modern, research-backed, pedagogically-optimal way to learn languages?",
+  "stage": "complete",
+  "reached": "complete",
+  "brief": {
+    "runId": "mrrbp2l2-cfc700",
+    "question": "What is the modern, research-backed, pedagogically-optimal way to learn languages?",
+    "refinedQuestion": "For adult and older learners as of 2026, which language-learning methods, instructional principles, practice schedules, and tools (including AI-based ones) have the strongest empirical support; how should they be combined into an optimal learning program; what timelines and proficiency outcomes are realistic; and which popular claims are unsupported by research?",
+    "goals": [
+      "Identify which instructional principles and methods have the strongest empirical support in second language acquisition (SLA) research (meta-analyses, RCTs, replication-conscious reviews)",
+      "Compare major pedagogical approaches (explicit/grammar-focused, communicative, task-based, comprehension/input-based, immersion) and quantify their relative effectiveness where evidence allows",
+      "Extract applicable findings from cognitive science (spaced repetition, retrieval practice, interleaving, perceptual training) for vocabulary, grammar, and pronunciation",
+      "Evaluate 2023–2026 technology, especially AI/LLM-based tutors and conversation partners, against actual efficacy studies rather than marketing",
+      "Establish realistic timelines and proficiency benchmarks (FSI categories, CEFR hours) and account for learner variables (age, aptitude, motivation)",
+      "Debunk popular but unsupported claims (rapid 'fluency' promises, learning styles) so the final synthesis distinguishes evidence from hype",
+      "Synthesize findings into a practical, stage-appropriate learning program a typical adult learner could follow"
+    ],
+    "inScope": [
+      "Adult and adolescent second/foreign language learning (instructed and self-directed)",
+      "Major SLA theories and their empirical status (input, output, interaction, skill acquisition, explicit vs implicit instruction, corrective feedback)",
+      "Method comparisons backed by meta-analyses or controlled studies",
+      "Memory and practice science applied to vocabulary, grammar, and pronunciation",
+      "Technology-assisted learning: apps, spaced-repetition systems, AI/LLM tutors, online tutoring/exchange platforms (2023–2026 evidence prioritized)",
+      "Individual differences: age/critical period, aptitude, motivation, prior language knowledge",
+      "Proficiency frameworks and realistic time-to-proficiency estimates (CEFR, ACTFL, FSI/ILR)",
+      "Widely circulated claims in the polyglot/app-marketing space, assessed skeptically"
+    ],
+    "outOfScope": [
+      "Child first-language acquisition and bilingual child-rearing",
+      "Clinical populations (aphasia, speech-language therapy, language disorders)",
+      "Neuroscience detail beyond what informs practical pedagogy",
+      "Deep dives on a single target language or language pair",
+      "NLP/machine-translation engineering (except as it affects learner-facing tools)",
+      "Pricing/consumer comparisons of commercial products, except where tied to efficacy evidence",
+      "Heritage-language policy, school-system language policy, and high-stakes language testing prep",
+      "Full history of language pedagogy, except where needed to contextualize current methods"
+    ],
+    "audience": "Adult self-directed language learners and language educators seeking an evidence-based synthesis rather than product marketing or anecdote.",
+    "depth": "standard",
+    "createdAt": "2026-07-19T04:58:19.468Z"
+  },
+  "plan": {
+    "runId": "mrrbp2l2-cfc700",
+    "brief": {
+      "runId": "mrrbp2l2-cfc700",
+      "question": "What is the modern, research-backed, pedagogically-optimal way to learn languages?",
+      "refinedQuestion": "For adult and older learners as of 2026, which language-learning methods, instructional principles, practice schedules, and tools (including AI-based ones) have the strongest empirical support; how should they be combined into an optimal learning program; what timelines and proficiency outcomes are realistic; and which popular claims are unsupported by research?",
+      "goals": [
+        "Identify which instructional principles and methods have the strongest empirical support in second language acquisition (SLA) research (meta-analyses, RCTs, replication-conscious reviews)",
+        "Compare major pedagogical approaches (explicit/grammar-focused, communicative, task-based, comprehension/input-based, immersion) and quantify their relative effectiveness where evidence allows",
+        "Extract applicable findings from cognitive science (spaced repetition, retrieval practice, interleaving, perceptual training) for vocabulary, grammar, and pronunciation",
+        "Evaluate 2023–2026 technology, especially AI/LLM-based tutors and conversation partners, against actual efficacy studies rather than marketing",
+        "Establish realistic timelines and proficiency benchmarks (FSI categories, CEFR hours) and account for learner variables (age, aptitude, motivation)",
+        "Debunk popular but unsupported claims (rapid 'fluency' promises, learning styles) so the final synthesis distinguishes evidence from hype",
+        "Synthesize findings into a practical, stage-appropriate learning program a typical adult learner could follow"
+      ],
+      "inScope": [
+        "Adult and adolescent second/foreign language learning (instructed and self-directed)",
+        "Major SLA theories and their empirical status (input, output, interaction, skill acquisition, explicit vs implicit instruction, corrective feedback)",
+        "Method comparisons backed by meta-analyses or controlled studies",
+        "Memory and practice science applied to vocabulary, grammar, and pronunciation",
+        "Technology-assisted learning: apps, spaced-repetition systems, AI/LLM tutors, online tutoring/exchange platforms (2023–2026 evidence prioritized)",
+        "Individual differences: age/critical period, aptitude, motivation, prior language knowledge",
+        "Proficiency frameworks and realistic time-to-proficiency estimates (CEFR, ACTFL, FSI/ILR)",
+        "Widely circulated claims in the polyglot/app-marketing space, assessed skeptically"
+      ],
+      "outOfScope": [
+        "Child first-language acquisition and bilingual child-rearing",
+        "Clinical populations (aphasia, speech-language therapy, language disorders)",
+        "Neuroscience detail beyond what informs practical pedagogy",
+        "Deep dives on a single target language or language pair",
+        "NLP/machine-translation engineering (except as it affects learner-facing tools)",
+        "Pricing/consumer comparisons of commercial products, except where tied to efficacy evidence",
+        "Heritage-language policy, school-system language policy, and high-stakes language testing prep",
+        "Full history of language pedagogy, except where needed to contextualize current methods"
+      ],
+      "audience": "Adult self-directed language learners and language educators seeking an evidence-based synthesis rather than product marketing or anecdote.",
+      "depth": "standard",
+      "createdAt": "2026-07-19T04:58:19.468Z"
+    },
+    "angles": [
+      {
+        "id": "a1",
+        "title": "SLA research consensus: explicit instruction, feedback, and method comparison",
+        "rationale": "This is the empirical core of the question: decades of controlled research and meta-analyses (Norris & Ortega; Spada & Tomita; Goo et al.; Li; Lyster & Saito) establish that explicit, form-focused instruction and corrective feedback outperform purely implicit exposure, and compare frameworks like TBLT vs. presentation-practice-production vs. immersion. Without this, any 'optimal way' claim is opinion.",
+        "perspective": "SLA academic meta-analyst",
+        "seedQueries": [
+          "explicit vs implicit second language instruction meta-analysis Norris Ortega Spada Tomita",
+          "corrective feedback second language acquisition meta-analysis 2023 2024",
+          "task-based language teaching effectiveness meta-analysis adult learners",
+          "form-focused instruction L2 learning outcomes review"
+        ],
+        "priority": 1
+      },
+      {
+        "id": "a2",
+        "title": "Myth-busting: polyglot marketing, learning styles, and the definition of 'learned'",
+        "rationale": "A research-backed answer must also clear away what is unsupported: 'fluent in 3 months' polyglot marketing, learning-styles matching, exaggerated app claims, and vague definitions of 'fluency.' This lens protects the synthesis from hype and sharpens what 'learned' means (CEFR/ACTFL benchmarks), complementing the proponent angles.",
+        "perspective": "Skeptical evidence-appraiser of pop language-learning culture",
+        "seedQueries": [
+          "fluent in 3 months polyglot method claims criticism evidence",
+          "learning styles myth language education evidence review",
+          "language learning app marketing claims versus independent research",
+          "what counts as fluency CEFR B2 definition proficiency benchmarks"
+        ],
+        "priority": 1
+      },
+      {
+        "id": "a3",
+        "title": "Cognitive science of practice: spacing, retrieval, interleaving, and pronunciation training",
+        "rationale": "Language learning is heavily a memory-and-practice problem. The cognitive psychology literature (spacing, retrieval practice, interleaving, desirable difficulties, deliberate practice, perceptual training) offers some of the most robust, replicable findings applicable to vocabulary, grammar, and pronunciation — and is distinct from the classroom-instruction SLA literature.",
+        "perspective": "Cognitive scientist studying memory and skill acquisition",
+        "seedQueries": [
+          "spaced repetition vocabulary learning second language experimental research",
+          "retrieval practice vs restudy language vocabulary learning study",
+          "interleaving blocked practice L2 grammar learning research",
+          "high variability phonetic training adult pronunciation perception"
+        ],
+        "priority": 2
+      },
+      {
+        "id": "a4",
+        "title": "Input vs. output vs. balanced approaches: the comprehension-first debate",
+        "rationale": "The most active contemporary pedagogical debate — input-first (Krashen, extensive reading/listening, ALG, Dreaming Spanish, 'refold'-style immersion) vs. output/interaction (Swain, Long) vs. balanced skill-acquisition approaches (DeKeyser) — determines how learners should actually allocate their hours. Needs both the proponent evidence (extensive reading gains) and the critiques (limits of input-only, need for explicit grammar and speaking practice).",
+        "perspective": "Comprehension-based-method practitioner engaging with academic critics",
+        "seedQueries": [
+          "comprehensible input hypothesis evidence critique Krashen 2024",
+          "extensive reading listening graded readers vocabulary gains study",
+          "output hypothesis interaction hypothesis pushed output evidence review",
+          "Dreaming Spanish ALG automatic language growth method results"
+        ],
+        "priority": 3
+      },
+      {
+        "id": "a5",
+        "title": "Modern technology and AI (2023–2026): what actually works",
+        "rationale": "'Modern' in the question demands current evidence on LLM conversation partners, AI tutors, and apps as of 2024–2026. This angle assesses what RCTs and quasi-experimental studies actually show (e.g., Duolingo efficacy studies, AI speaking-practice trials) versus marketing, and where AI genuinely changes the pedagogical optimum (cheap unlimited speaking practice, feedback, personalized input).",
+        "perspective": "Ed-tech efficacy evaluator",
+        "seedQueries": [
+          "AI chatbot LLM language learning randomized controlled trial 2025",
+          "Duolingo efficacy study learning outcomes CEFR ACTFL",
+          "GPT-4 AI language tutor speaking practice effectiveness study 2024 2025",
+          "language learning app efficacy systematic review 2025"
+        ],
+        "priority": 4
+      },
+      {
+        "id": "a6",
+        "title": "Learner variables and realistic program design: age, aptitude, motivation, time-on-task",
+        "rationale": "The 'optimal way' depends on the learner: age effects (critical period debate), aptitude, motivation, prior languages, and — critically — total time-on-task. This angle grounds realistic expectations (FSI/CEFR hour estimates) and translates evidence into a concrete program design: how to sequence input, study, and speaking across proficiency stages for an adult learner.",
+        "perspective": "Individual-differences researcher and program designer",
+        "seedQueries": [
+          "critical period hypothesis ultimate attainment Hartshorne adulthood second language",
+          "foreign language aptitude LLAMA predicts learning outcomes adults",
+          "FSI language category hours to proficiency CEFR study hour estimates",
+          "Dörnyei L2 motivational self system adult language learners"
+        ],
+        "priority": 5
+      }
+    ],
+    "maxWorkers": 4,
+    "perWorkerTurnCap": 0,
+    "confirmedByUser": true,
+    "createdAt": "2026-07-19T04:58:19.468Z"
+  },
+  "findingsPath": "/home/spencer/Repositories/mivoko/research/runs/mrrbp2l2-cfc700/findings.json",
+  "sourcesPath": "/home/spencer/Repositories/mivoko/research/runs/mrrbp2l2-cfc700/sources.json",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Written Corrective Feedback (WCF) demonstrates a moderate overall effect in improving L2 learners' written grammatical accuracy.",
+      "findingIds": [
+        "a1-f1"
+      ],
+      "sourceUrls": [
+        "https://tesl-ej.org/wordpress/issues/volume24/ej95/ej95a3/"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c2",
+      "text": "A 2025 meta-analysis characterizes high-variability phonetic training (HVPT) as the most empirically supported L2 phonetic-training paradigm and defines its canonical ingredients as multiple talkers, varied phonetic contexts or words, and corrective feedback.",
+      "findingIds": [
+        "a3-f1"
+      ],
+      "sourceUrls": [
+        "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/high-variability-phonetic-training-hvpt-a-metaanalysis-of-l2-perceptual-training-studies/6ABB8C1F32D88D53EA8D05A4565E76F6"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c3",
+      "text": "HVPT benefits can generalize beyond trained examples and speakers, persist after training, and transfer from perception to production.",
+      "findingIds": [
+        "a3-f2"
+      ],
+      "sourceUrls": [
+        "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/high-variability-phonetic-training-hvpt-a-metaanalysis-of-l2-perceptual-training-studies/6ABB8C1F32D88D53EA8D05A4565E76F6"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c4",
+      "text": "Accurate perception of non-native sound contrasts is a foundation for spoken-word recognition and pronunciation, so an optimal pronunciation program should train perception as well as production.",
+      "findingIds": [
+        "a3-f3"
+      ],
+      "sourceUrls": [
+        "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/high-variability-phonetic-training-hvpt-a-metaanalysis-of-l2-perceptual-training-studies/6ABB8C1F32D88D53EA8D05A4565E76F6"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c6",
+      "text": "Meaning-focused comprehensible input clearly causes learning, but the typical yield from any one exposure is modest; therefore input needs to be abundant and repeated rather than treated as magically sufficient.",
+      "findingIds": [
+        "a4-f1"
+      ],
+      "sourceUrls": [
+        "https://www.cambridge.org/core/journals/language-teaching/article/how-effective-is-second-language-incidental-vocabulary-learning-a-metaanalysis/E38E3468FD2090B1FA3051051DE8E70C"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c7",
+      "text": "Extensive reading has broad empirical support, but effects are generally small to medium and implementation matters; this supports extensive reading as a major program component, not as proof that input alone is sufficient.",
+      "findingIds": [
+        "a4-f2"
+      ],
+      "sourceUrls": [
+        "https://link.springer.com/article/10.1007/s10648-025-10068-6"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c10",
+      "text": "Corrective feedback during output has significant, durable benefits, so interaction is not valuable merely because it supplies more input.",
+      "findingIds": [
+        "a4-f5"
+      ],
+      "sourceUrls": [
+        "https://eric.ed.gov/?id=EJ892626"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c13",
+      "text": "Meaningful social interaction combines input, output, multimodal context, and feedback and is a strong practical complement to solitary immersion, though recent reviews still call for better causal isolation of its mechanisms.",
+      "findingIds": [
+        "a4-f8"
+      ],
+      "sourceUrls": [
+        "https://www.nature.com/articles/s41539-025-00381-8"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c16",
+      "text": "A 2025 Duolingo study found improved self-reported language-learning self-efficacy after one month of generative-AI conversation practice and on-demand explanations, but it did not establish gains in objectively tested language proficiency.",
+      "findingIds": [
+        "a5-f1"
+      ],
+      "sourceUrls": [
+        "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c17",
+      "text": "A 2026 randomized comparison of feedback timing in an LLM language chatbot found no significant difference in grammar learning gains between immediate and delayed feedback, although immediate feedback improved user experience.",
+      "findingIds": [
+        "a5-f2"
+      ],
+      "sourceUrls": [
+        "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2026.1703664/full"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c18",
+      "text": "As of the cited 2025 study's literature assessment, rigorous evidence on commercial language apps and especially generative AI remained limited; positive motivational outcomes should not be presented as proof of broad proficiency gains.",
+      "findingIds": [
+        "a5-f3"
+      ],
+      "sourceUrls": [
+        "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full"
+      ],
+      "loadBearing": true,
+      "importance": 4
+    },
+    {
+      "id": "c5",
+      "text": "Spacing should be combined with retrieval rather than implemented as passive rereading, and the review interval should depend on how long the learner needs to retain the material.",
+      "findingIds": [
+        "a3-f4"
+      ],
+      "sourceUrls": [
+        "https://sanako.com/using-spaced-repetition-in-language-teaching-and-learning"
+      ],
+      "loadBearing": true,
+      "importance": 3
+    }
+  ],
+  "verdicts": [
+    {
+      "claimId": "c1",
+      "verdict": "supported",
+      "confidence": 0.99,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "supported",
+          "confidence": 0.99,
+          "rationale": "The source directly states that its meta-analysis found a moderate overall effect and explicitly interprets this as WCF having the potential to improve L2 written grammatical accuracy. This matches the claim, though the source's wording is somewhat cautious ('has the potential').",
+          "quote": "Findings reveal a moderate overall effect, indicating that written corrective feedback has the potential to improve L2 written grammatical accuracy."
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "supported",
+          "confidence": 0.99,
+          "rationale": "The meta-analysis directly reports a moderate overall effect of written corrective feedback and connects that effect to improved L2 written grammatical accuracy, matching the claim.",
+          "quote": "Findings reveal a moderate overall effect, indicating that written corrective feedback has the potential to improve L2 written grammatical accuracy."
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: supported] The source directly states that its meta-analysis found a moderate overall effect and explicitly interprets this as WCF having the potential to improve L2 written grammatical accuracy. This matches the claim, though the source's wording is somewhat cautious ('has the potential'). [voter 1: supported] The meta-analysis directly reports a moderate overall effect of written corrective feedback and connects that effect to improved L2 written grammatical accuracy, matching the claim."
+    },
+    {
+      "claimId": "c2",
+      "verdict": "partially_supported",
+      "confidence": 0.91,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.93,
+          "rationale": "The excerpt directly identifies the work as a meta-analysis and says HVPT is increasingly considered the most empirically supported L2 phonetic-training paradigm. It also defines HVPT as using trial-by-trial feedback, multiple talkers, and varied phonetic contexts. However, the excerpt does not establish that the meta-analysis is from 2025, and it does not specifically mention varied “words” as an alternative canonical ingredient. Thus, most—but not all—of the claim is directly supported.",
+          "quote": "Among numerous approaches to improving L2 perception skills (e.g., shadowing, imitation), high variability phonetic training (HVPT) is increasingly considered the most empirically supported phonetic training paradigm in L2 speech research... HVPT entails perceptual training with trial-by-trial feedback in which learners are trained using multiple instantiations of the target sounds... produced by multiple talkers (voices) in varied phonetic contexts."
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.89,
+          "rationale": "The excerpt directly identifies the article as a meta-analysis and says HVPT is increasingly considered the most empirically supported L2 phonetic-training paradigm. It also defines HVPT using trial-by-trial feedback, multiple talkers, and varied phonetic contexts. However, the excerpt does not establish that the meta-analysis is from 2025, does not use the term “corrective” for the feedback, and does not mention varied words as an alternative ingredient. Thus, the substantive characterization and most ingredients are supported, but the full claim is not.",
+          "quote": "Among numerous approaches to improving L2 perception skills ... high variability phonetic training (HVPT) is increasingly considered the most empirically supported phonetic training paradigm in L2 speech research.... HVPT entails perceptual training with trial-by-trial feedback in which learners are trained using multiple instantiations of the target sounds ... produced by multiple talkers (voices) in varied phonetic contexts."
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: partially_supported] The excerpt directly identifies the work as a meta-analysis and says HVPT is increasingly considered the most empirically supported L2 phonetic-training paradigm. It also defines HVPT as using trial-by-trial feedback, multiple talkers, and varied phonetic contexts. However, the excerpt does not establish that the meta-analysis is from 2025, and it does not specifically mention varied “words” as an alternative canonical ingredient. Thus, most—but not all—of the claim is directly supported. [voter 1: partially_supported] The excerpt directly identifies the article as a meta-analysis and says HVPT is increasingly considered the most empirically supported L2 phonetic-training paradigm. It also defines HVPT using trial-by-trial feedback, multiple talkers, and varied phonetic contexts. However, the excerpt does not establish that the meta-analysis is from 2025, does not use the term “corrective” for the feedback, and does not mention varied words as an alternative ingredient. Thus, the substantive characterization and most ingredients are supported, but the full claim is not."
+    },
+    {
+      "claimId": "c3",
+      "verdict": "supported",
+      "confidence": 0.99,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "supported",
+          "confidence": 0.99,
+          "rationale": "The excerpt directly supports all three parts: HVPT gains generalized to untrained phonetic contexts and untrained talkers, were retained for periods ranging from two weeks to six months, and led to improved production accuracy of the target sounds.",
+          "quote": "Benefits of HVPT have generalized to the perception of trained sounds in untrained phonetic contexts ... and produced by untrained talkers.... Retention of gains has lasted from two weeks ... to six months ... and has led to improvement in the production accuracy of target sounds."
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "supported",
+          "confidence": 0.99,
+          "rationale": "The excerpt directly supports all three parts of the claim: HVPT gains generalized to untrained phonetic contexts and untrained talkers, were retained for periods ranging from two weeks to six months, and led to improved production accuracy of target sounds.",
+          "quote": "Benefits of HVPT have generalized to the perception of trained sounds in untrained phonetic contexts ... and produced by untrained talkers ... Retention of gains has lasted from two weeks ... to six months ... and has led to improvement in the production accuracy of target sounds."
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: supported] The excerpt directly supports all three parts: HVPT gains generalized to untrained phonetic contexts and untrained talkers, were retained for periods ranging from two weeks to six months, and led to improved production accuracy of the target sounds. [voter 1: supported] The excerpt directly supports all three parts of the claim: HVPT gains generalized to untrained phonetic contexts and untrained talkers, were retained for periods ranging from two weeks to six months, and led to improved production accuracy of target sounds."
+    },
+    {
+      "claimId": "c4",
+      "verdict": "partially_supported",
+      "confidence": 0.9199999999999999,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.94,
+          "rationale": "The excerpt directly supports the claim’s premise: accurate L2 sound perception underlies spoken-word recognition and supports or conditions accurate speech production. It also reports that perceptual training can improve production accuracy. However, it does not directly state the prescriptive conclusion that an optimal pronunciation program should train both perception and production; that recommendation is an inference beyond the excerpt.",
+          "quote": "developing the ability to perceive L2 sounds accurately is paramount because it underlies recognition of spoken words... The acquisition of accurate L2 speech perception also anchors the development of L2 speech production skills... accurate speech production is contingent on the ability to reliably perceive contrasts between L2 phonemes"
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.9,
+          "rationale": "The excerpt directly supports that accurate L2 sound perception underlies spoken-word recognition and is foundational to speech production/pronunciation. It also supports including perceptual training, noting that such training can improve production accuracy. However, it does not directly establish that an optimal pronunciation program must train production in addition to perception, nor does it compare combined perception-and-production training against other program designs.",
+          "quote": "developing the ability to perceive L2 sounds accurately is paramount because it underlies recognition of spoken words ... The acquisition of accurate L2 speech perception also anchors the development of L2 speech production skills ... accurate speech production is contingent on the ability to reliably perceive contrasts between L2 phonemes"
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: partially_supported] The excerpt directly supports the claim’s premise: accurate L2 sound perception underlies spoken-word recognition and supports or conditions accurate speech production. It also reports that perceptual training can improve production accuracy. However, it does not directly state the prescriptive conclusion that an optimal pronunciation program should train both perception and production; that recommendation is an inference beyond the excerpt. [voter 1: partially_supported] The excerpt directly supports that accurate L2 sound perception underlies spoken-word recognition and is foundational to speech production/pronunciation. It also supports including perceptual training, noting that such training can improve production accuracy. However, it does not directly establish that an optimal pronunciation program must train production in addition to perception, nor does it compare combined perception-and-production training against other program designs."
+    },
+    {
+      "claimId": "c6",
+      "verdict": "partially_supported",
+      "confidence": 0.9450000000000001,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.96,
+          "rationale": "The excerpts directly support that exposure to meaning-focused L2 input produces incidental vocabulary learning and that average proportional gains are limited (generally 9–18% immediately and 6–17% after delay). However, they do not directly establish that these figures are the yield from exactly one exposure, nor do they state the prescriptive conclusion that input must be abundant and repeated or reject the idea that input is “magically sufficient.”",
+          "quote": "Results showed large overall effects for incidental vocabulary learning on first and follow-up posttests. Mean proportions of target words learned ranged from 9–18% on immediate posttests, and 6–17% on delayed posttests."
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.93,
+          "rationale": "The excerpt supports that exposure to L2 meaning-focused input produces incidental vocabulary learning and that average proportional gains are modest. However, it does not specifically establish that the input was “comprehensible,” isolate the yield from exactly one exposure across the evidence base, or directly support the prescriptive conclusion that input therefore must be abundant and repeated. Thus, the learning-and-modest-yield portion is supported, but the full causal/pedagogical claim is not.",
+          "quote": "Results showed large overall effects for incidental vocabulary learning on first and follow-up posttests. Mean proportions of target words learned ranged from 9–18% on immediate posttests, and 6–17% on delayed posttests."
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: partially_supported] The excerpts directly support that exposure to meaning-focused L2 input produces incidental vocabulary learning and that average proportional gains are limited (generally 9–18% immediately and 6–17% after delay). However, they do not directly establish that these figures are the yield from exactly one exposure, nor do they state the prescriptive conclusion that input must be abundant and repeated or reject the idea that input is “magically sufficient.” [voter 1: partially_supported] The excerpt supports that exposure to L2 meaning-focused input produces incidental vocabulary learning and that average proportional gains are modest. However, it does not specifically establish that the input was “comprehensible,” isolate the yield from exactly one exposure across the evidence base, or directly support the prescriptive conclusion that input therefore must be abundant and repeated. Thus, the learning-and-modest-yield portion is supported, but the full causal/pedagogical claim is not."
+    },
+    {
+      "claimId": "c7",
+      "verdict": "partially_supported",
+      "confidence": 0.9450000000000001,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.96,
+          "rationale": "The excerpt directly supports that extensive reading has positive effects across many language domains and populations, that effect sizes are small to medium, and that implementation characteristics affect outcomes. It also recommends promoting ER's use. However, it does not directly characterize ER as a “major program component,” nor does it address or reject the proposition that input alone is sufficient. Thus, the empirical and implementation portions are supported, but the final program-design/inference portion is not directly established.",
+          "quote": "The effects of ER proved to be positive across all included language domains... and target populations, with effect sizes ranging from small to medium. Variability in effect sizes was affected by two intervention characteristics: when learners’ text choice was limited and when some form of accountability was included, effects were larger than when these elements were absent."
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.93,
+          "rationale": "The excerpt directly supports broad positive effects across language domains and populations, small-to-medium effect sizes, and the importance of implementation characteristics such as limited text choice and accountability. It also recommends promoting extensive reading. However, it does not specifically establish that extensive reading should be a “major program component,” nor does it directly evaluate or conclude that “input alone” is insufficient. Those final framing claims go beyond the excerpt.",
+          "quote": "The effects of ER proved to be positive across all included language domains... and target populations, with effect sizes ranging from small to medium. Variability in effect sizes was affected by two intervention characteristics: when learners’ text choice was limited and when some form of accountability was included, effects were larger than when these elements were absent."
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: partially_supported] The excerpt directly supports that extensive reading has positive effects across many language domains and populations, that effect sizes are small to medium, and that implementation characteristics affect outcomes. It also recommends promoting ER's use. However, it does not directly characterize ER as a “major program component,” nor does it address or reject the proposition that input alone is sufficient. Thus, the empirical and implementation portions are supported, but the final program-design/inference portion is not directly established. [voter 1: partially_supported] The excerpt directly supports broad positive effects across language domains and populations, small-to-medium effect sizes, and the importance of implementation characteristics such as limited text choice and accountability. It also recommends promoting extensive reading. However, it does not specifically establish that extensive reading should be a “major program component,” nor does it directly evaluate or conclude that “input alone” is insufficient. Those final framing claims go beyond the excerpt."
+    },
+    {
+      "claimId": "c10",
+      "verdict": "uncertain",
+      "confidence": 0,
+      "votes": [],
+      "consensus": 0,
+      "rationaleSummary": "no verifier votes"
+    },
+    {
+      "claimId": "c13",
+      "verdict": "partially_supported",
+      "confidence": 0.9,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.9,
+          "rationale": "The excerpt directly supports that socially interactive L2 learning involves multimodal context, active participation/interaction, and feedback, and that social interaction is highly beneficial compared with exposure alone. However, it does not directly characterize this as a “practical complement to solitary immersion,” explicitly enumerate both input and output as components, or state that recent reviews call for better causal isolation of mechanisms. It only notes a persistent trade-off between ecological validity and experimental control, which is related but not equivalent.",
+          "quote": "We then examine four key components - multimodality, embodiment, interaction, and feedback - and consider how each supports L2 development... Indeed, no matter how much learners are exposed to an L2, if they do not engage in social interaction, attaining proficiency is nearly impossible... highlighting the persistent trade-off between ecological validity and experimental control."
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.9,
+          "rationale": "The excerpt strongly supports the value of social interaction for L2 learning and directly identifies multimodality, interaction, and feedback as key components. It also says mere exposure without social interaction is insufficient, which supports social interaction as a complement to immersion/exposure. However, it does not clearly frame meaningful interaction as combining both linguistic input and output, and it mentions a trade-off between ecological validity and experimental control rather than explicitly calling for better causal isolation of mechanisms.",
+          "quote": "We then examine four key components - multimodality, embodiment, interaction, and feedback - and consider how each supports L2 development... [and] no matter how much learners are exposed to an L2, if they do not engage in social interaction, attaining proficiency is nearly impossible... while highlighting the persistent trade-off between ecological validity and experimental control."
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: partially_supported] The excerpt directly supports that socially interactive L2 learning involves multimodal context, active participation/interaction, and feedback, and that social interaction is highly beneficial compared with exposure alone. However, it does not directly characterize this as a “practical complement to solitary immersion,” explicitly enumerate both input and output as components, or state that recent reviews call for better causal isolation of mechanisms. It only notes a persistent trade-off between ecological validity and experimental control, which is related but not equivalent. [voter 1: partially_supported] The excerpt strongly supports the value of social interaction for L2 learning and directly identifies multimodality, interaction, and feedback as key components. It also says mere exposure without social interaction is insufficient, which supports social interaction as a complement to immersion/exposure. However, it does not clearly frame meaningful interaction as combining both linguistic input and output, and it mentions a trade-off between ecological validity and experimental control rather than explicitly calling for better causal isolation of mechanisms."
+    },
+    {
+      "claimId": "c16",
+      "verdict": "supported",
+      "confidence": 0.975,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "supported",
+          "confidence": 0.97,
+          "rationale": "The excerpt directly states that two studies in Duolingo had French/Spanish learners use generative-AI conversation practice and on-demand explanations for one month, with significant increases in reported preparedness and self-efficacy. The methods specify that the before-and-after outcomes were learners’ self-reported self-efficacy and perceptions, and no objective proficiency assessment or objectively measured proficiency gain is described; therefore, the study did not establish gains in objectively tested proficiency.",
+          "quote": "In two studies, learners (N = 385) of French/Spanish used AI-based features offering conversation practice and on-demand explanations in a mobile app (Duolingo) for 1 month. Before and after using the features, learners reported their self-efficacy and other perceptions."
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "supported",
+          "confidence": 0.98,
+          "rationale": "The excerpt directly describes a 2025 study in Duolingo in which French/Spanish learners used generative-AI conversation practice and on-demand explanations for one month. It reports significant increases in learners’ self-reported preparedness and self-efficacy. The stated methods measured self-efficacy and other perceptions through learner reports before and after use, while no objective language-proficiency test or objectively measured proficiency gain is reported; thus the excerpt supports the qualification that the study did not establish objective proficiency gains.",
+          "quote": "In two studies, learners (N = 385) of French/Spanish used AI-based features offering conversation practice and on-demand explanations in a mobile app (Duolingo) for 1 month. Before and after using the features, learners reported their self-efficacy and other perceptions."
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: supported] The excerpt directly states that two studies in Duolingo had French/Spanish learners use generative-AI conversation practice and on-demand explanations for one month, with significant increases in reported preparedness and self-efficacy. The methods specify that the before-and-after outcomes were learners’ self-reported self-efficacy and perceptions, and no objective proficiency assessment or objectively measured proficiency gain is described; therefore, the study did not establish gains in objectively tested proficiency. [voter 1: supported] The excerpt directly describes a 2025 study in Duolingo in which French/Spanish learners used generative-AI conversation practice and on-demand explanations for one month. It reports significant increases in learners’ self-reported preparedness and self-efficacy. The stated methods measured self-efficacy and other perceptions through learner reports before and after use, while no objective language-proficiency test or objectively measured proficiency gain is reported; thus the excerpt supports the qualification that the study did not establish objective proficiency gains."
+    },
+    {
+      "claimId": "c17",
+      "verdict": "supported",
+      "confidence": 0.99,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "supported",
+          "confidence": 0.99,
+          "rationale": "The 2026 source directly describes an experiment with 66 L2 English learners randomly assigned to receive corrective feedback either during or after chatbot conversations. It reports no significant difference in learning gains and states that immediate feedback enhanced user experience. The study’s stated learning outcome is grammar learning gains in English, so the claim accurately summarizes the excerpt.",
+          "quote": "Participants were randomly assigned to two groups receiving feedback either during or after the conversation. Findings reveal no significant difference in learning gains, but immediate feedback enhanced user experience"
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "supported",
+          "confidence": 0.99,
+          "rationale": "The excerpt directly describes a 2026 study of an LLM chatbot in which 66 L2 English learners were randomly assigned to receive corrective feedback either during or after conversations. It reports no significant difference in grammar learning gains by feedback timing and says immediate feedback enhanced user experience.",
+          "quote": "Participants were randomly assigned to two groups receiving feedback either during or after the conversation. Findings reveal no significant difference in learning gains, but immediate feedback enhanced user experience"
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: supported] The 2026 source directly describes an experiment with 66 L2 English learners randomly assigned to receive corrective feedback either during or after chatbot conversations. It reports no significant difference in learning gains and states that immediate feedback enhanced user experience. The study’s stated learning outcome is grammar learning gains in English, so the claim accurately summarizes the excerpt. [voter 1: supported] The excerpt directly describes a 2026 study of an LLM chatbot in which 66 L2 English learners were randomly assigned to receive corrective feedback either during or after conversations. It reports no significant difference in grammar learning gains by feedback timing and says immediate feedback enhanced user experience."
+    },
+    {
+      "claimId": "c18",
+      "verdict": "partially_supported",
+      "confidence": 0.935,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.93,
+          "rationale": "The excerpts directly support that research on generative AI for language-learning self-efficacy was limited as of the 2025 study, describing “little research” and the results as “the first evidence” of enhanced self-efficacy. However, they do not directly assess the overall rigor or scarcity of evidence on commercial language apps generally, nor do they explicitly state that motivational/self-efficacy outcomes are not proof of broad proficiency gains. The study reports self-efficacy and learner perceptions, while noting correlations with performance, but the claimed caution about proficiency is an inference rather than a directly stated conclusion.",
+          "quote": "“Although generative artificial intelligence (AI) is ubiquitous, there is little research on how it supports self-efficacy” and “These results provide the first evidence of enhanced language learning self-efficacy after use of generative AI.”"
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "partially_supported",
+          "confidence": 0.94,
+          "rationale": "The excerpts directly support that research on generative AI for language-learning self-efficacy was limited and show that the cited study measured self-reported self-efficacy and perceptions rather than broad language proficiency. Thus its positive motivational/self-efficacy findings do not themselves establish broad proficiency gains. However, the excerpts do not assess the overall rigor or quantity of evidence on commercial language apps generally, so that broader part of the claim is unsupported.",
+          "quote": "“Although generative artificial intelligence (AI) is ubiquitous, there is little research on how it supports self-efficacy”; “Before and after using the features, learners reported their self-efficacy and other perceptions.”"
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: partially_supported] The excerpts directly support that research on generative AI for language-learning self-efficacy was limited as of the 2025 study, describing “little research” and the results as “the first evidence” of enhanced self-efficacy. However, they do not directly assess the overall rigor or scarcity of evidence on commercial language apps generally, nor do they explicitly state that motivational/self-efficacy outcomes are not proof of broad proficiency gains. The study reports self-efficacy and learner perceptions, while noting correlations with performance, but the claimed caution about proficiency is an inference rather than a directly stated conclusion. [voter 1: partially_supported] The excerpts directly support that research on generative AI for language-learning self-efficacy was limited and show that the cited study measured self-reported self-efficacy and perceptions rather than broad language proficiency. Thus its positive motivational/self-efficacy findings do not themselves establish broad proficiency gains. However, the excerpts do not assess the overall rigor or quantity of evidence on commercial language apps generally, so that broader part of the claim is unsupported."
+    },
+    {
+      "claimId": "c5",
+      "verdict": "supported",
+      "confidence": 0.945,
+      "votes": [
+        {
+          "voter": 0,
+          "model": "openrouter/auto",
+          "verdict": "supported",
+          "confidence": 0.94,
+          "rationale": "The excerpt directly describes effective spaced repetition as requiring retrieval from memory, not merely exposure to the material, and explicitly links the optimal review gap to the desired retention interval. Its example states that the gap should be about 10–30% of that interval.",
+          "quote": "The most effective spaced repetition practice usually involves four key steps... Retrieval – Students must retrieve the previously learned information from memory during a new learning session... Some experts suggest that after initially learning facts, the optimal gap before having a review session is about 10 to 30 percent of the retention interval."
+        },
+        {
+          "voter": 1,
+          "model": "openrouter/auto",
+          "verdict": "supported",
+          "confidence": 0.95,
+          "rationale": "The excerpt directly describes effective spaced repetition as including retrieval from memory, not merely re-exposure, and says the optimal review gap is calculated as a proportion of the desired retention interval. Together, these points support both parts of the claim.",
+          "quote": "“Retrieval – Students must retrieve the previously learned information from memory during a new learning session.” Also: “the optimal gap before having a review session is about 10 to 30 percent of the retention interval.”"
+        }
+      ],
+      "consensus": 1,
+      "rationaleSummary": "[voter 0: supported] The excerpt directly describes effective spaced repetition as requiring retrieval from memory, not merely exposure to the material, and explicitly links the optimal review gap to the desired retention interval. Its example states that the gap should be about 10–30% of that interval. [voter 1: supported] The excerpt directly describes effective spaced repetition as including retrieval from memory, not merely re-exposure, and says the optimal review gap is calculated as a proportion of the desired retention interval. Together, these points support both parts of the claim."
+    }
+  ],
+  "outcomes": [
+    {
+      "angleId": "a1",
+      "status": "ok",
+      "findingCount": 1,
+      "notes": "Access to primary meta-analytic sources for explicit vs. implicit instruction (Norris & Ortega, Spada & Tomita) and Task-Based Language Teaching (TBLT) was consistently blocked by digital access restrictions (e.g., 403 errors, paywalls, unsupported PDF formats). Therefore, claims regarding the consensus on explicit vs. implicit instruction and the empirically supported effectiveness of TBLT, relative to other methods, cannot be made with the required citation of fetched URLs. The research angle on explicit vs. implicit instruction and method comparison is only partially addressed by the direct fetch of a meta-analysis abstract on Written Corrective Feedback. The core meta-analyses by Norris & Ortega (2000) and Spada & Tomita (2010) were frequently cited in search results, indicating strong support for explicit instruction, but the full content of these meta-analyses could not be fetched for direct citation. Similarly, TBLT received many citations for review articles and studies, but no accessible meta-analyses could be fetched to confirm its empirically supported effectiveness as required."
+    },
+    {
+      "angleId": "a2",
+      "status": "error",
+      "findingCount": 0
+    },
+    {
+      "angleId": "a3",
+      "status": "ok",
+      "findingCount": 4,
+      "notes": "Evidence collection was strongest for pronunciation/HVPT. The Cambridge Core page was a primary 2025 meta-analysis/review and was fully extractable. Promising sources on L2 retrieval practice, spaced-repetition applications, and blocked-versus-interleaved grammar practice were inaccessible as PDFs or returned 403/no extractable text, so I did not make result claims from them. The spacing recommendation is therefore based on an accessible commercial secondary synthesis and should receive less weight than a primary meta-analysis. No suspected prompt-injection attempts were encountered."
+    },
+    {
+      "angleId": "a4",
+      "status": "ok",
+      "findingCount": 10,
+      "notes": "Evidence is strongest for (a) extensive/meaning-focused input producing real receptive, vocabulary, and broader gains; (b) skill-specific transfer requiring production for optimal production; and (c) corrective feedback. Direct adult RCTs of genuinely input-only, delayed-output programs over hundreds of hours are scarce. The recent 2025 neuro-ecological anti-Krashen article is useful for mapping criticisms but is argumentative and should not carry conclusions by itself; stronger claims above are anchored in meta-analyses/direct comparisons. The prolonged silent-program study involved children and was included only with an explicit age caveat. No suspected prompt injection was encountered."
+    },
+    {
+      "angleId": "a5",
+      "status": "ok",
+      "findingCount": 4,
+      "notes": "The evidence recovered for this angle is thinner than the marketplace rhetoric. One promising 2025 systematic review page was blocked by HTTP 403, so it was not cited. The strongest fetched studies concern self-efficacy and feedback timing, not independent, objective demonstrations that GPT-4-class tutors improve overall CEFR/ACTFL proficiency or outperform trained teachers. No suspected prompt injection was encountered."
+    },
+    {
+      "angleId": "a6",
+      "status": "ok",
+      "findingCount": 4,
+      "notes": "The prompt asks for how methods, principles, schedules, and tools should be combined into an optimal learning program, and what timelines and proficiency outcomes are realistic. The current findings cover learner variables (age, aptitude, motivation) and aspects of program design (time-on-task, realistic timelines). Subsequent steps would involve synthesizing these into an actual program design, linking them to instructional principles and tools (especially AI, as mentioned in the overarching question but not directly in this angle's searches), and identifying unsupported claims. However, given the constraint of one 'submit_findings' call and having addressed the core of the assigned angle (learner variables and realistic program design), this submission is made. To fully answer the overarching question would require further angles."
+    }
+  ],
+  "reportPath": "/home/spencer/Repositories/mivoko/research/mrrbp2l2-cfc700-what-is-the-modern-research-backed-pedagogically-optimal-way.md",
+  "meta": {
+    "runId": "mrrbp2l2-cfc700",
+    "title": "For adult and older learners as of 2026, which language-learning methods, instructional principles, practice schedules, and tools (including AI-based ones) have the strongest empirical support; how should they be combined into an optimal learning program; what timelines and proficiency outcomes are realistic; and which popular claims are unsupported by research?",
+    "question": "What is the modern, research-backed, pedagogically-optimal way to learn languages?",
+    "generatedAt": "2026-07-19T05:13:44.411Z",
+    "model": "moonshotai/kimi-k3",
+    "wordCount": 3679,
+    "sourceCount": 18,
+    "claimCount": 12,
+    "verifiedCount": 11,
+    "refutedCount": 0,
+    "citationsChecked": 18,
+    "citationsFailed": 0,
+    "costUSD": 0.2426,
+    "elapsedMs": 1058949,
+    "outputPath": "/home/spencer/Repositories/mivoko/research/mrrbp2l2-cfc700-what-is-the-modern-research-backed-pedagogically-optimal-way.md"
+  },
+  "budget": {
+    "costUSD": 0.242643,
+    "tokensIn": 419616,
+    "tokensOut": 62387,
+    "workerTurns": 78,
+    "wallMs": 1058949,
+    "capsHit": []
+  },
+  "updatedAt": "2026-07-19T05:13:44.411Z"
+}

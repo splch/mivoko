@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mivoko — frequency-first language tutor</title>
+  <meta name="description" content="Learn any language with frequency lists, AI personas, and the FSRS-7 spaced repetition scheduler. No backend — your keys, your browser.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>">
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased min-h-screen">
+
+<div x-data="app" x-init="init()" x-cloak class="max-w-5xl mx-auto px-4 pb-20">
+
+  <!-- Header -->
+  <header class="flex flex-wrap items-center gap-3 py-5 border-b border-slate-800">
+    <div class="flex items-center gap-2 mr-auto">
+      <span class="text-2xl">🗣️</span>
+      <div>
+        <h1 class="text-lg font-bold tracking-tight leading-none">mivoko</h1>
+        <p class="text-xs text-slate-400">frequency-first · FSRS-7 · your keys, your browser</p>
+      </div>
+    </div>
+    <nav class="flex flex-wrap gap-1">
+      <template x-for="t in tabs" :key="t.id">
+        <button @click="view = t.id"
+          class="px-3 py-1.5 rounded-lg text-sm font-medium transition"
+          :class="view === t.id ? 'bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-800'">
+          <span x-text="t.label"></span>
+          <template x-if="t.id === 'review' && dueCount > 0">
+            <span class="ml-1 px-1.5 py-0.5 rounded-full bg-rose-500/90 text-white text-xs" x-text="dueCount"></span>
+          </template>
+        </button>
+      </template>
+    </nav>
+  </header>
+
+  <main class="pt-6">
+
+    <!-- ============ TODAY ============ -->
+    <section x-show="view === 'today'">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="stat"><div class="stat-num" x-text="learnedCount"></div><div class="stat-label">words learned</div></div>
+        <div class="stat"><div class="stat-num" x-text="dueCount"></div><div class="stat-label">due now</div></div>
+        <div class="stat"><div class="stat-num" x-text="newRemainingToday"></div><div class="stat-label">new left today</div></div>
+        <div class="stat">
+          <div class="stat-num" x-text="avgRetention == null ? '—' : Math.round(avgRetention * 100) + '%'"></div>
+          <div class="stat-label">predicted recall</div>
+        </div>
+      </div>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-3">
+        <button @click="startReview()" class="cta bg-indigo-600 hover:bg-indigo-500">
+          <span class="text-lg font-semibold">Start review</span>
+          <span class="text-sm opacity-80" x-text="dueCount + ' due · ' + Math.min(newRemainingToday, newCards.length) + ' new'"></span>
+        </button>
+        <button @click="view = 'chat'" class="cta bg-slate-800 hover:bg-slate-700">
+          <span class="text-lg font-semibold">Chat with tutor</span>
+          <span class="text-sm opacity-80" x-text="activePersona ? activePersona.name : 'create a persona'"></span>
+        </button>
+      </div>
+
+      <p x-show="placementMeta" class="mt-4 text-sm text-slate-400">
+        Placement: you know the top ~<span class="text-slate-100 font-semibold" x-text="placementMeta && placementMeta.frontier.toLocaleString()"></span> words (tested <span x-text="placementMeta && placementMeta.date"></span>) · <button class="link" @click="startPlacement()">retake</button>
+      </p>
+
+      <div x-show="cards.length > 0 && learnedCount === 0 && !placementMeta" class="mt-8 p-5 rounded-2xl border border-dashed border-indigo-700/60 text-slate-300">
+        <p class="font-semibold text-slate-100">Already know some <span x-text="settings.targetLang"></span>?</p>
+        <p class="text-sm mt-1">Take the 2-minute placement test — it binary-searches the frequency list to find your level, so you skip words you already know.</p>
+        <button @click="startPlacement()" class="btn bg-indigo-600 hover:bg-indigo-500 mt-3">Take placement test</button>
+      </div>
+
+      <div x-show="cards.length === 0" class="mt-8 p-5 rounded-2xl border border-dashed border-slate-700 text-slate-300">
+        <p class="font-semibold text-slate-100">Get started in 30 seconds</p>
+        <ol class="list-decimal ml-5 mt-2 space-y-1 text-sm">
+          <li>Load the sample Spanish list or paste your own frequency list in <button class="link" @click="view='words'">Words</button>.</li>
+          <li>Add your LLM API key in <button class="link" @click="view='settings'">Settings</button> (optional for review, needed for chat &amp; examples).</li>
+          <li>Review daily; chat with a persona when you want output practice.</li>
+        </ol>
+      </div>
+
+      <div class="mt-8 p-5 rounded-2xl bg-slate-900 border border-slate-800 text-sm text-slate-400 leading-relaxed">
+        <p class="font-semibold text-slate-200 mb-1">Why it's built this way</p>
+        <p>Words are taught in corpus-frequency order and scheduled by <strong class="text-slate-200">FSRS-7</strong> (Free Spaced Repetition Scheduler), which targets your chosen retention rate. Review prompts ask you to <em>produce</em> the word from its meaning — retrieval practice transfers to real use. Personas are instructed to elicit self-correction (prompts) rather than silently recasting errors, and to weave your due words into conversation.</p>
+      </div>
+    </section>
+
+    <!-- ============ REVIEW ============ -->
+    <section x-show="view === 'review'">
+      <!-- no active session -->
+      <div x-show="!review.active" class="text-center py-10">
+        <p class="text-4xl font-bold" x-text="dueCount"></p>
+        <p class="text-slate-400 mt-1">cards due · <span x-text="Math.min(newRemainingToday, newCards.length)"></span> new available today</p>
+        <p x-show="dueCount === 0 && review.rated > 0" class="text-slate-500 text-sm">all caught up 🎉</p>
+        <button x-show="dueCount + Math.min(newRemainingToday, newCards.length) > 0" @click="startReview()" class="mt-5 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-semibold">
+          Start session
+        </button>
+        <p x-show="review.rated > 0" class="mt-4 text-sm text-emerald-400">
+          Last session: <span x-text="review.rated"></span> reviewed<span x-show="review.requeues > 0">, <span x-text="review.requeues"></span> re-queued after "Again"</span>
+        </p>
+        <div x-show="newCards.length > 0 && (dueCount === 0 || review.rated > 0)" class="mt-6 pt-6 border-t border-slate-800/70 max-w-sm mx-auto">
+          <button @click="continueLearning()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-medium">
+            Keep learning — introduce <span x-text="Math.min(Number(settings.newPerDay) || 10, newCards.length)"></span> new words now
+          </button>
+          <p class="text-xs text-slate-500 mt-2">extra words still join your review schedule — more words today means more reviews later this week</p>
+        </div>
+      </div>
+
+      <!-- active session -->
+      <template x-if="review.active && currentCard">
+      <div class="max-w-xl mx-auto">
+        <div class="flex items-center justify-between text-sm text-slate-400 mb-3">
+          <span>Card <span x-text="review.i + 1"></span> / <span x-text="review.queue.length"></span></span>
+          <button @click="endSession()" class="link">end session</button>
+        </div>
+        <div class="h-1.5 rounded-full bg-slate-800 mb-5 overflow-hidden">
+          <div class="h-full bg-indigo-500 transition-all" :style="'width:' + (100 * review.i / review.queue.length) + '%'"></div>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 text-center min-h-[16rem] flex flex-col justify-center">
+          <!-- front: native gloss -> produce the target word (retrieval + production) -->
+          <template x-if="currentCard && currentCard.tr">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-slate-500 mb-2" x-text="'recall the ' + settings.targetLang + ' word'"></p>
+              <p class="text-2xl md:text-3xl font-bold break-words" x-text="currentCard.tr"></p>
+            </div>
+          </template>
+          <!-- front fallback for lists without translations -->
+          <template x-if="currentCard && !currentCard.tr">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-slate-500 mb-2">recall the meaning</p>
+              <p class="text-2xl md:text-3xl font-bold break-words" x-text="currentCard.word"></p>
+            </div>
+          </template>
+
+          <div x-show="review.revealed" class="mt-6 pt-6 border-t border-slate-800">
+            <p class="text-2xl md:text-3xl font-bold text-indigo-300 break-words" x-text="currentCard.word"></p>
+            <p x-show="currentCard.py" class="text-lg text-slate-300 mt-1 break-words" x-text="currentCard.py"></p>
+            <p x-show="currentCard.tr" class="text-slate-400 mt-1 break-words" x-text="currentCard.tr"></p>
+            <div x-show="currentCard.example" class="mt-4 text-left bg-slate-800/60 rounded-xl p-4">
+              <p class="text-slate-200" x-text="currentCard.example && currentCard.example.sentence"></p>
+              <p class="text-slate-400 text-sm mt-1" x-text="currentCard.example && currentCard.example.translation"></p>
+            </div>
+            <button x-show="!currentCard.example && settings.apiKey" @click="genExample(currentCard)"
+              class="mt-4 text-sm link">generate example sentence</button>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <button x-show="!review.revealed" @click="reveal()"
+            class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 font-semibold">Show answer</button>
+          <div x-show="review.revealed" class="grid grid-cols-4 gap-2">
+            <button @click="rate(1)" class="rate bg-rose-600/80 hover:bg-rose-500">Again<span x-text="fmtIv(1)"></span></button>
+            <button @click="rate(2)" class="rate bg-amber-600/80 hover:bg-amber-500">Hard<span x-text="fmtIv(2)"></span></button>
+            <button @click="rate(3)" class="rate bg-emerald-600/80 hover:bg-emerald-500">Good<span x-text="fmtIv(3)"></span></button>
+            <button @click="rate(4)" class="rate bg-sky-600/80 hover:bg-sky-500">Easy<span x-text="fmtIv(4)"></span></button>
+          </div>
+          <p x-show="review.revealed" class="text-center text-xs text-slate-500 mt-2">grade honestly — the scheduler trusts you</p>
+        </div>
+      </div>
+      </template>
+    </section>
+
+    <!-- ============ PLACEMENT ============ -->
+    <section x-show="view === 'placement'">
+      <div class="max-w-xl mx-auto">
+        <!-- intro -->
+        <div x-show="!placement.active && !placement.done" class="text-center py-10">
+          <h2 class="text-2xl font-bold">Placement test</h2>
+          <p class="text-slate-400 mt-3 leading-relaxed">About 8 quick rounds of 4 words. The test binary-searches the frequency list to find where your vocabulary runs out.<br><strong class="text-slate-200">Only mark a word if you could actually explain or use it</strong> — guessing just inflates your placement with words you can't read.</p>
+          <div class="flex justify-center gap-2 mt-6">
+            <button @click="placement.active = true; nextPlacementRound()" class="btn bg-indigo-600 hover:bg-indigo-500">Begin</button>
+            <button @click="cancelPlacement()" class="btn bg-slate-800 hover:bg-slate-700">Cancel</button>
+          </div>
+        </div>
+
+        <!-- rounds -->
+        <template x-if="placement.active">
+          <div>
+            <div class="flex items-center justify-between text-sm text-slate-400 mb-4">
+              <span>Round <span x-text="placement.round"></span> of ~<span x-text="placement.maxRounds"></span></span>
+              <button @click="cancelPlacement()" class="link">cancel</button>
+            </div>
+            <p class="text-center text-slate-300 mb-4">Do you know these words?</p>
+            <div class="space-y-3">
+              <template x-for="(probe, idx) in placement.probes" :key="idx">
+                <div class="flex items-center gap-3 p-4 rounded-2xl bg-slate-900 border border-slate-800">
+                  <p class="flex-1 text-2xl font-bold text-center" x-text="probe.card.word"></p>
+                  <button @click="answerProbe(probe, true)" class="btn w-20"
+                    :class="probe.known === true ? 'bg-emerald-600 text-white' : 'bg-slate-800 hover:bg-slate-700'">Know</button>
+                  <button @click="answerProbe(probe, false)" class="btn w-20"
+                    :class="probe.known === false ? 'bg-rose-600 text-white' : 'bg-slate-800 hover:bg-slate-700'">Don't</button>
+                </div>
+              </template>
+            </div>
+            <p class="text-center text-xs text-slate-500 mt-4">answer all four — the next round appears automatically</p>
+          </div>
+        </template>
+
+        <!-- result -->
+        <template x-if="placement.done">
+          <div class="text-center py-10">
+            <p class="text-slate-400">Estimated vocabulary</p>
+            <p class="text-4xl font-bold mt-2">top ~<span x-text="placement.frontier.toLocaleString()"></span> words</p>
+            <p class="text-slate-400 mt-3 text-sm leading-relaxed">Words up to this rank get marked <em>known</em> and skipped — new words start at your level. You can retake the test any time.</p>
+            <div class="flex justify-center items-center gap-2 mt-4">
+              <span class="text-sm text-slate-500 mr-1">Feels off?</span>
+              <button @click="placement.frontier = Math.max(0, placement.frontier - 1000)" class="btn bg-slate-800 hover:bg-slate-700">−1000</button>
+              <button @click="placement.frontier = Math.max(0, placement.frontier - 250)" class="btn bg-slate-800 hover:bg-slate-700">−250</button>
+              <button @click="placement.frontier = Math.min(cards.length, placement.frontier + 250)" class="btn bg-slate-800 hover:bg-slate-700">+250</button>
+              <button @click="placement.frontier = Math.min(cards.length, placement.frontier + 1000)" class="btn bg-slate-800 hover:bg-slate-700">+1000</button>
+            </div>
+            <div class="flex justify-center gap-2 mt-6">
+              <button @click="applyPlacement()" class="btn bg-indigo-600 hover:bg-indigo-500">Apply placement</button>
+              <button @click="startPlacement()" class="btn bg-slate-800 hover:bg-slate-700">Retake</button>
+              <button @click="placement.done = false; view = 'today'" class="btn bg-slate-800 hover:bg-slate-700">Discard</button>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- ============ CHAT ============ -->
+    <section x-show="view === 'chat'" class="max-w-2xl mx-auto">
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <select x-model="activePersonaId" @change="setActivePersona(activePersonaId)"
+          class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm">
+          <template x-for="p in personas" :key="p.id">
+            <option :value="p.id" x-text="p.name"></option>
+          </template>
+        </select>
+        <button @click="view = 'personas'" class="link text-sm">edit personas</button>
+        <button @click="clearChat()" class="link text-sm ml-auto" x-show="chatMessages.length">clear</button>
+      </div>
+
+      <div x-show="!settings.apiKey" class="p-4 mb-4 rounded-xl bg-amber-900/30 border border-amber-700/50 text-sm text-amber-200">
+        Chat needs an API key — add one in <button class="link" @click="view='settings'">Settings</button>. Keys are stored only in your browser.
+      </div>
+
+      <div id="chat-scroll" class="h-[26rem] overflow-y-auto space-y-3 p-4 rounded-2xl bg-slate-900 border border-slate-800">
+        <p x-show="!chatMessages.length" class="text-slate-500 text-sm text-center pt-24">
+          Say something in <span x-text="settings.targetLang"></span> — mistakes welcome, that's the point.
+        </p>
+        <template x-for="m in chatMessages" :key="m.ts">
+          <div class="flex" :class="m.role === 'user' ? 'justify-end' : 'justify-start'">
+            <div class="max-w-[80%] px-4 py-2.5 rounded-2xl whitespace-pre-wrap text-sm leading-relaxed"
+              :class="m.role === 'user' ? 'bg-indigo-600 text-white rounded-br-md' : 'bg-slate-800 text-slate-100 rounded-bl-md'"
+              x-text="m.content"></div>
+          </div>
+        </template>
+        <div x-show="chatBusy" class="flex"><div class="px-4 py-2.5 rounded-2xl bg-slate-800 text-slate-400 text-sm">…</div></div>
+      </div>
+
+      <div class="mt-3 flex gap-2">
+        <textarea x-model="chatInput" rows="1" placeholder="Write in your target language…"
+          @keydown.enter="if (!$event.shiftKey) { $event.preventDefault(); sendChat(); }"
+          class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 resize-none"></textarea>
+        <button @click="sendChat()" :disabled="chatBusy"
+          class="px-5 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-semibold disabled:opacity-50">Send</button>
+      </div>
+    </section>
+
+    <!-- ============ WORDS ============ -->
+    <section x-show="view === 'words'">
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+          <h2 class="font-semibold mb-2">Import a frequency list</h2>
+          <p class="text-xs text-slate-400 mb-3">One word per line, most frequent first. Optional translation after a comma, semicolon, or tab. Ready-made lists: <a class="link" href="https://github.com/hermitdave/FrequencyWords" target="_blank" rel="noopener">hermitdave/FrequencyWords</a>.</p>
+          <textarea x-model="importText" rows="6" placeholder="hola&#9;hello&#10;gracias&#9;thanks&#10;…"
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm font-mono focus:outline-none focus:border-indigo-500"></textarea>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <button @click="importFromTextarea()" class="btn bg-indigo-600 hover:bg-indigo-500">Import pasted text</button>
+            <label class="btn bg-slate-800 hover:bg-slate-700 cursor-pointer">
+              Import file<input type="file" accept=".txt,.csv,.tsv" class="hidden" @change="onFileImport">
+            </label>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+          <h2 class="font-semibold mb-2">Deck</h2>
+          <p class="text-sm text-slate-400"><span class="text-slate-100 font-semibold" x-text="cards.length"></span> words ·
+            <span class="text-slate-100" x-text="learnedCount"></span> learned ·
+            <span class="text-slate-100" x-text="newCards.length"></span> unseen</p>
+          <input x-model="wordFilter" placeholder="filter…"
+            class="mt-3 w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500">
+          <div class="flex items-center gap-4 mt-3">
+            <button @click="startPlacement()" x-show="cards.length" class="text-sm link">placement test</button>
+            <button @click="wipeWords()" x-show="cards.length" class="text-sm text-rose-400 hover:text-rose-300">delete entire list</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 p-5 rounded-2xl bg-slate-900 border border-slate-800">
+        <h2 class="font-semibold mb-2">Built-in frequency lists</h2>
+        <div class="flex flex-wrap gap-2">
+          <template x-for="l in builtinLists" :key="l.code">
+            <button @click="loadBuiltin(l)" :disabled="listLoading === l.code"
+              class="btn bg-slate-800 hover:bg-slate-700 disabled:opacity-50">
+              <span x-text="l.name"></span>
+              <span class="text-slate-400 text-xs ml-1" x-text="l.words ? l.words.toLocaleString() : ''"></span>
+            </button>
+          </template>
+        </div>
+        <p class="text-xs text-slate-500 mt-3" x-text="builtinLists.map(l => l.name + ': ' + l.attribution).join(' · ')"></p>
+      </div>
+
+      <div class="mt-4 overflow-x-auto rounded-2xl border border-slate-800">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-900 text-slate-400 text-left">
+            <tr><th class="px-4 py-2.5">#</th><th class="px-4 py-2.5">Word</th><th class="px-4 py-2.5">Translation</th>
+                <th class="px-4 py-2.5">Status</th><th class="px-4 py-2.5">Stability</th><th class="px-4 py-2.5">Due</th></tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/70">
+            <template x-for="c in filteredWords" :key="c.word">
+              <tr class="hover:bg-slate-900/60">
+                <td class="px-4 py-2 text-slate-500" x-text="c.rank"></td>
+                <td class="px-4 py-2 font-medium" x-text="c.word"></td>
+                <td class="px-4 py-2 text-slate-400" x-text="c.tr"></td>
+                <td class="px-4 py-2">
+                  <span class="px-2 py-0.5 rounded-full text-xs"
+                    :class="{'bg-slate-700 text-slate-300': wordStatus(c)==='new',
+                             'bg-indigo-900/60 text-indigo-300': wordStatus(c)==='known',
+                             'bg-amber-900/60 text-amber-300': wordStatus(c)==='learning',
+                             'bg-emerald-900/60 text-emerald-300': wordStatus(c)==='review'}"
+                    x-text="wordStatus(c)"></span>
+                </td>
+                <td class="px-4 py-2 text-slate-400" x-text="c.s == null ? '—' : fmtInterval(c.s)"></td>
+                <td class="px-4 py-2 text-slate-400" x-text="c.lastReview == null ? '—' : fmtDate(c.due)"></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+        <p x-show="filteredWords.length === 200" class="px-4 py-2 text-xs text-slate-500 bg-slate-900">showing first 200 — use the filter</p>
+      </div>
+    </section>
+
+    <!-- ============ PERSONAS ============ -->
+    <section x-show="view === 'personas'" class="grid md:grid-cols-2 gap-4 items-start">
+      <div class="space-y-3">
+        <template x-for="p in personas" :key="p.id">
+          <div class="p-4 rounded-2xl bg-slate-900 border transition"
+            :class="p.id === activePersonaId ? 'border-indigo-500' : 'border-slate-800'">
+            <div class="flex items-start gap-2">
+              <div class="min-w-0">
+                <p class="font-semibold"><span x-text="p.name"></span><span x-show="p.lang" class="ml-2 px-2 py-0.5 rounded-full bg-indigo-900/60 text-indigo-300 text-xs whitespace-nowrap" x-text="p.lang"></span></p>
+                <p class="text-sm text-slate-400 mt-1 leading-relaxed" x-text="p.description"></p>
+                <p x-show="p.note" class="text-xs text-slate-500 mt-2 italic leading-relaxed" x-text="p.note"></p>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-3 text-sm">
+              <button @click="setActivePersona(p.id)" class="link" x-text="p.id === activePersonaId ? 'active ✓' : 'use in chat'"></button>
+              <button @click="editPersona(p)" class="link">edit</button>
+              <button @click="deletePersona(p)" class="text-rose-400 hover:text-rose-300">delete</button>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+        <h2 class="font-semibold mb-1" x-text="personaForm.id ? 'Edit persona' : 'New persona'"></h2>
+        <p class="text-xs text-slate-400 mb-3">Describe who the tutor is and how they teach. This becomes their system prompt, combined with your word-deck context and a self-correction teaching policy.</p>
+        <input x-model="personaForm.name" placeholder="Name — e.g. Ana, the patient porteña"
+          class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500">
+        <textarea x-model="personaForm.description" rows="6"
+          placeholder="Personality, topics they love, how strict they are, how they correct mistakes…"
+          class="mt-2 w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500"></textarea>
+        <div class="flex gap-2 mt-3">
+          <button @click="savePersonaForm()" class="btn bg-indigo-600 hover:bg-indigo-500" x-text="personaForm.id ? 'Save changes' : 'Add persona'"></button>
+          <button x-show="personaForm.id" @click="personaForm = {id:null,name:'',description:''}" class="btn bg-slate-800 hover:bg-slate-700">cancel</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SETTINGS ============ -->
+    <section x-show="view === 'settings'" class="max-w-2xl">
+      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+        <h2 class="font-semibold">LLM provider <span class="text-slate-400 font-normal text-sm">(key stays in this browser)</span></h2>
+        <div class="grid md:grid-cols-2 gap-3">
+          <label class="field">Provider
+            <select x-model="settings.provider" class="input">
+              <option value="openai">OpenAI-compatible</option>
+              <option value="anthropic">Anthropic</option>
+            </select>
+          </label>
+          <label class="field">Model
+            <input x-model="settings.model" class="input" placeholder="gpt-4o-mini / claude-sonnet-4-20250514">
+          </label>
+          <label class="field md:col-span-2">API key
+            <input x-model="settings.apiKey" type="password" autocomplete="off" class="input" placeholder="sk-…">
+          </label>
+          <label class="field md:col-span-2" x-show="settings.provider === 'openai'">Base URL <span class="text-slate-500">(works with OpenRouter, Groq, Together, Ollama…)</span>
+            <input x-model="settings.baseUrl" class="input" placeholder="https://api.openai.com/v1">
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-4 p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+        <h2 class="font-semibold">Learning</h2>
+        <div class="grid md:grid-cols-2 gap-3">
+          <label class="field">Native language<input x-model="settings.nativeLang" class="input"></label>
+          <label class="field">Target language<input x-model="settings.targetLang" class="input"></label>
+          <label class="field">New words per day<input x-model="settings.newPerDay" type="number" min="1" max="100" class="input"></label>
+          <label class="field">Max interval (days)<input x-model="settings.maxIntervalDays" type="number" min="7" class="input"></label>
+          <label class="field">Target retention <span class="text-slate-500" x-text="'(' + Math.round(settings.requestRetention * 100) + '%)'"></span>
+            <input x-model="settings.requestRetention" type="range" min="0.8" max="0.97" step="0.01" class="w-full accent-indigo-500">
+          </label>
+          <label class="field flex-row items-center gap-2 !space-y-0">
+            <input x-model="settings.autoExamples" type="checkbox" class="accent-indigo-500 w-4 h-4">
+            <span>Auto-generate example sentences (uses API)</span>
+          </label>
+        </div>
+        <label class="field">Custom FSRS-7 weights <span class="text-slate-500">(optional — 35 numbers, comma-separated; leave blank for defaults)</span>
+          <textarea x-model="settings.weights" rows="2" class="input font-mono text-xs" spellcheck="false"></textarea>
+        </label>
+        <button @click="saveSettings()" class="btn bg-indigo-600 hover:bg-indigo-500">Save settings</button>
+      </div>
+
+      <div class="mt-4 p-5 rounded-2xl bg-slate-900 border border-slate-800">
+        <h2 class="font-semibold mb-3">Data</h2>
+        <div class="flex flex-wrap gap-2">
+          <button @click="exportData()" class="btn bg-slate-800 hover:bg-slate-700">Export backup</button>
+          <label class="btn bg-slate-800 hover:bg-slate-700 cursor-pointer">
+            Import backup<input type="file" accept=".json" class="hidden" @change="importData">
+          </label>
+          <button @click="wipeAll()" class="btn bg-rose-900/60 hover:bg-rose-800 text-rose-200">Wipe everything</button>
+        </div>
+        <p class="text-xs text-slate-500 mt-3">Everything lives in this browser's localStorage. Backups include your API key — store them accordingly.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- toast -->
+  <div x-show="toastMsg" x-transition
+    class="fixed bottom-5 left-1/2 -translate-x-1/2 max-w-lg px-4 py-3 rounded-xl bg-slate-800 border border-slate-600 shadow-xl text-sm z-50"
+    x-text="toastMsg"></div>
+</div>
+
+<script src="js/fsrs7.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+Every time I broach the topic of learning styles theory here, I receive a flurry of negative feedback from teachers. Many label the theory as obsolete and thoroughly debunked. Prompted by this reaction, I decided to look deeper into what the research actually says.
+
+It turns out that while there’s a growing body of research that cautions against the uncritical application of learning styles theory, it’s not completely dismissed as irrelevant. To shed more light on this, I’ve taken the time to synthesize some of the main research critiques for you.
+
+For a refresher of what the learning styles theory is all about, check out the full overview in Learning Styles Theory: Strengths and Weaknesses!
+
+For convenience, I divided it into into three main parts:
+
+1. Quick Scan: For those who prefer a brief glance, this section summarizes the key points of various papers in just a few sentences.
+
+3. Detailed Summaries: If you’re interested in a more comprehensive understanding, section two offers a detailed summary of each critique.
+
+1. My Take: If you’re looking for a quick overview of my findings in the research, check out this section. I’ve distilled the essence of the research into an easily digestible format.
+
+I hope this structure helps you navigate through the information efficiently and gain a clearer understanding of the current stance on learning styles theory.
+
+I. Quick Scan of the Research Debunking Learning Styles Theory
+
+Here is a quick overview of the main points covered in each featured research paper:
+
+An & Carr (2017):
+
+Critique of the lack of a clear explanatory framework in learning styles theory.
+
+Problems with measurement and linking learning styles to academic achievement.
+
+Suggestion to focus on cognitive and developmental psychology for understanding individual learning differences.
+
+Kirschner (2017):
+
+Argument against tailoring education to preferred learning styles like visual, auditory, or kinesthetic.
+
+Emphasis on the difference between preferred learning methods and effective learning.
+
+Lack of scientific validity and support for learning styles theory.
+
+Knoll et al. (2017):
+
+Investigation of the impact of learning styles on learning performance and Judgments of Learning (JOLs).
+
+Finding that learning styles may influence subjective perceptions but not objective learning outcomes.
+
+Newton & Miah (2017):
+
+Challenge to the effectiveness of learning styles in education.
+
+Highlighting the lack of empirical evidence supporting the theory.
+
+Discussion on the potential negative impacts of adhering to learning styles theory.
+
+Pashler (2009):
+
+Critical review of the idea that tailored teaching improves educational outcomes.
+
+Lack of substantial scientific evidence supporting learning-styles-based instruction.
+
+Recommendation against incorporating learning styles assessments in education.
+
+Riener & Willingham (2010):
+
+Assertion that there is no credible evidence for the existence of learning styles.
+
+Suggestion to understand and apply knowledge about student differences in classroom.
+
+Attribution of the popularity of learning styles theory to confirmation bias and “common knowledge.”
+
+Rohrer & Pashler (2012):
+
+Critique of the widespread acceptance of learning styles without empirical scrutiny.
+
+Questioning the practicality and legitimacy of style-based instruction.
+
+Conclusion on the lack of empirical justification for tailoring instruction to different learning styles.
+
+Scott (2010):
+
+Discussion on how the search for individual differences in education led to the popularization of learning styles.
+
+Argument that learning styles theory continues due to cultural alignment, not effectiveness.
+
+Emphasis on the opportunity costs of adhering to the learning styles myth.
+
+Williamson & Watson (2007):
+
+Exploration of the significance of learning styles in education.
+
+Focus on how a student’s personality correlates with their preferred learning style.
+
+Caution against using learning style theories to judge students’ intelligence or abilities.
+
+Willingham et al. (2015):
+
+Examination of the scientific status of learning styles theories.
+
+Pointing out the lack of belief in the accuracy of learning styles theories due to absent scientific support.
+
+Highlighting the difficulty in proving a theory definitively wrong but emphasizing the need for evidence to support classroom application.
+
+II. Summary of the Research Criticizing Learning Styles Theory
+
+Here are summaries of each of some of featured research papers critiquing learning styles theory:
+
+1. An, D., & Carr, M. (2017). Learning Styles Theory Fails to Explain Learning and Achievement: Recommendations for Alternative Approaches.The paper “Learning Styles Theory Fails” critiques the traditional concept of learning styles by highlighting its three major flaws: the lack of a clear explanatory framework, problems with measurement, and the failure to link learning styles to actual academic achievement. The authors propose alternative approaches to understanding individual differences in learning, suggesting a focus on factors such as verbal and visual skills, domain knowledge, self-regulation, and perfectionism. These alternative approaches, rooted in cognitive and developmental psychology, aim to provide a more effective framework for predicting and explaining individual learning differences.
+
+The paper argues that learning styles theories are ineffective in explaining the causes of individual differences in student learning and that teaching based on these styles does not result in improved learning. In fact, it often leads to hindered development and poor achievement, as this approach fails to address the learners’ weaknesses.
+
+The authors suggest that a better understanding of individual learning differences can be achieved through cognitive and developmental theories, as well as temperament and personality theories. They recommend that educators focus on these theories, rather than on learning styles, to better cater to the individual differences they observe in their classrooms.
+
+2. Kirschner, P. A. (2017). Stop propagating the learning styles mythIn this article, Kirschner argues against the common belief that educational approaches should be tailored to students’ preferred learning styles, such as visual, auditory, or kinesthetic. He highlights major issues with this notion, emphasizing that there’s a significant difference between someone’s preferred way of learning and what actually leads to effective learning. According to the author, the concept of learning styles, often based on categorizing people into distinct groups, lacks support from objective studies and fails to meet key criteria for scientific validity.
+
+The author also urges educators and researchers to stop endorsing the learning styles myth, as it is not grounded in solid evidence. Kirschner concludes that the premise of different learning styles requiring different instructional methods is more of a belief than a proven fact, with little to no scientific backing.
+
+The author further explains that there are fundamental problems with measuring learning styles, and the theoretical basis for the interaction between learning styles and instructional methods is weak. Furthermore, significant empirical evidence supporting the learning-styles hypothesis is almost nonexistent. The concept of learning styles, as the paper confirms, is so vaguely defined that it becomes ineffective for instructional purposes, leading some to adhere to it merely for convenience rather than educational efficacy.
+
+3. Knoll, A. R., Otani, H., Skeel, R. L., & Van Horn, K. R. (2017). Learning style, judgements of learning, and learning of verbal and visual information. This study investigates the impact of learning styles on learning performance, focusing on the relationship between learning styles and Judgments of Learning (JOLs). Participants were assessed for their preference for verbal or visual information and then studied and recalled word and picture pairs while making JOLs.
+
+The results indicated that while preferences for certain types of information were linked to higher immediate JOLs, there was no significant correlation between these preferences and actual recall performance or JOL accuracy, suggesting that learning styles might influence subjective perceptions of learning but not the objective outcomes.
+
+Further analysis in the study explored immediate, delayed, and global JOLs in relation to learning styles. Immediate JOLs were influenced by learning style preferences, reflecting the processing fluency hypothesis (ease of processing influences JOLs) and the beliefs hypothesis (beliefs about learning effectiveness guide JOLs).
+
+However, learning styles showed no significant relation to delayed or global JOLs, which are more reflective of actual learning performance. The paper concludes while learning styles may affect initial perceptions about learning, they do not significantly impact the deeper aspects of learning and memory retrieval.
+
+4. Newton, P. M., & Miah, M. (2017). Evidence-Based Higher Education – Is the Learning Styles ‘Myth’ Important? This pape challenges the effectiveness of learning styles in education. It points out a recurring theme in the critique of learning styles theory which is lack of empirical evidence supporting the idea that matching teaching methods to students’ learning styles enhances learning outcomes. Despite its popularity among educators, the concept, as the authors stated, is labeled a “myth” due to its failure in empirical validation.
+
+Additionally, the paper discusses the potential negative impacts of adhering to the learning styles theory. These include limiting students to specific learning categories, misusing educational resources, and damaging the credibility of educational research. The authors’ survey of UK academics revealed a significant belief in learning styles, but also an acknowledgment of its theoretical flaws. This , as the authors contend, highlights the challenge in changing educational practices based on deeply entrenched beliefs, despite contrary evidence.
+
+5. Pashler. (2009). Learning Styles: Concepts and EvidenceThe paper “Learning Styles: Concepts and Evidence” critically reviews the idea that educational outcomes improve when teaching is tailored to individual learning styles, such as visual or verbal preferences. Despite the popularity of this concept in education, the authors find no substantial scientific evidence to support the effectiveness of learning-styles-based instruction. They argue that credible validation would require specific experimental findings demonstrating that students learn better when taught according to their preferred learning style.
+
+Their literature review reveals very few studies that meet the necessary criteria to test this theory, and those that do, including a notable study by Sternberg et al., show methodological weaknesses and inconclusive results. Other studies with appropriate designs contradict the popular hypothesis that teaching methods should match individual learning styles.
+
+Consequently, the authors recommend against incorporating learning styles assessments into general educational practice, advising a focus on other educational practices with a stronger evidence base.
+
+6. Riener, C., & Willingham, D. (2010). The Myth of Learning Styles.In the “The Myth of Learning Styles”, Reiner and Willingham assert that there is no credible evidence supporting the existence of learning styles. While acknowledging that learners are indeed different from each other and these differences affect their performance, the authors further explain that these variations do not validate the concept of learning styles. Instead, it suggests that understanding and applying knowledge about student differences in the classroom can improve education. The authors also emphasize that a belief in learning styles is unnecessary for incorporating effective teaching strategies.
+
+According to the authors, the widespread acceptance of learning styles theory is attributed to it becoming “common knowledge,” reinforced by confirmation bias, where people seek information that supports their beliefs while ignoring contrary evidence. This cognitive phenomenon leads to misconceptions about learning preferences and their impact on education.
+
+The article also highlights the opportunity costs of adhering to the learning styles myth, suggesting that educators should instead focus on research in cognitive science and education that offers insights into effective learning strategies. The authors caution that focusing on learning styles, for which there is no solid evidence, may cause educators to overlook scientifically supported research on learning.
+
+7. Rohrer, D., & Pashler, H. (2012). Learning styles: where’s the evidence? The paper “Learning Styles: Where’s the Evidence?” by Doug Rohrer and Harold Pashler critically examines the widespread acceptance of learning styles in educational practices. The authors argue that, unlike evidence-based treatments in modern medicine, most instructional techniques, including learning styles, have not undergone thorough empirical scrutiny. Despite the popularity and profitability of tailoring instruction to students’ supposed learning styles, such as visual or verbal preferences, the authors assert that a comprehensive review of existing data does not support the efficacy of style-based instruction.
+
+The paper highlights that only a few studies have employed the appropriate design to test the effectiveness of style-based instruction, and most of these have resulted in negative findings. The authors question the practicality of style-based instruction, considering its logistical demands and costs, and suggest that the perceived legitimacy of this concept may be more illusory, based on superficial similarities to true observations that do not logically support style-based instruction.
+
+Ultimately, the paper concludes that there is no empirical justification for tailoring instruction to different learning styles and advises educators to focus on developing more effective and cohesive methods of presenting content.
+
+8. Scott, C. (2010). The Enduring Appeal of “Learning Styles.” The paper “The Enduring Appeal of ‘Learning Styles'” discusses how the search for individual differences in education, driven by Western individualism, has led to the popularization of learning styles. Despite extensive research over four decades, there’s no evidence that learning styles can guide effective teaching practices. The theory, according to the author, continues to thrive, not because of its effectiveness, but due to its alignment with cultural values, even though it may perpetuate harmful stereotypes and ineffective teaching methods.
+
+As the Scot states, the interest in individual differences for pedagogical decision-making dates back to the 1960s, but research has consistently failed to support the effectiveness of personalizing teaching based on these differences. While research has identified effective general principles of teaching and learning, these evidence-based practices lack the appeal and simplicity of the learning styles theory.
+
+The paper argues that the continuous promotion of learning styles theory wastes valuable teaching time, promotes damaging stereotypes, and hinders the adoption of evidence-based teaching practices. It emphasizes that learning styles have no place in education if it aims to be scientifically grounded.
+
+9. Williamson, M. F., & Watson, R. L. (2007). Learning Styles Research: Understanding how Teaching Should be Impacted by the Way Learners Learn Part III: Understanding how Learners’ Personality Styles Impact Learning. This paper explores the significance of learning styles in education from the perspectives of both instructors and students. It particularly focuses on how a student’s personality correlates with their preferred learning style, discussing the implications for Christian education contexts.
+
+The paper emphasizes that learning style theory can be instrumental in enhancing the educational process, aiding students to become effective learners and lifelong learners. It suggests that these theories can help educators identify their strengths and weaknesses and align their teaching methods with the diverse learning styles of students.
+
+However, the paper cautions against using learning style theory to judge students’ intelligence or abilities or to label learners, as this could lead to predetermined expectations about student success. Instead, it advises educators to choose and apply the learning style theory that resonates most with them, continually adapting and improving their teaching methods to cater to different types of learners.
+
+10. Willingham, D. T., Hughes, E. M., & Dobolyi, D. G. (2015). The Scientific Status of Learning Styles Theories. “The Scientific Status of Learning Styles Theories” critically examines the concept of learning styles, which suggests that individuals have specific preferences for processing information that affect their learning. The paper points out that while many believe in the accuracy of learning styles theories, scientific support for these theories is notably absent. The authors argue that educators would be better served by focusing their time and energy on other theories that have a more solid foundation in aiding instruction.
+
+According to the authors, decades of literature reviews have consistently found no viable evidence to support the theory of learning styles. These reviews have highlighted the unreliability of most instruments used to identify learners’ styles. The paper underscores the difficulty in proving a negative (that a theory is definitively wrong) but emphasizes that for a theory to influence classroom practice, it must be supported by evidence. In the case of learning styles, as the authors contend, there needs to be evidence not only of their existence but also that teaching to these styles benefits students in some way.
+
+III. My Take
+
+Reflecting on the critiques of learning styles theory, it’s clear that the concept, although popular, lacks empirical support and practical effectiveness. you can tell from reading the summaries that a recurring theme across almost all of these studies is the lack of empirical evidence to support the effectiveness of learning styles theory.
+
+As a former teacher and current educational researcher, I’ve always been intrigued by the different ways students learn. However, these studies, spanning several decades, consistently highlight the absence of solid scientific evidence supporting the effectiveness of tailoring teaching to specific learning styles, like visual or auditory preferences. The idea that individual preferences in learning translate into more effective educational outcomes has not been substantiated by credible research.
+
+What’s particularly striking is the emphasis on the difference between preferred learning methods and those that actually lead to effective learning. These critiques suggest that while students may have preferences, these do not necessarily correlate with better learning outcomes.
+
+In fact, focusing too much on these supposed learning styles can lead to stereotyping and ineffective teaching strategies, which ultimately hinder the learning process. It’s also noteworthy how learning styles has become embedded in educational discourse, more because of its intuitive appeal and alignment with cultural values, rather than its empirical validity.
+
+Given this, I believe that as educators, we should shift our focus towards more evidence-based teaching practices that consider the diverse needs and capabilities of learners without confining them to rigid categories. Understanding individual differences in abilities and intelligences, and how these can be leveraged in a learning environment, seems to be a more fruitful approach than adhering to the unproven learning styles theory. This shift not only aligns with the scientific evidence but also supports a more inclusive and effective educational practice.
+
+Conclusion
+
+In conclusion, the look into the research on learning styles theory reveals a nuanced picture. While there’s substantial criticism and evidence challenging the efficacy and scientific basis of this theory, it’s not wholly discarded in educational discourse. The key takeaway is that educators should approach the concept of learning styles with a critical eye and avoid relying on it as the sole framework for designing educational experiences. Instead, it’s advisable to integrate a variety of evidence-based teaching strategies that acknowledge the diverse needs and abilities of students. This balanced approach can lead to more inclusive and effective educational practices, moving beyond the confines of a single, possibly outdated theory. As educators, our goal should always be to adapt and evolve our methods in line with the best available evidence to provide the highest quality education to our students
+
+References
+
+An, D., & Carr, M. (2017). Learning styles theory fails to explain learning and achievement: Recommendations for alternative approaches. Personality and Individual Differences, 116, 410–416. https://doi.org/10.1016/j.paid.2017.04.050
+
+Kirschner, P. A. (2017). Stop propagating the learning styles myth. Computers and Education, 106, 166–171. https://doi.org/10.1016/j.compedu.2016.12.006
+
+Knoll, A. R., Otani, H., Skeel, R. L., & Van Horn, K. R. (2017). Learning style, judgements of learning, and learning of verbal and visual information. The British Journal of Psychology, 108(3), 544–563. https://doi.org/10.1111/bjop.12214
+
+Newton, P. M., & Miah, M. (2017). Evidence-Based Higher Education – Is the Learning Styles ‘Myth’ Important? Frontiers in Psychology, 8, 444–444. https://doi.org/10.3389/fpsyg.2017.00444
+
+Pashler. (2009). Learning Styles: Concepts and Evidence. Geological Society of America Bulletin, 9(3), 105–119. https://doi.org/info:doi/
+
+RIENER, C., & WILLINGHAM, D. (2010). THE MYTH OF LEARNING STYLES. Change, 42(5), 32–35. http://www.jstor.org/stable/25742629
+
+Rohrer, D., & Pashler, H. (2012). Learning styles: where’s the evidence? Medical Education, 46(7), 634–635. https://doi.org/10.1111/j.1365-2923.2012.04273.x
+
+Scott, C. (2010). The enduring appeal of “learning styles.” The Australian Journal of Education, 54(1), 5–17. https://doi.org/10.1177/000494411005400102
+
+Williamson, M. F., & Watson, R. L. (2007). Learning Styles Research: Understanding how Teaching Should be Impacted by the Way Learners Learn Part III: Understanding how Learners’ Personality Styles Impact Learning. Christian Education Journal, 4(1), 62–77. https://doi.org/10.1177/073989130700400105
+
+Willingham, D. T., Hughes, E. M., & Dobolyi, D. G. (2015). The Scientific Status of Learning Styles Theories. Teaching of Psychology, 42(3), 266–271. https://doi.org/10.1177/0098628315589505
