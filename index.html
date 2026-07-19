@@ -6,7 +6,21 @@
   <title>mivoko — frequency-first language tutor</title>
   <meta name="description" content="Learn any language with frequency lists, AI personas, and the FSRS-7 spaced repetition scheduler. No backend — your keys, your browser.">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/style.css">
+  <style type="text/tailwindcss">
+    [x-cloak] { display: none !important; }
+    .stat       { @apply p-4 rounded-2xl bg-slate-900 border border-slate-800; }
+    .stat-num   { @apply text-2xl font-bold tracking-tight; }
+    .stat-label { @apply text-xs text-slate-400 mt-0.5; }
+    .cta        { @apply flex flex-col items-start gap-1 p-5 rounded-2xl text-left transition; }
+    .btn        { @apply px-4 py-2 rounded-xl text-sm font-medium transition; }
+    .link       { @apply text-indigo-400 hover:text-indigo-300 underline-offset-2 hover:underline; }
+    .rate       { @apply flex flex-col items-center gap-0.5 py-3 rounded-xl font-semibold text-sm text-white transition; }
+    .rate span  { @apply text-xs font-normal opacity-80; }
+    .field      { @apply flex flex-col gap-1 text-sm text-slate-300; }
+    .input      { @apply bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-indigo-500; }
+    #chat-scroll::-webkit-scrollbar       { width: 6px; }
+    #chat-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  </style>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>">
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased min-h-screen">

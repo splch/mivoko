@@ -67,9 +67,9 @@ vocabulary first because per-exposure incidental yields are small. FSRS-7 detail
 ## Files
 
 ```
-index.html      SPA markup (Tailwind CDN + Alpine.js CDN)
-css/style.css   plain-CSS component layer
+index.html      SPA markup + inline Tailwind component styles (Play CDN @apply)
 js/fsrs7.js     FSRS-7 scheduler port (35 params, bisection interval inversion)
+js/data.js      content: persona briefs, seed version, built-in list metadata
 js/app.js       Alpine component: storage, reviews, chat, personas, import/export
 lists/          bundled top-10k frequency lists (en, zh, hi, es, ar, fr) + SOURCES.md
 research/       SLA evidence review + per-language list research briefs
