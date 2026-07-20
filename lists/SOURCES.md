@@ -18,6 +18,24 @@ One entry per line: `word`, or `word<TAB>translation` (zh only).
 | `it.txt` | [hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords) `content/2018/it/it_50k.txt` | OpenSubtitles 2018 (OPUS) | **CC BY-SA 4.0** (content) |
 | `pt.txt` | [hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords) `content/2018/pt/pt_50k.txt` | OpenSubtitles 2018 (OPUS) | **CC BY-SA 4.0** (content) |
 
+## Translations
+
+Glosses were joined onto the frequency ranks from open dictionaries:
+
+- **kaikki.org Wiktionary dumps** (all ten non-English lists, incl. inflected-form
+  index) — CC BY-SA 3.0, © Wiktionary contributors. `zh` glosses come from SUBTLEX-CH
+  (CC BY, see table above).
+- **kengdic** (Joe Speigle, via garfieldnate/kengdic) for the Korean top-up, incl.
+  suffix-strip fallback — MPL 2.0.
+- **Webster's 1913 Unabridged** (matthewreagan/WebstersEnglishDictionary) for English,
+  incl. inflection-strip fallback — public domain.
+- **Arabic clitic fallback**: tokens with attached و/ف/ب/ل/ال clitics fall back to the
+  stripped form's gloss.
+
+Coverage: en 83%, zh 100%, hi 69%, es 91%, ar 62%, fr 88%, ja 80%, ko 76%, de 86%,
+it 88%, pt 85% (the remainder is mostly proper nouns and subtitle noise). The build
+scripts are in `research/freq-lists/`.
+
 ## Notes
 
 - **Register:** the hermitdave lists and SUBTLEX-CH derive from film/TV subtitles —
