@@ -102,9 +102,12 @@ function syncMethods() {
       this._origSave = store.save.bind(store);
       store.save = (k, v) => {
         this._origSave(k, v);
+        this._dirty = true;
         this._schedulePush();
       };
     },
+
+    _saveRaw(k, v) { (this._origSave || store.save).call(store, k, v); },
 
     _schedulePush() {
       if (!this.syncUser) return;
@@ -156,6 +159,8 @@ function syncMethods() {
           owner: this.syncUser.id, blob: packed.data, zip: packed.zip, updatedAt: this._lastPushed
         }));
         this.meta.syncAt = this._lastPushed;
+        this._dirty = false;
+        this._saveRaw('meta', this.meta); // persist the watermark (was in-memory only → false popups after reload)
         this.syncState = 'synced';
         this.syncStatus = 'Synced ' + new Date(this._lastPushed).toLocaleTimeString() +
           ' (' + Math.round(packed.data.length / 1024) + ' KB)';
@@ -178,21 +183,51 @@ function syncMethods() {
       let first = true;
       this._unsub = this._db.subscribeQuery(
         { states: { $: { where: { owner: this.syncUser.id } } } },
-        resp => {
+        async resp => {
           if (resp.error) { this.syncStatus = 'Sync error: ' + resp.error.message; return; }
           const row = resp.data && resp.data.states && resp.data.states[0];
+          if (!row) { if (first) { first = false; this.pushState(); } return; } // nothing in the cloud yet → upload
           if (first) {
             first = false;
-            if (!row) { this.pushState(); return; }                 // nothing in the cloud yet → upload
-            if (this.cards.length === 0) { this.applyRemote(row); return; } // fresh device → download
+            if (this.cards.length === 0) { this.applyRemote(row); return; }     // fresh device → download
+            if (await this._remoteMatchesLocal(row)) { this._markSynced(row); return; }
             if (row.updatedAt > (this.meta.syncAt || 0)) { this._offerRemote(row); return; }
-            this.pushState();                                       // local is newer → upload
+            if (this._dirty) { this.pushState(); return; }                      // local edits since last sync → upload
+            this._markSynced(row);                                              // already in sync — stay quiet
             return;
           }
-          // live update from another device (ignore our own writes)
-          if (row && row.updatedAt > Math.max(this._lastPushed, this._lastApplied)) this._offerRemote(row);
+          // live update: prompt only for genuinely newer, genuinely different content
+          if (row.updatedAt > Math.max(this._lastPushed, this._lastApplied)) {
+            if (await this._remoteMatchesLocal(row)) {
+              this._markSynced(row);                                            // own echo / identical — advance quietly
+            } else {
+              this._offerRemote(row);
+            }
+          }
         }
       );
+    },
+
+    _markSynced(row) {
+      this._lastPushed = Math.max(this._lastPushed, row.updatedAt);
+      this._lastApplied = Math.max(this._lastApplied, row.updatedAt);
+      this.meta.syncAt = Math.max(this.meta.syncAt || 0, row.updatedAt);
+      this._saveRaw('meta', this.meta);
+      this.syncState = 'synced';
+    },
+
+    // Content-level equality (timestamps and the sync watermark ignored) —
+    // identical payloads must never trigger the "load newer state?" prompt.
+    async _remoteMatchesLocal(row) {
+      try {
+        const remote = await this._unpack(row);
+        const mine = JSON.parse(JSON.stringify(this.stateBlob()));
+        delete mine.updatedAt;
+        delete mine.meta.syncAt;
+        if (remote.meta) delete remote.meta.syncAt;
+        delete remote.updatedAt;
+        return JSON.stringify(remote) === JSON.stringify(mine);
+      } catch (e) { return false; }
     },
 
     async _offerRemote(row) {
@@ -224,6 +259,7 @@ function syncMethods() {
         this.placementMeta = state.placementMeta || null;
         this.meta.syncAt = row.updatedAt;
         this._lastApplied = row.updatedAt;
+        this._dirty = false;
         this._fsrs = null;
         const save = this._origSave || store.save.bind(store);
         save('settings', this.settings); save('personas', this.personas);

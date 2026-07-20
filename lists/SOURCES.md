@@ -36,6 +36,21 @@ Coverage: en 83%, zh 100%, hi 69%, es 91%, ar 62%, fr 88%, ja 80%, ko 76%, de 86
 it 88%, pt 85% (the remainder is mostly proper nouns and subtitle noise). The build
 scripts are in `research/freq-lists/`.
 
+## Pronunciations
+
+The third column (`py`) carries pronunciation aids:
+
+- **IPA**: en (CMUdict ARPAbet→IPA, public domain) and es/fr/de/it/pt (Wiktionary IPA
+  via kaikki.org, CC BY-SA 3.0).
+- **Romanization**: zh (pinyin, SUBTLEX-CH), hi (Wiktionary + deterministic
+  Devanagari transliterator for full coverage), ko (Wiktionary + Revised
+  Romanization with nasal/liquid assimilation, 100%), ar (Wiktionary + clitic strip).
+- **Kana readings**: ja (Wiktionary per-kanji ruby, e.g. 学校 → がっこう; kana-only
+  words carry no `py` since they are their own pronunciation).
+
+Coverage: en 99%, zh/hi/ko 100%, ja 73% (rest are kana words), ar 68%, es 90%,
+fr 87%, de 84%, pt 85%, it 74%.
+
 ## Notes
 
 - **Register:** the hermitdave lists and SUBTLEX-CH derive from film/TV subtitles —
