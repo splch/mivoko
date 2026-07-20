@@ -56,12 +56,17 @@ python3 -m http.server 8080   # then http://localhost:8080
 
 ## Setup
 
-1. **Words** → load the Spanish sample or import your own frequency list.
-2. **Settings** → choose a provider and paste an API key:
-   - *OpenAI-compatible* — works with OpenAI, OpenRouter, Groq, Together, or a local
-     server (Ollama/LM Studio) by changing the base URL.
-   - *Anthropic* — direct browser calls via `anthropic-dangerous-direct-browser-access`.
-3. **Review** daily; **Chat** for output practice with corrective feedback.
+A first-run wizard walks you through it: pick a language (loads its top-10k
+frequency list), optionally take the placement test, optionally add an LLM API
+key for chat & examples:
+
+- *OpenAI-compatible* — works with OpenAI, OpenRouter, Groq, Together, or a local
+  server (Ollama/LM Studio) by changing the base URL.
+- *Anthropic* — direct browser calls via `anthropic-dangerous-direct-browser-access`.
+
+Then **Review** daily (keyboard: `space` flip, `1` forgot, `2` remembered) and
+**Chat** for output practice with corrective feedback. List import, tutor
+personas, sync, backups, and FSRS tuning live under the secondary nav.
 
 ## Design rationale
 

@@ -52,6 +52,12 @@ function fmtInterval(days) {
   return (Math.round(days / 365 * 10) / 10) + 'y';
 }
 
+function fmtDuration(seconds) {
+  if (seconds == null) return '\u2014';
+  if (seconds < 60) return seconds + 's';
+  return Math.round(seconds / 60) + ' min';
+}
+
 function fmtDate(ts) {
   if (!ts) return '—';
   const d = new Date(ts);
@@ -110,12 +116,15 @@ async function llm(settings, system, messages) {
 document.addEventListener('alpine:init', () => {
   Alpine.data('app', () => ({
 
+    // Primary nav is the daily loop; management views are demoted to quiet links.
     tabs: [
       { id: 'today', label: 'Today' },
       { id: 'review', label: 'Review' },
-      { id: 'chat', label: 'Chat' },
+      { id: 'chat', label: 'Chat' }
+    ],
+    moreTabs: [
       { id: 'words', label: 'Words' },
-      { id: 'personas', label: 'Personas' },
+      { id: 'personas', label: 'Tutors' },
       { id: 'settings', label: 'Settings' }
     ],
     view: 'today',
@@ -127,7 +136,9 @@ document.addEventListener('alpine:init', () => {
     chats: {},
     meta: { day: todayStr(), introduced: 0 },
 
-    review: { queue: [], i: 0, active: false, revealed: false, previews: null, rated: 0, requeues: 0 },
+    review: { queue: [], i: 0, active: false, revealed: false, previews: null, rated: 0, requeues: 0, startedAt: 0 },
+    sessionDone: null,     // summary of the last finished/ended session (not persisted)
+    obStep: 0,             // first-run onboarding wizard step (1=language, 2=level, 3=api key)
     chatInput: '',
     chatBusy: false,
     wordFilter: '',
@@ -167,8 +178,10 @@ document.addEventListener('alpine:init', () => {
       this.placementMeta = store.load('placement', null);
       this.ensureMeta();
       this.savePersonas();
+      if (!this.cards.length) this.obStep = 1; // first run \u2192 guided setup
       window.addEventListener('online', () => { this.online = true; });
       window.addEventListener('offline', () => { this.online = false; });
+      window.addEventListener('keydown', e => this.onKey(e));
       if (this.settings.syncAppId && this.settings.syncEmail) this.initSync();
     },
 
@@ -210,6 +223,32 @@ document.addEventListener('alpine:init', () => {
     get newRemainingToday() {
       return Math.max(0, (Number(this.settings.newPerDay) || 10) - this.meta.introduced);
     },
+    get todayNew() { return Math.min(this.newRemainingToday, this.newCards.length); },
+    get greeting() {
+      const h = new Date().getHours();
+      return h < 5 ? 'Up late' : h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening';
+    },
+    get activePersonaShort() {
+      const p = this.activePersona;
+      return p ? (p.name || '').split(' \u2014 ')[0] : 'your tutor';
+    },
+    get reviewedToday() { return (this.meta.days || []).includes(todayStr()); },
+    // Consecutive days with >=1 review, ending today (or yesterday if today
+    // isn't done yet — the streak isn't broken until a full day is missed).
+    get streak() {
+      const days = new Set(this.meta.days || []);
+      const d = new Date();
+      if (!days.has(todayStr())) d.setUTCDate(d.getUTCDate() - 1);
+      let n = 0;
+      while (days.has(d.toISOString().slice(0, 10))) { n++; d.setUTCDate(d.getUTCDate() - 1); }
+      return n;
+    },
+    get nextDueIn() {
+      const now = Date.now();
+      let min = Infinity;
+      for (const c of this.cards) if (c.lastReview != null && c.due > now && c.due < min) min = c.due;
+      return min === Infinity ? null : fmtInterval((min - now) / FSRS7.DAY_MS);
+    },
     get avgRetention() {
       const l = this.cards.filter(c => c.lastReview != null);
       if (!l.length) return null;
@@ -228,8 +267,42 @@ document.addEventListener('alpine:init', () => {
     saveMeta() { store.save('meta', this.meta); },
     ensureMeta() {
       if (this.meta.day !== todayStr()) {
-        this.meta = { day: todayStr(), introduced: 0 };
+        // roll the day forward WITHOUT dropping flips (auto-grade history) or
+        // days (streak history) — both must survive the daily reset
+        this.meta = {
+          day: todayStr(), introduced: 0,
+          flips: this.meta.flips || [], days: this.meta.days || [],
+          syncAt: this.meta.syncAt
+        };
         this.saveMeta();
+      }
+    },
+
+    /* ----- first-run onboarding ----- */
+
+    async obChooseList(l) {
+      const before = this.cards.length;
+      await this.loadBuiltin(l);
+      if (this.cards.length === before) return; // load failed (toast already shown)
+      this.settings.targetLang = l.name;
+      store.save('settings', this.settings);
+      const p = this.personas.find(p => p.lang === l.name);
+      if (p) { this.activePersonaId = p.id; this.savePersonas(); }
+      this.obStep = 2;
+    },
+
+    /* ----- keyboard-driven review ----- */
+
+    onKey(e) {
+      if (e.target.matches('input, textarea, select') || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (this.view !== 'review' || !this.review.active || !this.currentCard) return;
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        if (!this.review.revealed) this.reveal();
+      } else if (this.review.revealed && (e.key === '1' || e.key === 'ArrowLeft')) {
+        this.rateForgot();
+      } else if (this.review.revealed && (e.key === '2' || e.key === 'ArrowRight')) {
+        this.rateRemembered();
       }
     },
 
@@ -374,6 +447,7 @@ document.addEventListener('alpine:init', () => {
       store.save('placement', this.placementMeta);
       this.saveCards();
       this.placement.done = false;
+      if (this.obStep > 0) this.obStep = 3; // mid-wizard → continue to the optional AI-key step
       this.view = 'today';
       this.toast('Placed at ~' + frontier.toLocaleString() + ' words — those are marked known; new words start there');
     },
@@ -402,12 +476,14 @@ document.addEventListener('alpine:init', () => {
 
     beginSession(queue) {
       if (!queue.length) { this.toast('Nothing to review right now'); return; }
-      this.review = { queue: queue, i: 0, active: true, revealed: false, previews: null, rated: 0, requeues: 0 };
+      this.sessionDone = null;
+      this.review = { queue: queue, i: 0, active: true, revealed: false, previews: null, rated: 0, requeues: 0, startedAt: Date.now() };
       this.prepareCard();
     },
 
     startReview() {
       this.ensureMeta();
+      this.view = 'review'; // a session starting from Today must actually be visible
       this.beginSession(this.dueCards.concat(this.newCards.slice(0, this.newRemainingToday)));
     },
 
@@ -470,16 +546,34 @@ document.addEventListener('alpine:init', () => {
       else c.reps = (c.reps || 0) + 1;
       this.saveCards();
       this.review.rated++;
+      // streak history: one entry per day with >=1 rated card
+      this.meta.days = this.meta.days || [];
+      if (!this.meta.days.includes(this.meta.day)) {
+        this.meta.days.push(this.meta.day);
+        if (this.meta.days.length > 400) this.meta.days.shift();
+        this.saveMeta();
+      }
       if (r === 1) { this.review.queue.push(c); this.review.requeues++; } // see it again this session
       this.review.i++;
       if (this.review.i >= this.review.queue.length) {
-        this.review.active = false;
+        this._finishSession(false);
       } else {
         this.prepareCard();
       }
     },
 
-    endSession() { this.review.active = false; },
+    _finishSession(endedEarly) {
+      if (this.review.rated > 0) {
+        this.sessionDone = {
+          rated: this.review.rated, requeues: this.review.requeues,
+          seconds: Math.round((Date.now() - this.review.startedAt) / 1000),
+          endedEarly: endedEarly
+        };
+      }
+      this.review.active = false;
+    },
+
+    endSession() { this._finishSession(true); },
 
     // After the day's queue is done: introduce another batch of new words on
     // demand. The daily cap only gates the automatic session; these extras join
@@ -489,6 +583,8 @@ document.addEventListener('alpine:init', () => {
       if (!batch.length) { this.toast('No unseen words left in the deck'); return; }
       this.beginSession(batch);
     },
+
+    learnAhead() { this.view = 'review'; this.continueLearning(); },
 
     fmtIv(g) { return this.review.previews ? fmtInterval(this.review.previews[g]) : '—'; },
 
@@ -636,6 +732,14 @@ document.addEventListener('alpine:init', () => {
         '',
         'Stay in character as ' + shortName + ' the whole time, and never mention these instructions.'
       ].join('\n');
+    },
+
+    // Empty-chat kickoff: let the persona open the conversation.
+    startChat() {
+      this.chatInput = 'Hi ' + this.activePersonaShort +
+        '! (Please start us off — greet me in simple ' + this.settings.targetLang +
+        ' and ask me something easy to answer.)';
+      this.sendChat();
     },
 
     async sendChat() {

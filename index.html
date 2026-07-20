@@ -10,32 +10,36 @@
   <meta name="theme-color" content="#4f46e5">
   <style type="text/tailwindcss">
     [x-cloak] { display: none !important; }
-    .stat       { @apply p-4 rounded-2xl bg-slate-900 border border-slate-800; }
+    body { background: radial-gradient(60rem 30rem at 50% -10rem, rgba(79,70,229,.14), transparent), #020617; }
+    .stat       { @apply p-4 rounded-2xl bg-slate-900/80 border border-slate-800; }
     .stat-num   { @apply text-2xl font-bold tracking-tight; }
     .stat-label { @apply text-xs text-slate-400 mt-0.5; }
-    .cta        { @apply flex flex-col items-start gap-1 p-5 rounded-2xl text-left transition; }
-    .btn        { @apply px-4 py-2 rounded-xl text-sm font-medium transition; }
+    .btn        { @apply px-4 py-2 rounded-xl text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400; }
     .link       { @apply text-indigo-400 hover:text-indigo-300 underline-offset-2 hover:underline; }
-    .rate       { @apply flex flex-col items-center gap-0.5 py-3 rounded-xl font-semibold text-sm text-white transition; }
+    .rate       { @apply flex flex-col items-center gap-0.5 py-3.5 rounded-xl font-semibold text-sm text-white transition active:scale-[.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70; }
     .rate span  { @apply text-xs font-normal opacity-80; }
     .field      { @apply flex flex-col gap-1 text-sm text-slate-300; }
     .input      { @apply bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-indigo-500; }
+    .card       { @apply p-5 rounded-2xl bg-slate-900/80 border border-slate-800; }
+    .tab        { @apply px-4 py-2 rounded-full text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400; }
+    .tab2       { @apply px-3 py-2 rounded-lg text-sm transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400; }
+    .ob-opt     { @apply w-full flex items-center justify-between gap-3 p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-indigo-500/70 hover:bg-slate-900 text-left transition active:scale-[.99]; }
     #chat-scroll::-webkit-scrollbar       { width: 6px; }
     #chat-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
   </style>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>">
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased min-h-screen">
+<body class="text-slate-100 antialiased min-h-screen">
 
-<div x-data="app" x-init="init()" x-cloak class="max-w-5xl mx-auto px-4 pb-20">
+<div x-data="app" x-init="init()" x-cloak class="max-w-4xl mx-auto px-4 pb-24">
 
   <!-- Header -->
-  <header class="flex flex-wrap items-center gap-3 py-5 border-b border-slate-800">
+  <header class="flex items-center gap-3 pt-5">
     <div class="flex items-center gap-2 mr-auto">
       <span class="text-2xl">🗣️</span>
       <div>
         <h1 class="text-lg font-bold tracking-tight leading-none">mivoko</h1>
-        <p class="text-xs text-slate-400">frequency-first · FSRS-7 · your keys, your browser</p>
+        <p class="text-xs text-slate-500 hidden sm:block">frequency-first · FSRS-7 · your keys, your browser</p>
       </div>
       <span x-show="!online" class="ml-2 px-2 py-0.5 rounded-md bg-amber-900/60 text-amber-300 text-xs">offline</span>
       <button x-show="syncUser" @click="view = 'settings'" class="ml-2 px-2 py-0.5 rounded-md text-xs transition"
@@ -45,88 +49,237 @@
                  'bg-slate-800 text-slate-400': syncState === 'idle'}"
         x-text="syncState === 'syncing' ? '☁ syncing…' : syncState === 'error' ? '☁ sync failed' : '☁ synced'"></button>
     </div>
-    <nav class="flex flex-wrap gap-1">
-      <template x-for="t in tabs" :key="t.id">
-        <button @click="view = t.id"
-          class="px-3 py-1.5 rounded-lg text-sm font-medium transition"
-          :class="view === t.id ? 'bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-800'">
-          <span x-text="t.label"></span>
-          <template x-if="t.id === 'review' && dueCount > 0">
-            <span class="ml-1 px-1.5 py-0.5 rounded-full bg-rose-500/90 text-white text-xs" x-text="dueCount"></span>
-          </template>
-        </button>
-      </template>
-    </nav>
   </header>
+
+  <!-- Nav: daily loop (primary) vs. occasional management (secondary) -->
+  <nav class="mt-4 flex flex-wrap items-center gap-1 border-b border-slate-800/70 pb-4">
+    <template x-for="t in tabs" :key="t.id">
+      <button @click="view = t.id" class="tab"
+        :class="view === t.id ? 'bg-indigo-600 text-white shadow shadow-indigo-950/60' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/70'">
+        <span x-text="t.label"></span>
+        <template x-if="t.id === 'review' && dueCount > 0">
+          <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-xs"
+            :class="view === 'review' ? 'bg-white/25 text-white' : 'bg-rose-500/90 text-white'"
+            x-text="dueCount"></span>
+        </template>
+      </button>
+    </template>
+    <div class="ml-auto flex gap-1">
+      <template x-for="t in moreTabs" :key="t.id">
+        <button @click="view = t.id" class="tab2"
+          :class="view === t.id ? 'text-indigo-300 bg-slate-800/70' : 'text-slate-500 hover:text-slate-300'"
+          x-text="t.label"></button>
+      </template>
+    </div>
+  </nav>
 
   <main class="pt-6">
 
     <!-- ============ TODAY ============ -->
     <section x-show="view === 'today'">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="stat"><div class="stat-num" x-text="learnedCount"></div><div class="stat-label">words learned</div></div>
-        <div class="stat"><div class="stat-num" x-text="dueCount"></div><div class="stat-label">due now</div></div>
-        <div class="stat"><div class="stat-num" x-text="newRemainingToday"></div><div class="stat-label">new left today</div></div>
-        <div class="stat">
-          <div class="stat-num" x-text="avgRetention == null ? '—' : Math.round(avgRetention * 100) + '%'"></div>
-          <div class="stat-label">predicted recall</div>
+
+      <!-- ===== First-run onboarding wizard ===== -->
+      <div x-show="obStep > 0" class="max-w-xl mx-auto pt-4">
+        <div class="flex items-center gap-2 text-xs font-medium mb-8">
+          <template x-for="(s, i) in ['Language', 'Your level', 'AI tutor']" :key="i">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full flex items-center justify-center border text-[11px]"
+                :class="obStep > i + 1 ? 'bg-emerald-600 border-emerald-600 text-white' :
+                        obStep === i + 1 ? 'border-indigo-400 text-indigo-300' : 'border-slate-700 text-slate-500'"
+                x-text="obStep > i + 1 ? '✓' : i + 1"></span>
+              <span :class="obStep === i + 1 ? 'text-slate-200' : 'text-slate-500'" x-text="s"></span>
+              <span x-show="i < 2" class="w-6 h-px bg-slate-700"></span>
+            </div>
+          </template>
+        </div>
+
+        <!-- Step 1: language -->
+        <div x-show="obStep === 1">
+          <h2 class="text-2xl font-bold">What are you learning?</h2>
+          <p class="text-slate-400 text-sm mt-2">Loads a top-10,000 frequency list — you'll meet words in the order real speech uses them.</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-5">
+            <template x-for="l in builtinLists" :key="l.code">
+              <button @click="obChooseList(l)" :disabled="listLoading === l.code"
+                class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-indigo-500/70 hover:bg-slate-900 transition text-left disabled:opacity-50 active:scale-[.98]">
+                <p class="font-semibold text-sm" x-text="l.name"></p>
+                <p class="text-xs text-slate-500 mt-0.5" x-text="listLoading === l.code ? 'loading…' : l.words.toLocaleString() + ' words'"></p>
+              </button>
+            </template>
+          </div>
+          <p class="text-sm text-slate-500 mt-5">Have your own list? <button class="link" @click="view = 'words'">Import it instead</button> — the wizard picks back up once it's loaded.</p>
+        </div>
+
+        <!-- Step 2: level -->
+        <div x-show="obStep === 2">
+          <h2 class="text-2xl font-bold">How much <span x-text="settings.targetLang"></span> do you already know?</h2>
+          <div class="space-y-2 mt-5">
+            <button @click="obStep = 3" class="ob-opt">
+              <span><span class="font-semibold block">I'm starting from zero</span>
+              <span class="text-sm text-slate-400">Begin at word #1 — the most frequent word in the language.</span></span>
+              <span class="text-slate-500">→</span>
+            </button>
+            <button @click="startPlacement()" class="ob-opt">
+              <span><span class="font-semibold block">I know some already</span>
+              <span class="text-sm text-slate-400">A 2-minute test finds your level so you skip words you know.</span></span>
+              <span class="text-slate-500">→</span>
+            </button>
+          </div>
+          <button @click="obStep = 3" class="link text-sm mt-4">Decide later →</button>
+        </div>
+
+        <!-- Step 3: API key (optional) -->
+        <div x-show="obStep === 3">
+          <h2 class="text-2xl font-bold">Unlock the AI tutor <span class="text-slate-500 font-normal text-lg">(optional)</span></h2>
+          <p class="text-slate-400 text-sm mt-2">Powers chat with your tutor persona and example sentences. The key lives only in this browser and goes straight to the provider — there is no mivoko server.</p>
+          <div class="card mt-5 space-y-3">
+            <label class="field">Provider
+              <select x-model="settings.provider" class="input">
+                <option value="openai">OpenAI-compatible (OpenRouter, Groq, Ollama…)</option>
+                <option value="anthropic">Anthropic</option>
+              </select>
+            </label>
+            <label class="field">API key
+              <input x-model="settings.apiKey" type="password" autocomplete="off" class="input" placeholder="sk-…">
+            </label>
+            <button @click="saveSettings(); obStep = 0" class="btn bg-indigo-600 hover:bg-indigo-500">Save &amp; start learning</button>
+          </div>
+          <button @click="obStep = 0" class="link text-sm mt-4">Skip — reviews work without a key →</button>
         </div>
       </div>
 
-      <div class="mt-6 grid md:grid-cols-2 gap-3">
-        <button @click="startReview()" class="cta bg-indigo-600 hover:bg-indigo-500">
-          <span class="text-lg font-semibold">Start review</span>
-          <span class="text-sm opacity-80" x-text="dueCount + ' due · ' + Math.min(newRemainingToday, newCards.length) + ' new'"></span>
+      <!-- ===== Returning-user dashboard ===== -->
+      <div x-show="obStep === 0">
+        <!-- Hero: the one thing to do right now -->
+        <div class="p-6 md:p-8 rounded-3xl bg-gradient-to-br from-indigo-600 via-indigo-600 to-violet-700 shadow-lg shadow-indigo-950/50">
+          <p class="text-indigo-200 text-sm font-medium" x-text="greeting"></p>
+
+          <!-- work to do -->
+          <div x-show="dueCount + todayNew > 0" class="mt-2 flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+                <span x-show="dueCount > 0"><span x-text="dueCount"></span> card<span x-show="dueCount !== 1">s</span> due</span>
+                <span x-show="dueCount === 0">Reviews done — keep going?</span>
+              </h2>
+              <p class="text-indigo-200/90 text-sm mt-2">
+                <span x-text="todayNew"></span> new word<span x-show="todayNew !== 1">s</span> ready today
+                <span x-show="streak > 0"> · <span x-text="streak"></span>-day streak 🔥</span>
+                <span x-show="reviewedToday"> · today's reviews ✓</span>
+              </p>
+            </div>
+            <button @click="startReview()"
+              class="px-7 py-3.5 rounded-2xl bg-white text-indigo-700 font-bold shadow-lg shadow-indigo-950/40 hover:bg-indigo-50 active:scale-[.98] transition text-lg">
+              Start review →
+            </button>
+          </div>
+
+          <!-- all caught up -->
+          <div x-show="dueCount + todayNew === 0" class="mt-2">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight">All caught up 🎉</h2>
+            <p class="text-indigo-200/90 text-sm mt-2">
+              <span x-show="nextDueIn">Next review in <span x-text="nextDueIn"></span>.</span>
+              <span x-show="streak > 0"> <span x-text="streak"></span>-day streak 🔥</span>
+            </p>
+            <div class="flex flex-wrap gap-2 mt-5">
+              <button x-show="newCards.length > 0" @click="learnAhead()"
+                class="px-5 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 font-semibold text-sm transition">
+                Learn ahead — <span x-text="Math.min(Number(settings.newPerDay) || 10, newCards.length)"></span> new words
+              </button>
+              <button @click="view = 'chat'" class="px-5 py-2.5 rounded-xl bg-white text-indigo-700 hover:bg-indigo-50 font-semibold text-sm transition">
+                Chat with <span x-text="activePersonaShort"></span> →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- session just finished -->
+        <div x-show="sessionDone" class="mt-3 card flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+          <p class="font-semibold text-emerald-300">Session complete</p>
+          <p class="text-slate-300"><span class="font-semibold text-slate-100" x-text="sessionDone && sessionDone.rated"></span> reviewed in <span x-text="sessionDone && fmtDuration(sessionDone.seconds)"></span></p>
+          <p x-show="sessionDone && sessionDone.requeues > 0" class="text-slate-400"><span x-text="sessionDone && sessionDone.requeues"></span> re-queued after "Forgot"</p>
+          <button @click="sessionDone = null" class="ml-auto text-slate-500 hover:text-slate-300 text-xs">dismiss</button>
+        </div>
+
+        <!-- stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+          <div class="stat">
+            <div class="stat-num"><span x-text="learnedCount.toLocaleString()"></span><span class="text-sm font-normal text-slate-500"> / <span x-text="cards.length.toLocaleString()"></span></span></div>
+            <div class="stat-label">words learned</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" x-text="avgRetention == null ? '—' : Math.round(avgRetention * 100) + '%'"></div>
+            <div class="stat-label">predicted recall</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" x-text="streak > 0 ? streak + ' 🔥' : '—'"></div>
+            <div class="stat-label">day streak</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" x-text="nextDueIn || '—'"></div>
+            <div class="stat-label">next review in</div>
+          </div>
+        </div>
+
+        <!-- chat card -->
+        <button @click="view = 'chat'" class="mt-3 w-full card hover:border-indigo-500/60 transition text-left flex items-center gap-4">
+          <span class="text-3xl">💬</span>
+          <span class="min-w-0">
+            <span class="font-semibold block">Practice with <span x-text="activePersonaShort"></span></span>
+            <span class="text-sm text-slate-400 block truncate" x-text="activePersona ? 'Conversation in ' + settings.targetLang + ' at your level, with gentle correction' : 'Create a tutor persona'"></span>
+          </span>
+          <span class="ml-auto text-slate-500">→</span>
         </button>
-        <button @click="view = 'chat'" class="cta bg-slate-800 hover:bg-slate-700">
-          <span class="text-lg font-semibold">Chat with tutor</span>
-          <span class="text-sm opacity-80" x-text="activePersona ? activePersona.name : 'create a persona'"></span>
-        </button>
-      </div>
 
-      <p x-show="placementMeta" class="mt-4 text-sm text-slate-400">
-        Placement: you know the top ~<span class="text-slate-100 font-semibold" x-text="placementMeta && placementMeta.frontier.toLocaleString()"></span> words (tested <span x-text="placementMeta && placementMeta.date"></span>) · <button class="link" @click="startPlacement()">retake</button>
-      </p>
+        <p x-show="placementMeta" class="mt-4 text-sm text-slate-500">
+          Placement: top ~<span class="text-slate-300 font-semibold" x-text="placementMeta && placementMeta.frontier.toLocaleString()"></span> words known (tested <span x-text="placementMeta && placementMeta.date"></span>) · <button class="link" @click="startPlacement()">retake</button>
+        </p>
+        <p x-show="cards.length > 0 && learnedCount === 0 && !placementMeta" class="mt-4 text-sm text-slate-500">
+          Already know some <span x-text="settings.targetLang"></span>? <button class="link" @click="startPlacement()">Take the 2-minute placement test</button> to skip words you know.
+        </p>
 
-      <div x-show="cards.length > 0 && learnedCount === 0 && !placementMeta" class="mt-8 p-5 rounded-2xl border border-dashed border-indigo-700/60 text-slate-300">
-        <p class="font-semibold text-slate-100">Already know some <span x-text="settings.targetLang"></span>?</p>
-        <p class="text-sm mt-1">Take the 2-minute placement test — it binary-searches the frequency list to find your level, so you skip words you already know.</p>
-        <button @click="startPlacement()" class="btn bg-indigo-600 hover:bg-indigo-500 mt-3">Take placement test</button>
-      </div>
-
-      <div x-show="cards.length === 0" class="mt-8 p-5 rounded-2xl border border-dashed border-slate-700 text-slate-300">
-        <p class="font-semibold text-slate-100">Get started in 30 seconds</p>
-        <ol class="list-decimal ml-5 mt-2 space-y-1 text-sm">
-          <li>Load the sample Spanish list or paste your own frequency list in <button class="link" @click="view='words'">Words</button>.</li>
-          <li>Add your LLM API key in <button class="link" @click="view='settings'">Settings</button> (optional for review, needed for chat &amp; examples).</li>
-          <li>Review daily; chat with a persona when you want output practice.</li>
-        </ol>
-      </div>
-
-      <div class="mt-8 p-5 rounded-2xl bg-slate-900 border border-slate-800 text-sm text-slate-400 leading-relaxed">
-        <p class="font-semibold text-slate-200 mb-1">Why it's built this way</p>
-        <p>Words are taught in corpus-frequency order and scheduled by <strong class="text-slate-200">FSRS-7</strong> (Free Spaced Repetition Scheduler), which targets your chosen retention rate. Review prompts ask you to <em>produce</em> the word from its meaning — retrieval practice transfers to real use. Personas are instructed to elicit self-correction (prompts) rather than silently recasting errors, and to weave your due words into conversation.</p>
+        <details class="mt-6 card text-sm text-slate-400 leading-relaxed">
+          <summary class="font-semibold text-slate-300 cursor-pointer select-none">Why it's built this way</summary>
+          <p class="mt-2">Words are taught in corpus-frequency order and scheduled by <strong class="text-slate-200">FSRS-7</strong> (Free Spaced Repetition Scheduler), which targets your chosen retention rate. Review prompts ask you to <em>produce</em> the word from its meaning — retrieval practice transfers to real use. Personas are instructed to elicit self-correction (prompts) rather than silently recasting errors, and to weave your due words into conversation.</p>
+        </details>
       </div>
     </section>
 
     <!-- ============ REVIEW ============ -->
     <section x-show="view === 'review'">
       <!-- no active session -->
-      <div x-show="!review.active" class="text-center py-10">
-        <p class="text-4xl font-bold" x-text="dueCount"></p>
-        <p class="text-slate-400 mt-1">cards due · <span x-text="Math.min(newRemainingToday, newCards.length)"></span> new available today</p>
-        <p x-show="dueCount === 0 && review.rated > 0" class="text-slate-500 text-sm">all caught up 🎉</p>
-        <button x-show="dueCount + Math.min(newRemainingToday, newCards.length) > 0" @click="startReview()" class="mt-5 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-semibold">
-          Start session
-        </button>
-        <p x-show="review.rated > 0" class="mt-4 text-sm text-emerald-400">
-          Last session: <span x-text="review.rated"></span> reviewed<span x-show="review.requeues > 0">, <span x-text="review.requeues"></span> re-queued after "Again"</span>
-        </p>
-        <div x-show="newCards.length > 0 && (dueCount === 0 || review.rated > 0)" class="mt-6 pt-6 border-t border-slate-800/70 max-w-sm mx-auto">
-          <button @click="continueLearning()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-medium">
-            Keep learning — introduce <span x-text="Math.min(Number(settings.newPerDay) || 10, newCards.length)"></span> new words now
+      <div x-show="!review.active" class="max-w-xl mx-auto">
+        <!-- session summary -->
+        <div x-show="sessionDone" class="card text-center py-8">
+          <p class="text-4xl">🎉</p>
+          <h2 class="text-2xl font-bold mt-3">Session complete</h2>
+          <div class="flex justify-center gap-8 mt-5 text-sm">
+            <div><p class="text-2xl font-bold" x-text="sessionDone && sessionDone.rated"></p><p class="text-slate-400">reviewed</p></div>
+            <div><p class="text-2xl font-bold" x-text="sessionDone && fmtDuration(sessionDone.seconds)"></p><p class="text-slate-400">time</p></div>
+            <div><p class="text-2xl font-bold" x-text="sessionDone && sessionDone.requeues"></p><p class="text-slate-400">re-queued</p></div>
+          </div>
+          <p class="text-slate-500 text-sm mt-4" x-show="nextDueIn">Next review in <span x-text="nextDueIn"></span> — come back then, or:</p>
+          <div class="flex flex-wrap justify-center gap-2 mt-4">
+            <button x-show="newCards.length > 0" @click="continueLearning()" class="btn bg-indigo-600 hover:bg-indigo-500">
+              Keep learning — <span x-text="Math.min(Number(settings.newPerDay) || 10, newCards.length)"></span> new words
+            </button>
+            <button @click="view = 'chat'" class="btn bg-slate-800 hover:bg-slate-700">Chat with <span x-text="activePersonaShort"></span></button>
+            <button @click="sessionDone = null; view = 'today'" class="btn bg-slate-800 hover:bg-slate-700">Done for now</button>
+          </div>
+          <p x-show="newCards.length > 0" class="text-xs text-slate-500 mt-3">extra words still join your review schedule — more words today means more reviews later this week</p>
+        </div>
+
+        <!-- fresh start -->
+        <div x-show="!sessionDone" class="text-center py-10">
+          <p class="text-4xl font-bold" x-text="dueCount"></p>
+          <p class="text-slate-400 mt-1">cards due · <span x-text="todayNew"></span> new available today</p>
+          <p x-show="dueCount === 0 && todayNew === 0" class="text-slate-500 text-sm mt-1">all caught up 🎉<span x-show="nextDueIn"> — next review in <span x-text="nextDueIn"></span></span></p>
+          <button x-show="dueCount + todayNew > 0" @click="startReview()" class="mt-5 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-semibold active:scale-[.98] transition">
+            Start session
           </button>
-          <p class="text-xs text-slate-500 mt-2">extra words still join your review schedule — more words today means more reviews later this week</p>
+          <div x-show="dueCount + todayNew === 0 && newCards.length > 0" class="mt-6 pt-6 border-t border-slate-800/70 max-w-sm mx-auto">
+            <button @click="continueLearning()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-medium">
+              Keep learning — introduce <span x-text="Math.min(Number(settings.newPerDay) || 10, newCards.length)"></span> new words now
+            </button>
+          </div>
         </div>
       </div>
 
@@ -138,10 +291,10 @@
           <button @click="endSession()" class="link">end session</button>
         </div>
         <div class="h-1.5 rounded-full bg-slate-800 mb-5 overflow-hidden">
-          <div class="h-full bg-indigo-500 transition-all" :style="'width:' + (100 * review.i / review.queue.length) + '%'"></div>
+          <div class="h-full bg-indigo-500 transition-all duration-300" :style="'width:' + (100 * review.i / review.queue.length) + '%'"></div>
         </div>
 
-        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 text-center min-h-[16rem] flex flex-col justify-center">
+        <div class="p-8 rounded-2xl bg-slate-900/80 border border-slate-800 text-center min-h-[16rem] flex flex-col justify-center shadow-lg shadow-slate-950/40">
           <!-- front: native gloss -> produce the target word (retrieval + production) -->
           <template x-if="currentCard && currentCard.tr">
             <div>
@@ -157,7 +310,7 @@
             </div>
           </template>
 
-          <div x-show="review.revealed" class="mt-6 pt-6 border-t border-slate-800">
+          <div x-show="review.revealed" x-transition.opacity.duration.200ms class="mt-6 pt-6 border-t border-slate-800">
             <p class="text-2xl md:text-3xl font-bold text-indigo-300 break-words" x-text="currentCard.word"></p>
             <p x-show="currentCard.py" class="text-lg text-slate-300 mt-1 break-words" x-text="currentCard.py"></p>
             <p x-show="currentCard.tr" class="text-slate-400 mt-1 break-words" x-text="currentCard.tr"></p>
@@ -172,7 +325,7 @@
 
         <div class="mt-4">
           <button x-show="!review.revealed" @click="reveal()"
-            class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 font-semibold">Show answer</button>
+            class="w-full py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 font-semibold active:scale-[.99] transition">Show answer</button>
           <div x-show="review.revealed" class="grid grid-cols-2 gap-2">
             <button @click="rateForgot()" class="rate bg-rose-600/80 hover:bg-rose-500">Forgot<span x-text="fmtIv(1)"></span></button>
             <button @click="rateRemembered()" class="rate bg-emerald-600/80 hover:bg-emerald-500">
@@ -180,6 +333,11 @@
             </button>
           </div>
           <p x-show="review.revealed" class="text-center text-xs text-slate-500 mt-2">grade is auto-set by your recall speed — fast flips count as Easy</p>
+          <p class="text-center text-xs text-slate-600 mt-2 hidden sm:block">
+            <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700">space</kbd> flip ·
+            <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700">1</kbd> forgot ·
+            <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700">2</kbd> remembered
+          </p>
         </div>
       </div>
       </template>
@@ -208,7 +366,7 @@
             <p class="text-center text-slate-300 mb-4">Do you know these words?</p>
             <div class="space-y-3">
               <template x-for="(probe, idx) in placement.probes" :key="idx">
-                <div class="flex items-center gap-3 p-4 rounded-2xl bg-slate-900 border border-slate-800">
+                <div class="flex items-center gap-3 p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
                   <p class="flex-1 text-2xl font-bold text-center" x-text="probe.card.word"></p>
                   <button @click="answerProbe(probe, true)" class="btn w-20"
                     :class="probe.known === true ? 'bg-emerald-600 text-white' : 'bg-slate-800 hover:bg-slate-700'">Know</button>
@@ -253,7 +411,7 @@
             <option :value="p.id" x-text="p.name"></option>
           </template>
         </select>
-        <button @click="view = 'personas'" class="link text-sm">edit personas</button>
+        <button @click="view = 'personas'" class="link text-sm">manage tutors</button>
         <button @click="clearChat()" class="link text-sm ml-auto" x-show="chatMessages.length">clear</button>
       </div>
 
@@ -261,10 +419,14 @@
         Chat needs an API key — add one in <button class="link" @click="view='settings'">Settings</button>. Keys are stored only in your browser.
       </div>
 
-      <div id="chat-scroll" class="h-[26rem] overflow-y-auto space-y-3 p-4 rounded-2xl bg-slate-900 border border-slate-800">
-        <p x-show="!chatMessages.length" class="text-slate-500 text-sm text-center pt-24">
-          Say something in <span x-text="settings.targetLang"></span> — mistakes welcome, that's the point.
-        </p>
+      <div id="chat-scroll" class="h-[26rem] overflow-y-auto space-y-3 p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+        <div x-show="!chatMessages.length" class="h-full flex flex-col items-center justify-center text-center gap-3 py-16">
+          <span class="text-4xl">💬</span>
+          <p class="text-slate-400 text-sm max-w-xs">Say something in <span x-text="settings.targetLang"></span> — mistakes welcome, that's the point. <span x-text="activePersonaShort"></span> corrects at most one thing per reply.</p>
+          <button x-show="settings.apiKey" @click="startChat()" class="btn bg-slate-800 hover:bg-slate-700 text-sm">
+            Let <span x-text="activePersonaShort"></span> start the conversation →
+          </button>
+        </div>
         <template x-for="m in chatMessages" :key="m.ts">
           <div class="flex" :class="m.role === 'user' ? 'justify-end' : 'justify-start'">
             <div class="max-w-[80%] px-4 py-2.5 rounded-2xl whitespace-pre-wrap text-sm leading-relaxed"
@@ -272,25 +434,38 @@
               x-text="m.content"></div>
           </div>
         </template>
-        <div x-show="chatBusy" class="flex"><div class="px-4 py-2.5 rounded-2xl bg-slate-800 text-slate-400 text-sm">…</div></div>
+        <div x-show="chatBusy" class="flex"><div class="px-4 py-2.5 rounded-2xl bg-slate-800 text-slate-400 text-sm animate-pulse">…</div></div>
       </div>
 
       <div class="mt-3 flex gap-2">
-        <textarea x-model="chatInput" rows="1" placeholder="Write in your target language…"
+        <textarea x-model="chatInput" rows="1" :placeholder="'Write in ' + settings.targetLang + '…'"
           @keydown.enter="if (!$event.shiftKey) { $event.preventDefault(); sendChat(); }"
           class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 resize-none"></textarea>
         <button @click="sendChat()" :disabled="chatBusy"
-          class="px-5 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-semibold disabled:opacity-50">Send</button>
+          class="px-5 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-semibold disabled:opacity-50 active:scale-[.98] transition">Send</button>
       </div>
     </section>
 
     <!-- ============ WORDS ============ -->
     <section x-show="view === 'words'">
       <div class="grid md:grid-cols-2 gap-4">
-        <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
+        <div class="card">
+          <h2 class="font-semibold mb-2">Deck</h2>
+          <p class="text-sm text-slate-400"><span class="text-slate-100 font-semibold" x-text="cards.length.toLocaleString()"></span> words ·
+            <span class="text-slate-100" x-text="learnedCount.toLocaleString()"></span> learned ·
+            <span class="text-slate-100" x-text="newCards.length.toLocaleString()"></span> unseen</p>
+          <input x-model="wordFilter" placeholder="filter…"
+            class="mt-3 w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500">
+          <div class="flex items-center gap-4 mt-3">
+            <button @click="startPlacement()" x-show="cards.length" class="text-sm link">placement test</button>
+            <button @click="wipeWords()" x-show="cards.length" class="text-sm text-rose-400 hover:text-rose-300">delete entire list</button>
+          </div>
+        </div>
+
+        <div class="card">
           <h2 class="font-semibold mb-2">Import a frequency list</h2>
           <p class="text-xs text-slate-400 mb-3">One word per line, most frequent first. Optional translation after a comma, semicolon, or tab. Ready-made lists: <a class="link" href="https://github.com/hermitdave/FrequencyWords" target="_blank" rel="noopener">hermitdave/FrequencyWords</a>.</p>
-          <textarea x-model="importText" rows="6" placeholder="hola&#9;hello&#10;gracias&#9;thanks&#10;…"
+          <textarea x-model="importText" rows="4" placeholder="hola&#9;hello&#10;gracias&#9;thanks&#10;…"
             class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm font-mono focus:outline-none focus:border-indigo-500"></textarea>
           <div class="flex flex-wrap gap-2 mt-3">
             <button @click="importFromTextarea()" class="btn bg-indigo-600 hover:bg-indigo-500">Import pasted text</button>
@@ -299,22 +474,9 @@
             </label>
           </div>
         </div>
-
-        <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
-          <h2 class="font-semibold mb-2">Deck</h2>
-          <p class="text-sm text-slate-400"><span class="text-slate-100 font-semibold" x-text="cards.length"></span> words ·
-            <span class="text-slate-100" x-text="learnedCount"></span> learned ·
-            <span class="text-slate-100" x-text="newCards.length"></span> unseen</p>
-          <input x-model="wordFilter" placeholder="filter…"
-            class="mt-3 w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500">
-          <div class="flex items-center gap-4 mt-3">
-            <button @click="startPlacement()" x-show="cards.length" class="text-sm link">placement test</button>
-            <button @click="wipeWords()" x-show="cards.length" class="text-sm text-rose-400 hover:text-rose-300">delete entire list</button>
-          </div>
-        </div>
       </div>
 
-      <div class="mt-4 p-5 rounded-2xl bg-slate-900 border border-slate-800">
+      <div class="mt-4 card">
         <h2 class="font-semibold mb-2">Built-in frequency lists</h2>
         <div class="flex flex-wrap gap-2">
           <template x-for="l in builtinLists" :key="l.code">
@@ -358,11 +520,11 @@
       </div>
     </section>
 
-    <!-- ============ PERSONAS ============ -->
+    <!-- ============ TUTORS ============ -->
     <section x-show="view === 'personas'" class="grid md:grid-cols-2 gap-4 items-start">
       <div class="space-y-3">
         <template x-for="p in personas" :key="p.id">
-          <div class="p-4 rounded-2xl bg-slate-900 border transition"
+          <div class="p-4 rounded-2xl bg-slate-900/80 border transition"
             :class="p.id === activePersonaId ? 'border-indigo-500' : 'border-slate-800'">
             <div class="flex items-start gap-2">
               <div class="min-w-0">
@@ -380,8 +542,8 @@
         </template>
       </div>
 
-      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800">
-        <h2 class="font-semibold mb-1" x-text="personaForm.id ? 'Edit persona' : 'New persona'"></h2>
+      <div class="card">
+        <h2 class="font-semibold mb-1" x-text="personaForm.id ? 'Edit tutor' : 'New tutor'"></h2>
         <p class="text-xs text-slate-400 mb-3">Describe who the tutor is and how they teach. This becomes their system prompt, combined with your word-deck context and a self-correction teaching policy.</p>
         <input x-model="personaForm.name" placeholder="Name — e.g. Ana, the patient porteña"
           class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500">
@@ -392,7 +554,7 @@
           class="mt-2 w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500">
         <p class="text-xs text-slate-500 mt-1">Gives the persona a live local clock — date, time, and day of week — so they can chat about their morning or evening in character.</p>
         <div class="flex gap-2 mt-3">
-          <button @click="savePersonaForm()" class="btn bg-indigo-600 hover:bg-indigo-500" x-text="personaForm.id ? 'Save changes' : 'Add persona'"></button>
+          <button @click="savePersonaForm()" class="btn bg-indigo-600 hover:bg-indigo-500" x-text="personaForm.id ? 'Save changes' : 'Add tutor'"></button>
           <button x-show="personaForm.id" @click="personaForm = {id:null,name:'',description:'',tz:''}" class="btn bg-slate-800 hover:bg-slate-700">cancel</button>
         </div>
       </div>
@@ -400,7 +562,7 @@
 
     <!-- ============ SETTINGS ============ -->
     <section x-show="view === 'settings'" class="max-w-2xl">
-      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+      <div class="card space-y-4">
         <h2 class="font-semibold">LLM provider <span class="text-slate-400 font-normal text-sm">(key stays in this browser)</span></h2>
         <div class="grid md:grid-cols-2 gap-3">
           <label class="field">Provider
@@ -421,7 +583,7 @@
         </div>
       </div>
 
-      <div class="mt-4 p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+      <div class="mt-4 card space-y-4">
         <h2 class="font-semibold">Learning</h2>
         <div class="grid md:grid-cols-2 gap-3">
           <label class="field">Native language<input x-model="settings.nativeLang" class="input"></label>
@@ -442,7 +604,7 @@
         <button @click="saveSettings()" class="btn bg-indigo-600 hover:bg-indigo-500">Save settings</button>
       </div>
 
-      <div class="mt-4 p-5 rounded-2xl bg-slate-900 border border-slate-800">
+      <div class="mt-4 card">
         <h2 class="font-semibold mb-1">Cloud sync <span class="text-slate-400 font-normal text-sm">(optional)</span></h2>
         <p class="text-xs text-slate-400 mb-3">Magic-code sign-in syncs your deck, chats, and settings across devices. Your LLM API key is never synced.</p>
         <div x-show="!syncUser" class="space-y-2">
@@ -464,7 +626,7 @@
         <p x-show="syncStatus" class="text-xs text-slate-500 mt-2" x-text="syncStatus"></p>
       </div>
 
-      <div class="mt-4 p-5 rounded-2xl bg-slate-900 border border-slate-800">
+      <div class="mt-4 card">
         <h2 class="font-semibold mb-3">Data</h2>
         <div class="flex flex-wrap gap-2">
           <button @click="exportData()" class="btn bg-slate-800 hover:bg-slate-700">Export backup</button>
