@@ -134,7 +134,7 @@ document.addEventListener('alpine:init', () => {
     importText: '',
     builtinLists: BUILTIN_LISTS,
     listLoading: '',
-    personaForm: { id: null, name: '', description: '' },
+    personaForm: { id: null, name: '', description: '', tz: '' },
     placementMeta: null,   // {frontier, date} — persisted result
     placement: { active: false, done: false, lo: 0, hi: 0, round: 0, maxRounds: 8, minRange: 400, probes: [] },
     toastMsg: '',
@@ -519,18 +519,23 @@ document.addEventListener('alpine:init', () => {
     savePersonaForm() {
       const f = this.personaForm;
       if (!f.name.trim() || !f.description.trim()) { this.toast('Persona needs a name and a description'); return; }
+      const tz = (f.tz || '').trim();
+      if (tz) {
+        try { new Intl.DateTimeFormat('en-US', { timeZone: tz }); }
+        catch (e) { this.toast('Unknown timezone "' + tz + '" \u2014 use an IANA name like Europe/Paris'); return; }
+      }
       if (f.id) {
         const p = this.personas.find(p => p.id === f.id);
-        if (p) { p.name = f.name.trim(); p.description = f.description.trim(); }
+        if (p) { p.name = f.name.trim(); p.description = f.description.trim(); p.tz = tz; }
       } else {
-        this.personas.push({ id: 'p-' + Date.now(), name: f.name.trim(), description: f.description.trim() });
+        this.personas.push({ id: 'p-' + Date.now(), name: f.name.trim(), description: f.description.trim(), tz: tz });
       }
-      this.personaForm = { id: null, name: '', description: '' };
+      this.personaForm = { id: null, name: '', description: '', tz: '' };
       this.savePersonas();
       this.toast('Persona saved');
     },
 
-    editPersona(p) { this.personaForm = { id: p.id, name: p.name, description: p.description }; },
+    editPersona(p) { this.personaForm = { id: p.id, name: p.name, description: p.description, tz: p.tz || '' }; },
 
     deletePersona(p) {
       if (!confirm('Delete persona "' + p.name + '" and its chat history?')) return;
@@ -592,11 +597,26 @@ document.addEventListener('alpine:init', () => {
         .sort((a, b) => a.r - b.r)
         .slice(0, 15).map(x => x.w).join(', ');
       const upcoming = this.newCards.slice(0, 10).map(c => c.word).join(', ');
+      // The persona's own local time, so they can greet, plan, and complain about the weather in character.
+      // Guarded because tz can arrive via sync/import from another device.
+      let momentLine = '';
+      if (p.tz) {
+        try {
+          const local = new Intl.DateTimeFormat('en-US', {
+            timeZone: p.tz, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+            hour: 'numeric', minute: '2-digit', hour12: true
+          }).format(new Date());
+          momentLine = 'Right now where you live it is ' + local + '. Let this season the chat naturally \u2014 morning coffee, the commute home, a late-night message \u2014 but don\u2019t announce the clock unless it comes up.';
+        } catch (e) {
+          console.warn('Invalid persona timezone:', p.tz, e);
+        }
+      }
       return [
         'You are ' + shortName + ', a native ' + s.targetLang + ' speaker who is fluent in ' + s.nativeLang + ' and tutors ' + s.targetLang + ' part-time. The person messaging you is your ' + s.nativeLang + '-speaking student in an online tutoring chat; they came to practice ' + s.targetLang + ' conversation.',
         '',
         'WHO YOU ARE',
         p.description,
+        ...(momentLine ? ['', 'THE MOMENT YOU\u2019RE IN', momentLine] : []),
         '',
         'YOUR STUDENT',
         'They know ~' + known.toLocaleString() + ' of the top ' + total.toLocaleString() + ' ' + s.targetLang + ' words \u2014 ' + pctStr + ' of the frequency deck covered' + (this.placementMeta ? ' (placement-tested ' + this.placementMeta.date + ', then spaced repetition)' : ' (via spaced repetition)') + '. ' + blend + ' If they stall or misunderstand twice, soften toward more ' + s.nativeLang + '; if they cruise, lean harder into ' + s.targetLang + '.',

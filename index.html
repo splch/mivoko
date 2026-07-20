@@ -388,9 +388,12 @@
         <textarea x-model="personaForm.description" rows="6"
           placeholder="Personality, topics they love, how strict they are, how they correct mistakes…"
           class="mt-2 w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500"></textarea>
+        <input x-model="personaForm.tz" placeholder="Their timezone (optional) — e.g. America/Argentina/Buenos_Aires"
+          class="mt-2 w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500">
+        <p class="text-xs text-slate-500 mt-1">Gives the persona a live local clock — date, time, and day of week — so they can chat about their morning or evening in character.</p>
         <div class="flex gap-2 mt-3">
           <button @click="savePersonaForm()" class="btn bg-indigo-600 hover:bg-indigo-500" x-text="personaForm.id ? 'Save changes' : 'Add persona'"></button>
-          <button x-show="personaForm.id" @click="personaForm = {id:null,name:'',description:''}" class="btn bg-slate-800 hover:bg-slate-700">cancel</button>
+          <button x-show="personaForm.id" @click="personaForm = {id:null,name:'',description:'',tz:''}" class="btn bg-slate-800 hover:bg-slate-700">cancel</button>
         </div>
       </div>
     </section>
