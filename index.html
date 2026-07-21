@@ -310,7 +310,7 @@
             </div>
           </template>
 
-          <div x-show="review.revealed" x-transition.opacity.duration.200ms class="mt-6 pt-6 border-t border-slate-800">
+          <div x-show="review.revealed" x-transition:enter.opacity.duration.200ms class="mt-6 pt-6 border-t border-slate-800">
             <p class="text-2xl md:text-3xl font-bold text-indigo-300 break-words" x-text="currentCard.word"></p>
             <p x-show="currentCard.py" class="text-lg text-slate-300 mt-1 break-words" x-text="currentCard.py"></p>
             <p x-show="currentCard.tr" class="text-slate-400 mt-1 break-words" x-text="currentCard.tr"></p>
